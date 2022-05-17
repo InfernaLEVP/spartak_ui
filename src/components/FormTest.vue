@@ -6,7 +6,7 @@
         <div class="backdrop" @click="closeModal"></div>
 
         <form action="/action_page.php" class="form-container" @submit="formOrder">
-            <h2 class="form-head">{{ titleText }}</h2>
+            <h2 class="form-head" v-html="titleText"></h2>
             <p class="form-datetime">
                 {{ additionalText }}
             </p>
@@ -20,7 +20,7 @@
             <div class="inputs" v-show="renderType === 'ordinary'">
 
                 <div class="select" v-if="this.formType === 'media'">
-                    <select id="standard-select">
+                    <select id="standard-select" v-model="media">
                         <option value="Option 1">СМИ</option>
                         <option value="Option 2">Блогер</option>
                         <option value="Option 3">Фотограф</option>
@@ -46,7 +46,7 @@
                 <input type="text" placeholder="Ставка" name="stavka" v-maska="'#########'" required v-model="stavka" v-if="info.need_stavka === '1'">
                 <div class="line" v-if="info.need_stavka === '1'"></div>
 
-                <input type="url" name="url" placeholder="Ссылка на соцсети" required v-if="this.formType === 'media'">
+                <input type="url" name="url" placeholder="Ссылка на соцсети" required v-model="socials" v-if="this.formType === 'media'">
                 <div class="line" v-if="this.formType === 'media'"></div>
 
             </div>
@@ -87,7 +87,9 @@ export default {
             loader: '',
             loaderProgress: false,
             renderType: 'ordinary',
-            days: undefined
+            days: undefined,
+            socials: '',
+            media: ''
         }
     },
     created() {
@@ -115,7 +117,11 @@ export default {
                     familyName: this.familyName, 
                     phone: this.phone, 
                     email: this.email,
-                    chosenEvent: this.info
+                    chosenEvent: this.info,
+                    formType: this.formType,
+                    socials: this.socials,
+                    media: this.media,
+                    isOpened: this.isOpenedRegisteration
                 })
             });
             if (response.ok === true) {
@@ -154,10 +160,10 @@ export default {
         },
         formValidate() {
             const errors = [];
-            if(this.name.length === 0){
-                document.getElementById('fname-input').classList.add('err');
-                errors.push('fname');
-            }
+            // if(this.name.length === 0){
+            //     document.getElementById('fname-input').classList.add('err');
+            //     errors.push('fname');
+            // }
 
             if(errors.length !== 0){
                 return false;
@@ -168,6 +174,15 @@ export default {
         }
     },
     computed: {
+        isOpenedRegisteration() {
+            const _date = new Date(Date.now());
+            const day = this.days.find(d => d.day === this.info.day);
+            if(_date.getDate() >= day.openDay.split('.')[0]){
+                return true;
+            }else{
+                return false;
+            }
+        },
         buttonText() {
             
             if(this.formType === '1922'){
