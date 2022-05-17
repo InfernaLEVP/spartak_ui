@@ -1,0 +1,67 @@
+@font-face {
+     font-family: 'Druk';
+     font-style: italic;
+     font-weight: 400;
+     font-display: swap;
+     src: url(/fonts/DrukCondensed-XSuperItalic-Desktop.woff) format('woff');
+}
+
+:root {
+     --colorRed: #D80E22;
+     --colorOrange: #FF5D0C;
+     --colorYellow: #F8D62F;
+     --colorDark: #000;
+     --colorDark2: #4D4D4D;
+     --colorLight: #fff;
+}
+
+html * {
+     font-family: Helvetica, Arial, sans-serif;
+     box-sizing: border-box;
+     scroll-behavior: smooth;
+
+
+}
+
+body {
+     background-color: var(--colorDark);
+     overflow-y: scroll;
+
+     scroll-behavior: smooth;
+
+}
+
+.btn {
+     width: 100%;
+     /* z-index: 1050; */
+     padding: 0.744vw;
+     background-color: var(--colorDark);
+     color: var(--colorLight);
+     text-align: center;
+
+     font-family: 'Helvetica';
+     font-style: normal;
+     font-weight: 400;
+     font-size: 1.116vw;
+     line-height: 107%;
+     border-radius: 1.786vw;
+     margin-top: 0.372vw;
+     cursor: pointer;
+     border: 0;
+     transition: .3s;
+
+}
+
+.btn:hover {
+     background-color: var(--colorLight);
+     color: var(--colorDark);
+}
+
+@media (max-width: 575.98px) {
+
+     .btn {
+          font-size: 3.348vw;
+          padding: 8px;
+          border-radius: 16px;
+     }
+}
