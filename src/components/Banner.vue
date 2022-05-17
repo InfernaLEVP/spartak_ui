@@ -1,5 +1,5 @@
 <template>
-    
+
     <div class="banner1922">
         <div class="banner1922__left">
             <div class="banner1922__top-text-container">
@@ -8,9 +8,12 @@
             </div>
             <div class="banner1922__arrow"></div>
 
-            <p class="banner1922__main-text">Каждый желающий может провести свою игру на&nbsp;лодке и&nbsp;стать частью
-                истории</p>
-            <button class="btn" @click="book">Записаться на матч</button>
+            <p class="banner1922__main-text">Легендарный матч 1922&nbsp;&mdash; это возможность стать частью современной
+                истории ФК&nbsp;&laquo;Спартак&raquo; и&nbsp;сыграть в&nbsp;футбол курсируя по&nbsp;Москва реке
+                на&nbsp;Winliner.
+                В&nbsp;матче также примут участие звездные болельщики, легенды и&nbsp;футболисты
+                ФК&nbsp;&laquo;Спартак&raquo;. Пишем историю вместе!</p>
+            <button class="btn" @click="book">Стать частью истории</button>
 
         </div>
         <div class="banner1922__right">
@@ -25,7 +28,7 @@ export default {
     name: 'Banner',
     data() {
         return {
-            
+
         }
     },
     methods: {
@@ -36,7 +39,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .btn {
     min-height: 3.571vw;
 }
@@ -90,12 +93,13 @@ export default {
     font-family: 'Helvetica';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.860vw;
+    font-size: 1.5vw;
     line-height: 96%;
     letter-spacing: -0.01em;
     /* text-transform: uppercase; */
     color: var(--colorDark);
     /* opacity: .5; */
+    margin: 16px 0;
 
 }
 
@@ -106,6 +110,8 @@ export default {
     background-size: contain;
     width: 100%;
     height: 16px;
+    padding-bottom: 40px;
+
 
 }
 
@@ -179,12 +185,14 @@ export default {
         grid-row-start: 1;
         /* height: 100px; */
     }
-    .rotateBall{
+
+    .rotateBall {
         height: 120%;
         padding: 0;
         margin: -5%;
     }
-    .btn{
+
+    .btn {
         padding-top: 4vw;
         padding-bottom: 4vw;
     }

@@ -13,8 +13,6 @@
 
             <p class="slot-selection-text"> Выбери слот<br>для регистрации </p>
         </div>
-
-
         <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
             :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
             :description="event.description" :slot_start_time="event.slot_start_time"
@@ -71,6 +69,7 @@ export default {
     computed: {
         needDay() {
             return this.data.filter(d => d.day === this.day.day);
+            
         },
 
     }

@@ -1,5 +1,5 @@
 <template>
-
+<FirstAnimation />
     <div class="container1344">
         
         <!-- <div class="progress-line" id="progress"></div> -->
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import FirstAnimation from "./components/FirstAnimation.vue";
 import Header from "./components/Header.vue";
 import Banner from "./components/Banner.vue";
 import TimeSheet from "./components/TimeSheet.vue";
@@ -38,6 +39,7 @@ import { gsap } from 'gsap';
 export default {
     name: "App",
     components: {
+        FirstAnimation,
         Header,
         Banner,
         TimeSheet,
