@@ -1,5 +1,5 @@
 <template>
-   <div class="black-window" :id="day.day" :data-id="`el-${day.day}`" ref="day">
+    <div class="black-window" :id="day.day" :data-id="`el-${day.day}`" ref="day">
         <div class="day_and_description">
             <div class="timesheet__day-container">
                 <p class="timesheet__day-number">{{ day.day }}</p>
@@ -33,6 +33,9 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
+
                 <div class="timesheet__slot" @click="bookSlot(event)">
                     <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p>
                     <div class="timesheet__slot-arrow"></div>
@@ -53,7 +56,7 @@ export default {
         day: Object
     },
     data() {
-        return{
+        return {
             data: undefined
         }
     },
@@ -68,7 +71,8 @@ export default {
     computed: {
         needDay() {
             return this.data.filter(d => d.day === this.day.day);
-        }
+        },
+
     }
 }
 </script>
@@ -143,6 +147,7 @@ export default {
 }
 
 .timesheet__month {
+    font-family: Helvetica, Arial, sans-serif;
     color: #929292;
 }
 
@@ -269,6 +274,7 @@ export default {
 
 }
 
+
 .timesheet__slot:hover {
     background-color: var(--colorOrange);
     color: var(--colorDark);
@@ -278,8 +284,28 @@ export default {
 .timesheet__slot-arrow {
     background-image: url(../assets/images/arr2.svg);
     background-repeat: no-repeat;
+    background-size: contain;
     width: 1.190vw;
     height: 1.190vw;
+}
+
+
+.slot-disable {
+    border: 1.4px solid #929292;
+    color: #929292;
+
+}
+
+.slot-disable .timesheet__slot-arrow {
+    filter: grayscale() brightness(.8);
+
+}
+
+.slot-disable:hover {
+    /* color: #929292; */
+    background-color: #929292;
+
+
 }
 
 .timesheet__slot:hover>.timesheet__slot-arrow {
@@ -290,6 +316,7 @@ export default {
     .black-window {
         padding-bottom: 48px;
         margin-bottom: 16px;
+        padding: 16px 8px;
     }
 
     .timesheet__day-container {

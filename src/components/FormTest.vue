@@ -344,7 +344,8 @@ select {
 }
 
 .form-container input[type=text]::placeholder,
-.form-container input[type=tel]::placeholder {
+.form-container input[type=tel]::placeholder,
+.form-container input[type=url]::placeholder {
   color: var(--colorDark);
 
 }

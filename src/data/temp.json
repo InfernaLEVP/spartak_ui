@@ -1,6 +1,6 @@
 [
     {
-        "day": "05",
+        "day": "5",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "15:30",
@@ -15,7 +15,7 @@
         "route": "Мост Багратион – Петр 1 – Мост Багратион"
     },
     {
-        "day": "05",
+        "day": "5",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "15:30",
@@ -30,7 +30,7 @@
         "route": "Мост Багратион – Петр 1 – Мост Багратион"
     },
     {
-        "day": "05",
+        "day": "5",
         "slot_number": "2",
         "slot_start_time": "16:00",
         "slot_end_time": "19:30",
@@ -45,7 +45,7 @@
         "route": "Мост Багратион – Фрунзенская – Мост Багратион\n"
     },
     {
-        "day": "05",
+        "day": "5",
         "slot_number": "2",
         "slot_start_time": "16:00",
         "slot_end_time": "19:30",
@@ -60,7 +60,7 @@
         "route": "Мост Багратион – Фрунзенская – Мост Багратион"
     },
     {
-        "day": "05",
+        "day": "5",
         "slot_number": "3",
         "slot_start_time": "20:00",
         "slot_end_time": "24:00",
@@ -76,7 +76,7 @@
     },
     
     {
-        "day": "06",
+        "day": "6",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "14:30",
@@ -91,7 +91,7 @@
         "route": "Багратион – Фрунзенская - Багратион"
     },
     {
-        "day": "06",
+        "day": "6",
         "slot_number": "2",
         "slot_start_time": "15:00",
         "slot_end_time": "18:30",
@@ -106,7 +106,7 @@
         "route": "Багратион – Петр 1 – Багратион"
     },
     {
-        "day": "06",
+        "day": "6",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "21:30",
@@ -122,7 +122,7 @@
     },
     
     {
-        "day": "07",
+        "day": "7",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "14:30",
@@ -137,7 +137,7 @@
         "route": "Багратион – Фрунзенская"
     },
     {
-        "day": "07",
+        "day": "7",
         "slot_number": "2",
         "slot_start_time": "15:00",
         "slot_end_time": "18:30",
@@ -152,7 +152,7 @@
         "route": "Багратион – Петр 1"
     },
     {
-        "day": "07",
+        "day": "7",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "22:00",
@@ -167,7 +167,7 @@
         "route": "Багратион – Фрунзенская"
     },
     {
-        "day": "07",
+        "day": "7",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "22:00",
@@ -183,7 +183,7 @@
     },
     
     {
-        "day": "08",
+        "day": "8",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "15:30",
@@ -198,7 +198,7 @@
         "route": "Багратион – Петр 1 – Багратион"
     },
     {
-        "day": "08",
+        "day": "8",
         "slot_number": "2",
         "slot_start_time": "16:00",
         "slot_end_time": "18:30",
@@ -213,12 +213,12 @@
         "route": "Багратион – Фрунзенская – Багратион"
     },
     {
-        "day": "08",
+        "day": "8",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "22:00",
-        "name": "Public Talk. В гостях важнейшие представители фан-движения Спартака",
-        "description": "Александр Гуренков (Заплата), Анатолий Хафизов (Тоха), Сергей Митяков (Люберецкий), Алексей Чекмарев (Чика) Болельщик — основа любой спортивной команды. Вместе с основателями фан-движения Спартака мы вспомним первые организованные выезды, на кого ровнялись болельщики в 70-х и при поддержке KION посмотрим документальный фильм «МЫ — СПАРТАК».",
+        "name": "Public Talk. В гостях важнейшие представители фан-движения Спартака: Александр Гуренков (Заплата), Анатолий Хафизов (Тоха), Сергей Митяков (Люберецкий), Алексей Чекмарев (Чика)",
+        "description": "Болельщик — основа любой спортивной команды. Вместе с основателями фан-движения Спартака мы вспомним первые организованные выезды, на кого ровнялись болельщики в 70-х и при поддержке KION посмотрим документальный фильм «МЫ — СПАРТАК».",
         "eventStartTime": "19:30",
         "eventEndTime": "20:15",
         "how_much_registration": "0",
@@ -229,7 +229,7 @@
     },
     
     {
-        "day": "09",
+        "day": "9",
         "slot_number": "1",
         "slot_start_time": "12:00",
         "slot_end_time": "15:30",
@@ -244,7 +244,7 @@
         "route": "Багратион – Петр 1"
     },
     {
-        "day": "09",
+        "day": "9",
         "slot_number": "2",
         "slot_start_time": "16:00",
         "slot_end_time": "18:30",
@@ -259,7 +259,7 @@
         "route": "Багратион – Фрунзенская"
     },
     {
-        "day": "09",
+        "day": "9",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "22:00",
@@ -274,7 +274,7 @@
         "route": "Багратион – Фрунзенская"
     },
     {
-        "day": "09",
+        "day": "9",
         "slot_number": "3",
         "slot_start_time": "19:30",
         "slot_end_time": "22:00",
@@ -355,7 +355,7 @@
         "slot_start_time": "19:00",
         "slot_end_time": "22:30",
         "name": "Презентация сериала «Спартак-90-х» с Кинопоиском",
-        "description": "",
+        "description": "null",
         "eventStartTime": "20:45",
         "eventEndTime": "22:30",
         "how_much_registration": "-1",
@@ -373,7 +373,7 @@
         "name": "Утренний Winliner",
         "description": "Утренняя студия с Л.А. Федуном на Winliner'е. Подведение итогов, планы развития и взгляд на будущее ФК «Спартак».",
         "eventStartTime": "11:00",
-        "eventEndTime": "",
+        "eventEndTime": "null",
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "1",
@@ -388,7 +388,7 @@
         "name": "Старт «Легендарного матча 1922»",
         "description": "«Легендарный матч 1922» — это футбольный матч для всех красно-белых, это 1922 минуты беспрерывного футбола на Winliner'е и возможность стать частью новой истории ФК «Спартак».",
         "eventStartTime": "11:20",
-        "eventEndTime": "",
+        "eventEndTime": "null",
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "1",
@@ -513,7 +513,7 @@
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "0",
-        "condition": "",
+        "condition": "null",
         "route": "Багратион – Фрунзенская – Багратион"
     },
     {
@@ -528,7 +528,7 @@
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "0",
-        "condition": "",
+        "condition": "null",
         "route": "Багратион – Петр 1 – Багратион"
     },
     {
@@ -543,7 +543,7 @@
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "0",
-        "condition": "",
+        "condition": "null",
         "route": "Багратион – Петр 1 – Багратион"
     },
     {
@@ -558,7 +558,7 @@
         "how_much_registration": "-1",
         "need_stavka": "0",
         "need_winline_registr": "0",
-        "condition": "",
+        "condition": "null",
         "route": "Багратион – Петр 1 – Багратион"
     }
 ]

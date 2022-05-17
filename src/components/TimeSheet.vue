@@ -76,8 +76,8 @@ export default {
 @media (max-width: 575.98px) {
 
     .timesheet {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
 
     .timesheet__first-block {
@@ -93,6 +93,9 @@ export default {
         font-size: 4.58vw;
         margin-top: 16px;
 
+    }
+    .timesheet__first-block{
+        margin: 16px 8px;
     }
 
 

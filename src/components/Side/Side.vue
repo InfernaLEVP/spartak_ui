@@ -1,6 +1,6 @@
 <template>
-    
-    <button class="burger-btn" @click="showBurger = !showBurger"></button>
+
+    <button class="burger-btn-open" @click="showBurger = !showBurger"></button>
 
     <section class="sidetimesheet" v-show="showBurger">
 
@@ -52,14 +52,14 @@ export default {
         parseDays(days, property) {
             return days.reduce(function (acc, obj) {
                 let key = obj[property];
-                if(key != '10'){
+                if (key != '10') {
                     key = key.replace('0', '')
                 }
 
                 if (!acc[key]) {
                     acc[key] = [];
                 }
-                    acc[key].push(obj);
+                acc[key].push(obj);
                 return acc;
             }, {});
         },
@@ -194,7 +194,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         position: fixed;
-        border: 1.4px solid var(--colorDark);
+        border: 1.4px solid var(--colorOrange);
         width: 48px;
         height: 48px;
         right: 8px;
@@ -208,13 +208,34 @@ export default {
 
     }
 
+    .burger-btn-open {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 0;
+
+        background-color: var(--colorDark);
+        width: 48px;
+        height: 48px;
+        right: 8px;
+        top: 2vh;
+        z-index: 9999;
+        border-radius: 12px;
+        /* padding-left: 2px; */
+        cursor: pointer;
+        border: none;
+
+    }
+
+
     .burger-btn::before {
         display: block;
         position: absolute;
         content: "";
         width: 40px;
         height: 2px;
-        background-color: var(--colorDark);
+        background-color: var(--colorOrange);
         /* transform: rotate(45deg); */
         transform: translateY(-4px);
 
@@ -226,11 +247,36 @@ export default {
         content: "";
         width: 40px;
         height: 2px;
-        background-color: var(--colorDark);
+        background-color: var(--colorOrange);
         /* transform: rotate(-45deg); */
         transform: translateY(+4px);
 
     }
+
+    .burger-btn-open::before {
+        display: block;
+        position: absolute;
+        content: "";
+        width: 40px;
+        height: 2px;
+        background-color: var(--colorOrange);
+        transform: rotate(45deg);
+        /* transform: translateY(-4px); */
+
+    }
+    .burger-btn-open::after {
+        display: block;
+        position: absolute;
+        content: "";
+        width: 40px;
+        height: 2px;
+        background-color: var(--colorOrange);
+        transform: rotate(-45deg);
+        /* transform: translateY(+4px); */
+
+    }
+
+
 
     .vline-container {
         margin-top: 50px;
