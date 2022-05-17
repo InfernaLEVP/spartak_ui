@@ -1,9 +1,10 @@
 <template>
 
-    <a class="daylink" :href="`#${day}`">
+    <a class="daylink" :href="`#${day.day}`">
 
         <div class="sidetimesheet__one-row">
-            
+<!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
+             <!-- :style="`opacity: ${text(day) ? '1' : '1'}` -->
             <div class="sidetimesheet__play" :style="`opacity: ${text(day) ? '1' : '0'}`"></div>
             
             <p class="sidetimesheet__day">{{ day.day }}</p>

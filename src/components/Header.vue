@@ -1,12 +1,12 @@
 <template>
-    <section class="header">
-        <div class="header__top-container">
-            <h1 class="header__h1">Win<span>liner</span></h1>
-            <div class="header__top-right-container">
-                <div class="header__date-logos">
-                    <div class="header__date">5–12 июня</div>
-                    <div class="header__logos">
-                        <img
+  <section class="header">
+    <div class="header__top-container">
+      <h1 class="header__h1">Win<span>liner</span></h1>
+      <div class="header__top-right-container">
+        <div class="header__date-logos">
+          <div class="header__date">5–12 июня</div>
+          <div class="header__logos">
+            <!-- <img
                             class="header__logo1"
                             src="../assets/images/winlineLogo.png"
                             width="118px"
@@ -20,29 +20,24 @@
                             width="100px"
                             height="auto"
                             alt="spartak logo"
-                        />
-                    </div>
-                </div>
-                <p class="header__description">
-                    Столетняя история легендарного клуба и&nbsp;его болельщиков,
-                    объединённая в&nbsp;8&nbsp;тематических мероприятиях
-                </p>
-            </div>
+                        /> -->
+          </div>
         </div>
+        <p class="header__description">
+          Столетняя история легендарного клуба и&nbsp;его болельщиков,
+          объединённая в&nbsp;8&nbsp;тематических мероприятиях
+        </p>
+      </div>
+    </div>
 
-        <div class="header__center-image">
-            <!-- <div class="header__center-logo100"></div> -->
-        </div>
+    <div class="header__center-image">
+      <!-- <div class="header__center-logo100"></div> -->
+    </div>
 
-        <h2 class="header__h2">
-            Пишем историю вместе Пишем историю вместе Пишем историю вместе Пишем
-            историю вместе Пишем историю вместе Пишем историю вместе Пишем
-            историю вместе Пишем историю вместе Пишем историю вместе Пишем
-            историю вместе Пишем историю вместе Пишем историю вместе Пишем
-            историю вместе Пишем историю вместе Пишем историю вместе Пишем
-            историю вместе Пишем историю вместе Пишем историю вместе
-        </h2>
-    </section>
+    <h2 class="header__h2">
+      Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;
+    </h2>
+  </section>
 </template>
 
 <script>
@@ -80,12 +75,21 @@ export default {};
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-image: url(../assets/images/WLSpartak_White.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 16.964vw;
+  height: 4.315vw;
 }
 
 @media (max-width: 991.98px) {
   .header__logos {
     padding-right: 100px;
     padding-top: 5px;
+    width: 47.500vw;
+    height: 13.611vw;
+
   }
 }
 
