@@ -224,7 +224,7 @@ export default {};
   }
 
   100% {
-    transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-124%, 0, 0);
   }
 }
 
