@@ -6,7 +6,7 @@
             <div class="backdrop" @click="closeModal"></div>
 
             <form action="/action_page.php" class="form-container" @submit="formOrder">
-                <h2 class="form-head">"{{titleText}}"</h2>
+                <h2 class="form-head">{{titleText}}</h2>
                 <p class="form-datetime">
                     {{ additionalText }}
                 </p>
