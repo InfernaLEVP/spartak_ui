@@ -176,7 +176,7 @@ export default {
         buttonText() {
 
             if (this.formType === '1922') {
-                return 'Уведомить об открытии';
+                return 'Стать частью истории';
             } else if (this.formType === 'media') {
                 return 'Зарегистрировать СМИ';
             } else {
