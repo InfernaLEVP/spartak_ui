@@ -161,7 +161,7 @@ export default {
 
     .banner1922 {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: auto auto;
     }
 
     .banner1922__main-text,
@@ -183,7 +183,7 @@ export default {
 
     .banner1922__right {
         grid-row-start: 1;
-        /* height: 100px; */
+        height: 150px;
     }
 
     .rotateBall {

@@ -230,7 +230,7 @@ export default {
         right: 8px;
         top: 2vh;
         z-index: 9999;
-        background: none;
+        background: var(--colorDark);
         /* border: 1.4px solid #FF5D0C; */
         border-radius: 12px;
         padding-left: 2px;

@@ -53,7 +53,7 @@
                     <input type="text" placeholder="Email" name="email" required v-model="email">
                     <div class="line"></div>
 
-                    <input type="text" placeholder="Ставка" name="stavka" v-maska="'#########'" required
+                    <input type="text" placeholder="Номер ставки Winline" name="stavka" v-maska="'#########'" required
                         v-model="stavka" v-if="info.need_stavka === '1'">
                     <div class="line" v-if="info.need_stavka === '1'"></div>
 
@@ -61,6 +61,8 @@
                         v-if="this.formType === 'media'">
                     <div class="line" v-if="this.formType === 'media'"></div>
 
+                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой
+                            обработки персональных данных</a></p>
                 </div>
 
                 <div class="result" v-show="renderType === 'success'">
@@ -243,6 +245,24 @@ export default {
 </script>
 
 <style scoped>
+.personal {
+    margin-top: 1.190vw;
+    margin-left: 0.595vw;
+    font-size: 1.190vw;
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--colorDark);
+
+}
+
+.personal-link,
+.personal-link:visited {
+    /* text-decoration: none; */
+    color: var(--colorDark);
+
+
+}
+
+
 select {
     appearance: none;
     background-color: transparent;
@@ -392,7 +412,7 @@ select {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-    margin-top: 9.226vw;
+    margin-top: 4.613vw;
 }
 
 /* Add a red background color to the cancel button */
@@ -427,7 +447,7 @@ select {
     letter-spacing: -0.01em;
     color: var(--colorOrange);
     margin-top: 1.786vw;
-    margin-bottom: 9.226vw;
+    margin-bottom: 4.613vw;
 }
 
 .cancel {
@@ -456,6 +476,11 @@ select {
 
 @media (max-width: 575.98px) {
 
+    .personal {
+        margin-top: 16px;
+        font-size: 12px;
+    }
+
     .form-popup {
         /* position: static; */
         left: 0;
@@ -473,7 +498,8 @@ select {
     }
 
     .form-head {
-        font-size: 6vw;
+        font-size: 5vw;
+        width: 90%;
     }
 
     .form-datetime {
@@ -481,8 +507,10 @@ select {
 
     }
 
+    select,
     .form-container input[type=text],
-    .form-container input[type=tel] {
+    .form-container input[type=tel],
+    .form-container input[type=url] {
         font-size: 5.58vw;
     }
 
