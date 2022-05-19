@@ -36,11 +36,11 @@
                 </div>
                 
 
-                    <div class="input-wrapper" id="fname-input">
+                    <!-- <div class="input-wrapper" id="fname-input">
                         <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
                         <span class="validation-message">Это поле обязательно</span>
                         <div class="line"></div>
-                    </div>
+                    </div> -->
 
 
                     <input type="text" id="lname" name="lastname" placeholder="Фамилия" required v-model="familyName">
@@ -57,7 +57,7 @@
                         v-model="stavka" v-if="info.need_stavka === '1'">
                     <div class="line" v-if="info.need_stavka === '1'"></div>
 
-                    <input type="url" name="url" placeholder="Ссылка на соцсети" required
+                    <input type="text" name="url" placeholder="Ссылка на соцсети" required
                         v-if="this.formType === 'media'">
                     <div class="line" v-if="this.formType === 'media'"></div>
 
@@ -123,7 +123,7 @@ export default {
         async orderFormation() {
             const response = await fetch("http://45.92.173.81:3000/api/bookOneEvent", {
                 method: "POST",
-                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                 body: JSON.stringify({
                     name: this.name,
                     familyName: this.familyName,
@@ -201,6 +201,8 @@ export default {
                 return 'Стать частью истории';
             } else if (this.formType === 'media') {
                 return 'Зарегистрировать СМИ';
+            } else if (this.formType === 'remind') {
+                return 'Уведомить об открытии';
             } else {
                 const day = this.days.find(d => d.day === this.info.day);
                 console.log({ day })
@@ -229,6 +231,8 @@ export default {
                 return '';
             } else if (this.formType === 'media') {
                 return '';
+            } else if (this.formType === 'remind') {
+                return `${this.info.day} июня`;
             } else {
                 return `${this.info.day} июня ${this.info.slot_start_time} — ${this.info.slot_end_time}`;
             }
@@ -491,7 +495,7 @@ select {
 }
 
 .input-wrapper {
-    position: relative;
+    /* position: relative; */
 }
 
 .err {

@@ -6,7 +6,7 @@
                 с&nbsp;несколькими активностями. В&nbsp;течении временного слота вы&nbsp;не&nbsp;можете покинуть лодку
                 и&nbsp;нельзя опаздывать&nbsp;&mdash; лодка отплывает по&nbsp;расписанию.</p>
         </div>
-        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" @bookSlot="bookSlot" />
+        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
 </template>
 
@@ -27,6 +27,9 @@ export default {
     methods: {
         bookSlot(info) {
             this.$emit('bookSlot', info);
+        },
+        bookDay(day) {
+            this.$emit('bookDay', day);
         }
     },
     created() {

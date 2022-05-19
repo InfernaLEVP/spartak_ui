@@ -9,37 +9,47 @@
             <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}</p>
         </div>
 
-        <div class="timesheet__timetable-grid">
-
-            <p class="slot-selection-text"> Выбери слот<br>для регистрации </p>
-        </div>
-        <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
-            :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
-            :description="event.description" :slot_start_time="event.slot_start_time"
-            :slot_end_time="event.slot_end_time">
+        <div v-if="isDayOpened(day)">
+            <!--  -->
             <div class="timesheet__timetable-grid">
+                <p class="slot-selection-text"> Выбери слот<br>для регистрации </p>
+            </div>
+            <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
+                :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
+                :description="event.description" :slot_start_time="event.slot_start_time"
+                :slot_end_time="event.slot_end_time">
+                <div class="timesheet__timetable-grid">
 
-                <div class="container">
-                    <div class="thin-line"></div>
-                    <div class="timesheet__timetable-grid-description">
-                        <div class="timesheet__timetable-grid-time">{{ event.eventStartTime + "—" + event.eventEndTime
-                        }}
-                        </div>
-                        <div>
-                            <h3 class="timesheet__timetable-grid-description-head">{{ event.name }}</h3>
-                            <p class="timesheet__timetable-grid-description-text">{{ event.description }}</p>
+                    <div class="container">
+                        <div class="thin-line"></div>
+                        <div class="timesheet__timetable-grid-description">
+                            <div class="timesheet__timetable-grid-time">{{ event.eventStartTime + "—" + event.eventEndTime }}
+                            </div>
+                            <div>
+                                <h3 class="timesheet__timetable-grid-description-head">{{ event.name }}</h3>
+                                <p class="timesheet__timetable-grid-description-text">{{ event.description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
+                    <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
-                <div class="timesheet__slot" @click="bookSlot(event)">
-                    <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p>
-                    <div class="timesheet__slot-arrow"></div>
+                    <div class="timesheet__slot" @click="bookSlot(event)">
+                        <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p>
+                        <div class="timesheet__slot-arrow"></div>
+                    </div>
                 </div>
             </div>
+            <!--  -->
         </div>
+        <div class="remind-me" v-else>
+            <div></div>
+            
+            <h3>Расписание скоро появится</h3>
+            <button @click="bookDay(day)">Уведомить меня</button>
+            
+        </div>
+
     </div>
 
 
@@ -64,6 +74,20 @@ export default {
     methods: {
         bookSlot(info) {
             this.$emit('bookSlot', info);
+        },
+        bookDay(day) {
+            this.$emit('bookDay', day);
+        },
+        isDayOpened(day) {
+            
+            const _date = new Date(Date.now());
+            
+            if(_date.getDate() >= day.openDay.split('.')[0]){ 
+                return true;
+            }else{
+                return false;
+            }
+
         }
     },
     computed: {
@@ -398,7 +422,40 @@ export default {
         font-size: 4.444vw;
     }
 
+}
 
-
+.remind-me{
+    display: grid;
+    grid-template-columns: 2.5fr 12fr 4fr;
+    grid-gap: 1.190vw;
+    margin-bottom: 0.818vw;
+    margin-top: 32px;
+    font-family: 'Helvetica', sans-serif;
+}
+.remind-me h3{
+    color: #FF5D0C;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+}
+.remind-me button{
+    background: transparent;
+    border: 1.4px solid #FF5D0C;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 16px;
+    color: #FF5D0C;
+    padding: 8px 10px;
+    transition: .25s;
+    cursor: pointer;
+    
+}
+.remind-me button:hover{
+    background: #FF5D0C;
+    color: white;
 }
 </style>

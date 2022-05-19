@@ -1,6 +1,6 @@
 <template>
 
-    <button class="burger-btn-open" @click="showBurger = !showBurger"></button>
+    <button id="burger" :class="['burger-btn', showBurger ? 'burger-btn-open' : '']" style="opacity: 0;" @click="showMenu"></button>
 
     <section class="sidetimesheet" v-show="showBurger">
 
@@ -41,12 +41,18 @@ export default {
         return {
             days: undefined,
             showModal: false,
-            showBurger: true
+            showBurger: false
         }
     },
     created() {
         // this.days = this.parseDays(days, 'day');
         this.days = _days;
+    },
+    mounted() {
+        setTimeout(() => {
+            document.getElementById('burger').style.opacity = '1';
+        }, 3500);
+        
     },
     methods: {
         parseDays(days, property) {
@@ -65,6 +71,19 @@ export default {
         },
         book(type) {
             this.$emit('book', type);
+        },
+        showMenu() {
+            console.log('menu')
+            this.showBurger = !this.showBurger;
+        }
+    },
+    watch: {
+        showBurger(newValue, oldValue){
+            if (newValue){
+                document.body.style.overflow = 'hidden';
+            }else{
+                document.body.style.overflow = 'initial';
+            }
         }
     }
 }
@@ -96,6 +115,17 @@ export default {
     right: 0%;
     width: 25%;
     /* z-index: 1; */
+}
+@media(min-width: 769px){
+    .sidetimesheet{
+        display: flex!important;
+    }
+}
+@media(max-width: 768px){
+    .sidetimesheet,
+    .sidetimesheet__overlay{
+        /* display: none!important; */
+    }
 }
 
 .sidetimesheet__overlay {
@@ -165,7 +195,7 @@ export default {
 
 
 
-@media (max-width: 575.98px) {
+@media (max-width: 768px) {
 
     .sidetimesheet {
         position: fixed;

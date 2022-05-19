@@ -11,7 +11,7 @@
             <div class="left-side">
                 <Header />
                 <Banner @book="book" />
-                <TimeSheet @bookSlot="bookSlot" />
+                <TimeSheet @bookSlot="bookSlot" @bookDay="bookDay" />
                 <Footer />
             </div>
 
@@ -54,6 +54,12 @@ export default {
             formType: ''
         }
     },
+    created() {
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            document.body.style.overflow = 'initial';
+        }, 5000);
+    },
     mounted() {
 
         document.addEventListener('scroll', (e) => {
@@ -88,8 +94,23 @@ export default {
             // console.log({info});
             this.currentSlot = info;
         },
+        bookDay(day) {
+            this.formType = 'remind';
+            this.showModal = true;
+            // console.log({info});
+            this.currentSlot = day;
+        },
         closeModal() {
             this.showModal = false;
+        }
+    },
+    watch: {
+        showModal(newValue, oldValue){
+            if (newValue){
+                document.body.style.overflow = 'hidden';
+            }else{
+                document.body.style.overflow = 'initial';
+            }
         }
     }
 };

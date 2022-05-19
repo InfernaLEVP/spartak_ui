@@ -1,12 +1,5 @@
-<script>
-export default {
-    name: 'FirstAnimation',
-
-}
-</script>
-
-
 <template>
+
     <section class="first">
         <div class="first__100-logo"></div>
         <div class="first__top-pattern"></div>
@@ -14,6 +7,12 @@ export default {
     </section>
 
 </template>
+
+<script>
+export default {
+    name: 'FirstAnimation',
+}
+</script>
 
 <style scoped>
 .first {

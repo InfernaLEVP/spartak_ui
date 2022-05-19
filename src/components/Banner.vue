@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         book() {
-            this.$emit('book');
+            this.$emit('book', '1922');
         }
     }
 }

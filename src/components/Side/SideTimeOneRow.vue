@@ -1,6 +1,6 @@
 <template>
 
-    <a class="daylink" :href="`#${day.day}`">
+    <a class="daylink" :href="`#${day.day}`" @click="goTo">
 
         <div class="sidetimesheet__one-row">
 <!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
@@ -36,6 +36,9 @@ export default {
                 return '';
             }
 
+        },
+        goTo() {
+            document.querySelector('.burger-btn-open').click();
         }
     }
 }
