@@ -10,8 +10,11 @@
     "core-js": "^3.6.5",
     "gsap": "^3.10.4",
     "maska": "^1.5.0",
+    "swiper": "^8.1.5",
     "v-mask": "^2.3.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-agile": "^2.0.0",
+    "vue3-carousel": "^0.1.40"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.11",

@@ -121,7 +121,7 @@ export default {
         display: flex!important;
     }
 }
-@media(max-width: 768px){
+@media(max-width: 767.98px){
     .sidetimesheet,
     .sidetimesheet__overlay{
         /* display: none!important; */
@@ -195,7 +195,7 @@ export default {
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 575.98px) {
 
     .sidetimesheet {
         position: fixed;

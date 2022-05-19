@@ -1,5 +1,5 @@
 <template>
-<FirstAnimation />
+<!-- <FirstAnimation /> -->
     <div class="container1344">
         
         <!-- <div class="progress-line" id="progress"></div> -->
@@ -135,7 +135,7 @@ export default {
   grid-template-columns: minmax(0, 3fr) 1fr;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .grid-container {
     display: flex;
     flex-direction: column;

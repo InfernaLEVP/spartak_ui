@@ -1,3 +1,5 @@
+
+
 <template>
   <section class="header">
     <div class="header__top-container">
@@ -24,26 +26,169 @@
           </div>
         </div>
         <p class="header__description">
-          Столетняя история легендарного клуба и&nbsp;его болельщиков, объединённая в&nbsp;8&nbsp;тематических мероприятий.
+          Столетняя история легендарного клуба и&nbsp;его болельщиков, объединённая в&nbsp;8&nbsp;тематических
+          мероприятий.
         </p>
       </div>
     </div>
 
     <div class="header__center-image">
+
+      <agile class="my-slider" :autoplay="true" :navButtons="false" :dots="false" :speed="600" :autoplaySpeed="6000">
+        <div v-for="slide in slData" :key="slide">
+          <!-- <a :href="'#' + slide.sl_date" class="sl-link"> -->
+          <div class="sl-container">
+            <!-- <img class="sl-img" src="../assets/images/slides/slide_05.jpg" alt=""> -->
+            <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)" alt="">
+            <div class="sl-text-container">
+              <div class="sl-date-months-container">
+                <p class="sl-date">{{ slide.sl_date }}</p>
+                <p class="sl-months">июня</p>
+              </div>
+              <div class="sl-arrow"></div>
+              <p class="sl-description"><span> {{ slide.sl_span }} </span>{{ slide.sl_descript }}</p>
+            </div>
+          </div>
+          <!-- </a> -->
+        </div>
+      </agile>
+
       <!-- <div class="header__center-logo100"></div> -->
     </div>
 
     <h2 class="header__h2">
-      Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;
+      Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем
+      историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;Пишем историю
+      вместе&ensp;Пишем историю вместе&ensp;Пишем историю вместе&ensp;
     </h2>
   </section>
 </template>
 
 <script>
-export default {};
+
+import slData from "../data/slider-data.json"
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import { VueAgile } from 'vue-agile'
+
+export default {
+  name: 'App',
+  components: {
+    agile: VueAgile,
+
+  },
+  data() {
+    return {
+      slData: slData
+    }
+  }
+
+};
 </script>
 
-<style>
+
+
+<style scoped>
+.sl-arrow {
+  background-image: url(../assets/images/arr.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: fill;
+  width: 30%;
+  height: 12px;
+  margin-top: 16px;
+  /* padding-bottom: 40px; */
+}
+
+
+.my-slider {
+  display: flex;
+  width: 100%;
+}
+
+.sl-text-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: space-between; */
+}
+
+.sl-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--colorOrange);
+  border-radius: 35px;
+  margin: 16px;
+  cursor: grab;
+
+}
+
+.sl-slide {
+  width: 100%;
+  height: auto;
+
+}
+
+.sl-img {
+  /* height: 500px; */
+  max-width: 100%;
+  object-fit: cover;
+  /* height: 350px; */
+  border-radius: 35px;
+}
+
+.sl-date-months-container {
+  display: flex;
+
+}
+
+.sl-date {
+  font-family: 'Druk';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 5.952vw;
+  line-height: 85%;
+  /* identical to box height, or 85% */
+  color: var(--colorLight);
+  text-align: center;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-right: .7vw;
+  transform: translateY(10%);
+
+}
+
+.sl-months {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.860vw;
+  line-height: 96%;
+  letter-spacing: -0.01em;
+  color: var(--colorLight);
+  /* white-space: nowrap; */
+  /* padding-right: 1.19vw; */
+}
+
+.sl-description {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.860vw;
+  line-height: 96%;
+  letter-spacing: -0.01em;
+  color: var(--colorLight);
+  text-align: left;
+  margin-top: 16px;
+}
+
+.sl-description span {
+  color: var(--colorOrange);
+
+}
+
+
+
 .header {
   background-color: var(--colorDark);
   /* min-height: 100vh; */
@@ -82,7 +227,7 @@ export default {};
   height: 4.315vw;
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 767.98px) {
   .header__logos {
     padding-right: 100px;
     padding-top: 5px;
@@ -168,15 +313,16 @@ export default {};
 
 .header__center-image {
   position: relative;
-  background-image: url(../assets/images/lodka.png);
+  /* background-image: url(../assets/images/lodka.png);
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: center; */
   width: 100%;
-  padding-bottom: 29.86%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* height: 500px; */
+  /* padding-bottom: 29.86%; */
+  display: block;
+  /* align-items: center;
+  justify-content: center; */
 }
 
 .header__center-logo100 {
@@ -296,13 +442,68 @@ export default {};
   }
 
   .header__center-image {
-    background-size: cover;
-    padding-bottom: 70%;
+    /* background-size: cover;
+    padding-bottom: 70%; */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: -6vw 0;
+    /* margin: -6vw 0; */
   }
+
+
+  /* slider
+  
+  */
+
+  .sl-text-container {
+    min-height: 300px;
+
+  }
+
+  .sl-container {
+    max-width: 100%;
+    /* width: 50px; */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .sl-slide {
+    width: 100%;
+    height: auto;
+
+  }
+
+  .sl-img {
+    /* height: 500px; */
+    max-width: 100%;
+    /* width: 50px; */
+    /* height: 350px; */
+    border-radius: 35px;
+  }
+
+  .sl-date-months-container {
+    display: flex;
+
+  }
+
+  .sl-date {
+    font-size: 18vw;
+
+  }
+
+  .sl-months {
+    font-size: 20px;
+    margin-left: 8px;
+
+  }
+
+  .sl-description {
+    font-size: 5.556vw;
+  }
+
+  .sl-description span {}
+
+
 
 }
 </style>

@@ -23,7 +23,9 @@
                     <div class="container">
                         <div class="thin-line"></div>
                         <div class="timesheet__timetable-grid-description">
-                            <div class="timesheet__timetable-grid-time">{{ event.eventStartTime + "—" + event.eventEndTime }}
+                            <div class="timesheet__timetable-grid-time">{{ event.eventStartTime + "—" +
+                                    event.eventEndTime
+                            }}
                             </div>
                             <div>
                                 <h3 class="timesheet__timetable-grid-description-head">{{ event.name }}</h3>
@@ -44,10 +46,10 @@
         </div>
         <div class="remind-me" v-else>
             <div></div>
-            
-            <h3>Расписание скоро появится</h3>
+
+            <h3>Программа на день скоро появится</h3>
             <button @click="bookDay(day)">Уведомить меня</button>
-            
+
         </div>
 
     </div>
@@ -79,12 +81,12 @@ export default {
             this.$emit('bookDay', day);
         },
         isDayOpened(day) {
-            
+
             const _date = new Date(Date.now());
-            
-            if(_date.getDate() >= day.openDay.split('.')[0]){ 
+
+            if (_date.getDate() >= day.openDay.split('.')[0]) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
 
@@ -93,7 +95,7 @@ export default {
     computed: {
         needDay() {
             return this.data.filter(d => d.day === this.day.day);
-            
+
         },
 
     }
@@ -335,6 +337,44 @@ export default {
     filter: brightness(0);
 }
 
+.remind-me {
+    display: grid;
+    grid-template-columns: 2.5fr 12fr 4fr;
+    grid-gap: 1.190vw;
+    margin-bottom: 0.818vw;
+    margin-top: 32px;
+    font-family: 'Helvetica', sans-serif;
+}
+
+.remind-me h3 {
+
+    font-family: Helvetica, Arial, sans-serif;
+    color: var(--colorOrange);
+    font-size: 1.860vw;
+    font-style: normal;
+    letter-spacing: -0.01em;
+}
+
+.remind-me button {
+    background: transparent;
+    border: 1.4px solid #FF5D0C;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.116vw;
+    line-height: 16px;
+    color: #FF5D0C;
+    padding: 8px 10px;
+    transition: .25s;
+    cursor: pointer;
+
+}
+
+.remind-me button:hover {
+    background: #FF5D0C;
+    color: white;
+}
+
 @media (max-width: 575.98px) {
     .black-window {
         padding-bottom: 48px;
@@ -422,40 +462,19 @@ export default {
         font-size: 4.444vw;
     }
 
-}
+    .remind-me {
+        display: block;
+    }
 
-.remind-me{
-    display: grid;
-    grid-template-columns: 2.5fr 12fr 4fr;
-    grid-gap: 1.190vw;
-    margin-bottom: 0.818vw;
-    margin-top: 32px;
-    font-family: 'Helvetica', sans-serif;
-}
-.remind-me h3{
-    color: #FF5D0C;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-    line-height: 24px;
-    letter-spacing: -0.01em;
-}
-.remind-me button{
-    background: transparent;
-    border: 1.4px solid #FF5D0C;
-    border-radius: 24px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 16px;
-    color: #FF5D0C;
-    padding: 8px 10px;
-    transition: .25s;
-    cursor: pointer;
-    
-}
-.remind-me button:hover{
-    background: #FF5D0C;
-    color: white;
+    .remind-me h3 {
+        font-size: 4.167vw;
+        margin-bottom: 32px;
+    }
+
+    .remind-me button{
+        width: 100%;
+        font-size: 3.348vw;
+    }
+
 }
 </style>
