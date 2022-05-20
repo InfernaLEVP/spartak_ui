@@ -1,7 +1,7 @@
 <template>
-<!-- <FirstAnimation /> -->
+    <!-- <FirstAnimation /> -->
     <div class="container1344">
-        
+        {{ curentSection }}
         <!-- <div class="progress-line" id="progress"></div> -->
 
         <!-- <div class="box"></div> -->
@@ -15,7 +15,7 @@
                 <Footer />
             </div>
 
-        <Side @book="book" />
+            <Side @book="book" />
 
         </div>
 
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+
 import FirstAnimation from "./components/FirstAnimation.vue";
 import Header from "./components/Header.vue";
 import Banner from "./components/Banner.vue";
@@ -36,6 +37,36 @@ import FormTest from "./components/FormTest.vue";
 
 import { gsap } from 'gsap';
 
+
+import { ref, onMounted } from 'vue';
+
+const headers = [
+    '05',
+    '06',
+    '07',
+    '08',
+    '09',
+    '10',
+
+]
+const currentSection = ref('')
+console.log(currentSection)
+
+onMounted(() => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.intersectionRatio > 0) {
+                currentSection.value = entry.target.getAttribute('id')
+            }
+        })
+
+    })
+    document.querySelectorAll('black-window').forEach((section) => {
+        observer.observe(section)
+    })
+})
+
+
 export default {
     name: "App",
     components: {
@@ -45,7 +76,8 @@ export default {
         TimeSheet,
         Side,
         Footer,
-        FormTest
+        FormTest,
+
     },
     data() {
         return {
@@ -72,15 +104,15 @@ export default {
                 const _height = element.offsetHeight;
                 const _y = element.getBoundingClientRect().y;
 
-                if(_y < 500 && _y > (_height / 2) * -1){
+                if (_y < 500 && _y > (_height / 2) * -1) {
                     // console.log(element.dataset.id);
                     // element
                 }
 
-            }); 
+            });
 
         });
-        
+
     },
     methods: {
         book(type) {
@@ -105,10 +137,10 @@ export default {
         }
     },
     watch: {
-        showModal(newValue, oldValue){
-            if (newValue){
+        showModal(newValue, oldValue) {
+            if (newValue) {
                 document.body.style.overflow = 'hidden';
-            }else{
+            } else {
                 document.body.style.overflow = 'initial';
             }
         }
@@ -117,7 +149,7 @@ export default {
 </script>
 
 <style>
-.box{
+.box {
     width: 200px;
     height: 200px;
     position: absolute;
@@ -126,32 +158,32 @@ export default {
     z-index: 999;
     background: crimson;
 }
-#app {
-}
+
+#app {}
 
 .grid-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) 1fr;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) 1fr;
 }
 
 @media (max-width: 767.98px) {
-  .grid-container {
-    display: flex;
-    flex-direction: column;
-  }
+    .grid-container {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
 
 .container1344 {
-  /* max-width: 1344px; */
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
+    /* max-width: 1344px; */
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
 }
 
-.progress-line{
+.progress-line {
     position: fixed;
     top: 50%;
     width: 200px;

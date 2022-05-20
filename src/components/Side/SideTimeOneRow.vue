@@ -29,7 +29,7 @@ export default {
             
             const _date = new Date(Date.now());
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
-            console.log({_today})
+            // console.log({_today})
             if(_date.getDate() >= day.openDay.split('.')[0]){ 
                 return 'открыта регистрация';
             }else{

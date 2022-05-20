@@ -34,7 +34,8 @@
 
     <div class="header__center-image">
 
-      <agile class="my-slider" :autoplay="true" :navButtons="false" :dots="false" :speed="600" :autoplaySpeed="6000">
+      <agile ref="carousel" @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
+        :autoplay="true" :navButtons="false" :dots="false" :speed="600" :autoplaySpeed="6000">
         <div v-for="slide in slData" :key="slide">
           <!-- <a :href="'#' + slide.sl_date" class="sl-link"> -->
           <div class="sl-container">
@@ -44,6 +45,12 @@
               <div class="sl-date-months-container">
                 <p class="sl-date">{{ slide.sl_date }}</p>
                 <p class="sl-months">июня</p>
+                <div class="btns">
+                  <button class="sl_btn" @click="$refs.carousel.goToPrev()">{{ currentSlide === 0 ? 12 : (currentSlide  + 4) }}</button>
+                  <div class="line"></div>
+                  <button class="sl_btn" @click="$refs.carousel.goToNext()">{{ currentSlide === 7 ? 5 : (currentSlide  + 6) }}</button>
+                  <!-- $refs.carousel.currentSlide -->
+                </div>
               </div>
               <div class="sl-arrow"></div>
               <p class="sl-description"><span> {{ slide.sl_span }} </span>{{ slide.sl_descript }}</p>
@@ -78,9 +85,12 @@ export default {
   },
   data() {
     return {
-      slData: slData
+      slData: slData,
+      // mySlide: undefined,
+
+      // currentSl: getCurrentSlide(),
     }
-  }
+  },
 
 };
 </script>
@@ -88,6 +98,28 @@ export default {
 
 
 <style scoped>
+.btns {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.line {
+  height: 1px;
+  width: 50px;
+  background-color: #fff;
+}
+
+.sl_btn {
+  background: none;
+  border: none;
+  color: var(--colorLight);
+}
+
+.sl_btn:hover {
+  opacity: .8;
+}
+
 .sl-arrow {
   background-image: url(../assets/images/arr.svg);
   background-repeat: no-repeat;
@@ -359,6 +391,7 @@ export default {
   animation-duration: 10s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  /* filter: drop-shadow(5px 5px 0px var(--colorRed)); */
 
 }
 

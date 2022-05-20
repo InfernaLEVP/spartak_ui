@@ -207,7 +207,7 @@ export default {
                 return 'Уведомить об открытии';
             } else {
                 const day = this.days.find(d => d.day === this.info.day);
-                console.log({ day })
+                // console.log({ day })
                 if (day) {
                     const _date = new Date(Date.now());
                     if (_date.getDate() >= day.openDay.split('.')[0]) {
