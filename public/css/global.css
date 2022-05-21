@@ -5,6 +5,13 @@
      font-display: swap;
      src: url(/fonts/DrukCondensed-XSuperItalic-Desktop.woff) format('woff');
 }
+@font-face {
+     font-family: 'Druk';
+     font-style: italic;
+     font-weight: 1000;
+     font-display: swap;
+     src: url(/fonts/Druk-Condensed-Super-Italic-Desktop.woff) format('woff');
+}
 
 :root {
      --colorRed: #D80E22;

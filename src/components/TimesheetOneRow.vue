@@ -158,7 +158,7 @@ export default {
 .timesheet__day-number {
     font-family: 'Druk';
     font-style: italic;
-    font-weight: 400;
+    font-weight: 1000;
     font-size: 5.952vw;
     line-height: 85%;
     /* identical to box height, or 85% */

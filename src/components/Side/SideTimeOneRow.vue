@@ -130,7 +130,7 @@ a {
     margin-bottom: .5vh;
     font-family: 'Druk';
     font-style: italic;
-    font-weight: 400;
+    font-weight: 1000;
     font-size: 10vh;
     line-height: 85%;
     text-align: center;

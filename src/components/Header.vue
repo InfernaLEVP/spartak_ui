@@ -26,35 +26,44 @@
           </div>
         </div>
         <p class="header__description">
-          Столетняя история легендарного клуба и&nbsp;его болельщиков, объединённая в&nbsp;8&nbsp;тематических
-          мероприятий.
+          Празднуем столетие ФК&nbsp;&laquo;Спартак&raquo; на&nbsp;Москва-реке! Футбольные матчи на&nbsp;верхней палубе
+          лодки, встречи с&nbsp;футболистами и&nbsp;легендами клуба и&nbsp;8&nbsp;тематических мероприятий, посвященных
+          ярким периодам клуба.
         </p>
       </div>
     </div>
 
     <div class="header__center-image">
-
-      <agile ref="carousel" @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
-        :autoplay="true" :navButtons="false" :dots="false" :speed="600" :autoplaySpeed="6000">
+      <!--  -->
+      <agile ref="carousel" :autoplaySpeed="6000" :autoplay="true"  @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
+        :navButtons="false" :dots="false" :speed="600">
         <div v-for="slide in slData" :key="slide">
-          <!-- <a :href="'#' + slide.sl_date" class="sl-link"> -->
           <div class="sl-container">
-            <!-- <img class="sl-img" src="../assets/images/slides/slide_05.jpg" alt=""> -->
-            <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)" alt="">
             <div class="sl-text-container">
-              <div class="sl-date-months-container">
-                <p class="sl-date">{{ slide.sl_date }}</p>
-                <p class="sl-months">июня</p>
-                <div class="btns">
-                  <button class="sl_btn" @click="$refs.carousel.goToPrev()">{{ currentSlide === 0 ? 12 : (currentSlide  + 4) }}</button>
-                  <div class="line"></div>
-                  <button class="sl_btn" @click="$refs.carousel.goToNext()">{{ currentSlide === 7 ? 5 : (currentSlide  + 6) }}</button>
+              <div class="sl-arrow"></div>
+              <div class="flex-row-distr">
+                <p class="sl-header">{{ slide.sl_span }}</p>
+                <!-- <div class="btns">
+                <button class="sl_btn" @click="$refs.carousel.goToPrev()">{{ currentSlide === 0 ? 12 : (currentSlide +
+                    4)
+                }}</button>
+                <div class="line"></div>
+                <button class="sl_btn" @click="$refs.carousel.goToNext()">{{ currentSlide === 7 ? 5 : (currentSlide +
+                    6)
+                }}</button>
+              </div> -->
+
+                <div class="sl-date-months-container">
+                  <p class="sl-date">{{ slide.sl_date }}</p>
+                  <p class="sl-months">июня</p>
                   <!-- $refs.carousel.currentSlide -->
                 </div>
               </div>
-              <div class="sl-arrow"></div>
-              <p class="sl-description"><span> {{ slide.sl_span }} </span>{{ slide.sl_descript }}</p>
+              <p class="sl-description">{{ slide.sl_descript }}</p>
+
             </div>
+            <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)"
+              alt="{{slide.image_name}}">
           </div>
           <!-- </a> -->
         </div>
@@ -125,12 +134,19 @@ export default {
   background-repeat: no-repeat;
   background-position: right;
   background-size: fill;
-  width: 30%;
+  width: 100%;
   height: 12px;
-  margin-top: 16px;
+  /* margin-top: 16px; */
   /* padding-bottom: 40px; */
 }
 
+
+.flex-row-distr {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .my-slider {
   display: flex;
@@ -138,7 +154,7 @@ export default {
 }
 
 .sl-text-container {
-  padding: 16px;
+  padding: 0 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -147,10 +163,10 @@ export default {
 
 .sl-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--colorOrange);
+  grid-template-columns: 4fr 5fr;
+  /* border: 1px solid var(--colorOrange); */
   border-radius: 35px;
-  margin: 16px;
+  /* margin: 16px; */
   cursor: grab;
 
 }
@@ -166,18 +182,19 @@ export default {
   max-width: 100%;
   object-fit: cover;
   /* height: 350px; */
-  border-radius: 35px;
+  /* border-radius: 35px; */
 }
 
 .sl-date-months-container {
   display: flex;
+  flex-direction: column;
 
 }
 
 .sl-date {
   font-family: 'Druk';
   font-style: italic;
-  font-weight: 400;
+  font-weight: 1000;
   font-size: 5.952vw;
   line-height: 85%;
   /* identical to box height, or 85% */
@@ -194,7 +211,7 @@ export default {
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.860vw;
+  font-size: 1.116vw;
   line-height: 96%;
   letter-spacing: -0.01em;
   color: var(--colorLight);
@@ -206,16 +223,28 @@ export default {
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: 400;
+  font-size: 1.116vw;
+  line-height: 96%;
+  letter-spacing: -0.01em;
+  color: var(--colorLight);
+  text-align: left;
+  margin-top: 32px;
+  width: 70%;
+}
+
+.sl-header {
+  display: flex;
+  align-items: flex-start;
+
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 400;
   font-size: 1.860vw;
   line-height: 96%;
   letter-spacing: -0.01em;
   color: var(--colorLight);
   text-align: left;
-  margin-top: 16px;
-}
 
-.sl-description span {
-  color: var(--colorOrange);
 
 }
 
@@ -237,9 +266,6 @@ export default {
 
 }
 
-.header__description {
-  margin-bottom: 1.488vw;
-}
 
 .header__date-logos {
   display: flex;
@@ -304,10 +330,12 @@ export default {
   font-family: 'Helvetica';
   font-style: normal;
   font-weight: 400;
-  font-size: 1.860vw;
+  font-size: 1.560vw;
   line-height: 96%;
   letter-spacing: -0.01em;
   color: var(--colorLight);
+  margin-bottom: 1.488vw;
+
 
 }
 
@@ -353,6 +381,7 @@ export default {
   /* height: 500px; */
   /* padding-bottom: 29.86%; */
   display: block;
+  padding-right: 0.595vw;
   /* align-items: center;
   justify-content: center; */
 }
@@ -374,6 +403,7 @@ export default {
 }
 
 .header__h2 {
+  margin-top: 16px;
   padding-bottom: 2.232vw;
   color: var(--colorLight);
   font-family: 'Druk';
@@ -480,6 +510,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-right: 0;
     /* margin: -6vw 0; */
   }
 
@@ -490,6 +521,10 @@ export default {
 
   .sl-text-container {
     min-height: 300px;
+    margin-bottom: 8px;
+    padding-top: 16px;
+      align-items: start;
+
 
   }
 
@@ -511,7 +546,10 @@ export default {
     max-width: 100%;
     /* width: 50px; */
     /* height: 350px; */
-    border-radius: 35px;
+    /* border-radius: 35px; */
+    /* grid-row-start: 1; */
+    order: -1;
+    margin-top: 16px;
   }
 
   .sl-date-months-container {
@@ -532,9 +570,13 @@ export default {
 
   .sl-description {
     font-size: 5.556vw;
+    width: 100%;
+    /* order: 2; */
   }
 
-  .sl-description span {}
+  .sl-header {
+    font-size: 6.944vw;
+  }
 
 
 

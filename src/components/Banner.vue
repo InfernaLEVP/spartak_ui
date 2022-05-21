@@ -3,16 +3,12 @@
     <div class="banner1922">
         <div class="banner1922__left">
             <div class="banner1922__top-text-container">
-                <p class="banner1922__text">Сыграй в&nbspлегендарном матче</p>
-                <p class="banner1922__year">1922</p>
+                <p class="banner1922__text">Стань частью истории ФК&nbsp;Спартак!</p>
+                <p class="banner1922__year">Матч 1922</p>
             </div>
             <div class="banner1922__arrow"></div>
 
-            <p class="banner1922__main-text">Легендарный матч 1922&nbsp;&mdash; это возможность стать частью современной
-                истории ФК&nbsp;&laquo;Спартак&raquo; и&nbsp;сыграть в&nbsp;футбол курсируя по&nbsp;Москва реке
-                на&nbsp;Winliner.
-                В&nbsp;матче также примут участие звездные болельщики, легенды и&nbsp;футболисты
-                ФК&nbsp;&laquo;Спартак&raquo;. Пишем историю вместе!</p>
+            <p class="banner1922__main-text">Сыграй в&nbsp;матче, который продлится 1922 минуты бок о&nbsp;бок футболистами и&nbsp;легендами клуба, курсируя по&nbsp;Москва-реке и&nbsp;стань частью истории Спартака.</p>
             <button class="btn" @click="book">Стать частью истории</button>
 
         </div>
@@ -67,12 +63,14 @@ export default {
 .banner1922__year {
     font-family: 'Druk';
     font-style: italic;
-    font-weight: 400;
+    font-weight: 1000;
     font-size: 5.952vw;
     line-height: 85%;
     letter-spacing: 0.01em;
     text-transform: uppercase;
     color: var(--colorLight);
+    text-align: end;
+    padding-right: 8px;
 
 }
 
@@ -85,7 +83,7 @@ export default {
     letter-spacing: -0.01em;
     text-transform: uppercase;
     color: var(--colorLight);
-    width: min-content;
+    width: 70%;
 
 }
 
@@ -100,16 +98,17 @@ export default {
     color: var(--colorDark);
     /* opacity: .5; */
     margin: 16px 0;
+    /* width: 60%; */
 
 }
 
 .banner1922__arrow {
     background-image: url(../assets/images/arr.svg);
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    background-position: right;
+    background-size: fill;
     width: 100%;
-    height: 16px;
+    height: 12px;
     padding-bottom: 40px;
 
 
@@ -141,7 +140,7 @@ export default {
     margin-top: 5%;
     /* width: 100%; */
     /* padding-bottom: 100%; */
-    animation: rotating 5s linear infinite;
+    /* animation: rotating 5s linear infinite; */
     /* vertical-align: middle; */
 
 }
@@ -158,6 +157,9 @@ export default {
 
 
 @media (max-width: 575.98px) {
+    .banner1922__top-text-container{
+        flex-direction: column;
+    }
 
     .banner1922 {
         grid-template-columns: 1fr;
@@ -167,6 +169,9 @@ export default {
     .banner1922__main-text,
     .banner1922__text {
         font-size: 5.58vw;
+        width: 100%;
+        order: 1;
+
     }
 
     .banner1922__main-text {
@@ -175,6 +180,7 @@ export default {
 
     .banner1922__year {
         font-size: 18vw;
+        text-align: start;
     }
 
     .banner1922__left {
