@@ -220,7 +220,7 @@ a {
 
 
     .sidetimesheet__cal,
-    .sidetimesheet__reg-status {
+    .sidetimesheet__reg-status, .mnth {
         font-size: 3vw;
     }
 

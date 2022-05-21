@@ -352,6 +352,8 @@ export default {
 
     .sidetimesheet__month {
         font-size: 10vh;
+        height: 10vh;
+        width: 100%;
     }
 
     .btn {
