@@ -5,21 +5,24 @@
 
     <section class="sidetimesheet" v-show="showBurger">
 
-        <div class="sidetimesheet__top-row">
-            <p class="sidetimesheet__cal">Календарь событий <br>в июне</p>
-            <p class="sidetimesheet__month"></p>
-        </div>
-        <div class="vline-container">
+        <a class="domaim-link" href="#top">
+            <div class="sidetimesheet__top-row">
+                <p class="sidetimesheet__cal">Календарь событий <br>в июне</p>
+                <p class="sidetimesheet__month"></p>
+            </div>
+        </a>
+
+        <!-- <div class="vline-container">
             <div class="vline"></div>
             <div class="vline"></div>
             <div class="vline"></div>
             <div class="vline"></div>
             <div class="vline"></div>
-        </div>
+        </div> -->
 
         <SideTimeOneRow v-for="myDay in days" :key="myDay" :day="myDay" />
 
-        <div class="line"></div>
+        <!-- <div class="line"></div> -->
         <button class="btn mtop" @click="book('1922')">Матч 1922</button>
         <button class="btn" @click="book('media')">Регистрация СМИ</button>
 
@@ -91,6 +94,23 @@ export default {
 </script>
 
 <style scoped>
+.domaim-link {
+    text-decoration: none;
+    border-radius: 12px;
+}
+
+.domaim-link:hover {
+    /* opacity: .9; */
+    background-color: var(--colorDark);
+}
+
+.domaim-link:hover .sidetimesheet__cal{
+    color: var(--colorLight);
+}
+.domaim-link:hover .sidetimesheet__month{
+filter: brightness(500) ;
+}
+
 .sidetimesheet__top-row {
     display: flex;
     flex-direction: row;
@@ -115,6 +135,7 @@ export default {
     top: 0%;
     right: 0%;
     width: 25%;
+    justify-content: space-between;
     /* z-index: 1; */
 }
 

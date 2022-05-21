@@ -1,7 +1,7 @@
 
 
 <template>
-  <section class="header">
+  <section class="header" id="top">
     <div class="header__top-container">
       <h1 class="header__h1">Win<span>liner</span></h1>
       <div class="header__top-right-container">
@@ -35,7 +35,7 @@
 
     <div class="header__center-image">
       <!--  -->
-      <agile ref="carousel" :autoplaySpeed="6000" :autoplay="true"  @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
+      <agile ref="carousel" :autoplaySpeed="3000" :autoplay="true"  @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
         :navButtons="false" :dots="false" :speed="600">
         <div v-for="slide in slData" :key="slide">
           <div class="sl-container">

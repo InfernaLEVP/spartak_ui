@@ -266,6 +266,8 @@ a {
     .sidetimesheet__day {
         /* margin: 8px; */
         transform: translateY(.7vh);
+            font-size: 8.5vh;
+
     }
 
 }
