@@ -1,15 +1,18 @@
 <template>
 
     <a class="daylink" :href="`#${day.day}`" @click="goTo">
-
+        <!-- <div class="line"></div> -->
         <div class="sidetimesheet__one-row">
-<!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
-             <!-- :style="`opacity: ${text(day) ? '1' : '1'}` -->
+            <!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
+            <!-- :style="`opacity: ${text(day) ? '1' : '1'}` -->
             <div class="sidetimesheet__play" :style="`opacity: ${text(day) ? '1' : '0'}`"></div>
-            
-            <p class="sidetimesheet__day">{{ day.day }}</p>
+
+            <div class="sidetimesheet__day-container">
+                <div class="sidetimesheet__day">{{ day.day }}</div>
+                <div class="mnth">июня</div>
+            </div>
             <!-- :style="`opacity: ${0}`" -->
-            <div class="sidetimesheet__reg-status" >
+            <div class="sidetimesheet__reg-status">
                 {{ text(day) }}
             </div>
 
@@ -26,13 +29,13 @@ export default {
     },
     methods: {
         text(day) {
-            
+
             const _date = new Date(Date.now());
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
             // console.log({_today})
-            if(_date.getDate() >= day.openDay.split('.')[0]){ 
+            if (_date.getDate() >= day.openDay.split('.')[0]) {
                 return 'открыта регистрация';
-            }else{
+            } else {
                 return '';
             }
 
@@ -68,12 +71,8 @@ a {
     z-index: 2;
 }
 
-/* .sidetimesheet__one-row-hover{
-    display: block;
-   background-color: orange;
-   opacity: 0; 
-} */
-.sidetimesheet__one-row:hover::before {
+
+/* .sidetimesheet__one-row:hover::before {
     content: "";
     position: absolute;
     width: 105%;
@@ -81,16 +80,38 @@ a {
     height: 2px;
     background-color: var(--colorLight);
     transform: translateY(1.2vw);
-}
+} */
 
-.sidetimesheet__one-row::after {
+/* .sidetimesheet__one-row::after {
     content: "";
     position: absolute;
     width: 95%;
     margin-left: 0;
     height: 1px;
     background-color: var(--colorDark);
-    transform: translateY(-.2vw);
+    transform: translateY(-1vw);
+} */
+.sidetimesheet__one-row:hover {
+    /* display: block; */
+    background-color: var(--colorRed);
+    border-radius: 12px;
+    /* opacity: 0;  */
+}
+
+.sidetimesheet__one-row:hover>.sidetimesheet__play,
+.sidetimesheet__one-row:hover>.sidetimesheet__reg-status {
+    filter: invert();
+}
+
+.sidetimesheet__one-row:hover .sidetimesheet__day {
+    /* background-color: var(--colorLight); */
+    color: var(--colorLight);
+}
+
+.sidetimesheet__one-row:hover .mnth {
+    /* background-color: var(--colorLight); */
+    background-color: var(--colorLight);
+    border: var(--colorDark);
 }
 
 .active {
@@ -124,21 +145,53 @@ a {
 
 }
 
-.sidetimesheet__day {
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--colorDark);
+}
+
+.sidetimesheet__day-container {
     grid-column-start: 3;
-    margin: auto;
-    margin-bottom: .5vh;
+    display: flex;
+    flex-direction: row;
+    /* margin: auto; */
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+
+}
+
+.sidetimesheet__day {
+    /* margin-bottom: .5vh; */
     font-family: 'Druk';
     font-style: italic;
     font-weight: 1000;
     font-size: 10vh;
-    line-height: 85%;
-    text-align: center;
+    /* line-height: 100%; */
+    /* text-align: center; */
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    color: var(--colorDark);
+    color: var(--colorRed);
+    transform: translateY(0.35vw);
 
-    transform: translateY(0.35vw)
+}
+
+.mnth {
+    font-family: 'Helvetica', sans-serif;
+    font-size: .8vw;
+    letter-spacing: 0.01em;
+    color: var(--colorDark);
+    border: 1px solid var(--colorDark);
+    padding: 4px 8px;
+    margin-left: 8px;
+    border-radius: 25px;
+    height: min-content;
+    align-self: center;
+
+
+
+
 }
 
 .sidetimesheet__day-disable {
@@ -152,7 +205,7 @@ a {
 .sidetimesheet__reg-status {
     text-decoration: none;
     grid-column: span 2;
-    font-size: 1.116vw;
+    font-size: .8vw;
     /* grid-column-end: span col4-start; */
     margin: auto;
     text-align: center;
@@ -177,13 +230,11 @@ a {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .sidetimesheet__day{
+    .sidetimesheet__day {
         font-size: 10vh;
     }
 
-    .btn {
-        margin-top: 8px;
-    }
+ 
 
     .vline-container {
         width: calc(100%-16px);

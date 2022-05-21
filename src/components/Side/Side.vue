@@ -1,12 +1,13 @@
 <template>
 
-    <button id="burger" :class="['burger-btn', showBurger ? 'burger-btn-open' : '']" style="opacity: 0;" @click="showMenu"></button>
+    <button id="burger" :class="['burger-btn', showBurger ? 'burger-btn-open' : '']" style="opacity: 0;"
+        @click="showMenu"></button>
 
     <section class="sidetimesheet" v-show="showBurger">
 
         <div class="sidetimesheet__top-row">
-            <p class="sidetimesheet__cal">Календарь событий</p>
-            <p class="sidetimesheet__month">Июнь</p>
+            <p class="sidetimesheet__cal">Календарь событий <br>в июне</p>
+            <p class="sidetimesheet__month"></p>
         </div>
         <div class="vline-container">
             <div class="vline"></div>
@@ -52,7 +53,7 @@ export default {
         setTimeout(() => {
             document.getElementById('burger').style.opacity = '1';
         }, 3500);
-        
+
     },
     methods: {
         parseDays(days, property) {
@@ -78,10 +79,10 @@ export default {
         }
     },
     watch: {
-        showBurger(newValue, oldValue){
-            if (newValue){
+        showBurger(newValue, oldValue) {
+            if (newValue) {
                 document.body.style.overflow = 'hidden';
-            }else{
+            } else {
                 document.body.style.overflow = 'initial';
             }
         }
@@ -105,7 +106,7 @@ export default {
 .sidetimesheet {
     display: flex;
     flex-direction: column;
-    background-color: var(--colorOrange);
+    background-color: var(--colorLight);
     padding: 0.595vw;
     z-index: 999;
     position: fixed;
@@ -116,14 +117,17 @@ export default {
     width: 25%;
     /* z-index: 1; */
 }
-@media(min-width: 769px){
-    .sidetimesheet{
-        display: flex!important;
+
+@media(min-width: 769px) {
+    .sidetimesheet {
+        display: flex !important;
     }
 }
-@media(max-width: 767.98px){
+
+@media(max-width: 767.98px) {
+
     .sidetimesheet,
-    .sidetimesheet__overlay{
+    .sidetimesheet__overlay {
         /* display: none!important; */
     }
 }
@@ -141,7 +145,7 @@ export default {
 .sidetimesheet__cal {
     font-family: 'Helvetica';
     font-style: normal;
-    width: min-content;
+    /* width: min-content; */
     font-weight: 400;
     font-size: 1.116vw;
     line-height: 107%;
@@ -160,7 +164,17 @@ export default {
     -webkit-text-stroke: 1px var(--colorDark);
     text-stroke: 1px var(--colorDark);
     color: var(--colorOrange);
-    transform: translateY(0.372vw)
+    /* transform: translateY(0.372vw) ; */
+    background-image: url(../../assets/images/logo100red.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    /* filter: invert(); */
+    width: 40%;
+    height: 60px;
+
+
+
 }
 
 
@@ -190,6 +204,11 @@ export default {
     height: 1px;
     background-color: var(--colorDark);
 
+}
+
+.btn:hover {
+    background-color: var(--colorRed);
+    color: var(--colorLight);
 }
 
 
@@ -294,6 +313,7 @@ export default {
         /* transform: translateY(-4px); */
 
     }
+
     .burger-btn-open::after {
         display: block;
         position: absolute;
@@ -337,6 +357,8 @@ export default {
     .btn {
         margin-top: 8px;
     }
+
+
 
     .vline-container {
         width: calc(100%-16px);
