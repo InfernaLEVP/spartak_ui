@@ -78,7 +78,6 @@ export default {
         Side,
         Footer,
         FormTest,
-        EmailConfirm,
 
     },
     data() {
