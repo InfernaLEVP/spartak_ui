@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import data from '../data/data.json';
+// import data from '../data/data.json';
 
 export default {
     name: 'TimesheetOneRow',
@@ -76,7 +76,21 @@ export default {
         }
     },
     created() {
-        this.data = data;
+        // this.data = data;
+
+        fetch('https://winliner.ru/getData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ok: 'ok'})
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log({data})
+            this.data = data;
+        });
+
     },
     methods: {
         bookSlot(info) {
@@ -99,8 +113,11 @@ export default {
     },
     computed: {
         needDay() {
-            return this.data.filter(d => d.day === this.day.day);
-
+            if(this.data){
+                return this.data.filter(d => d.day === this.day.day);
+            }else{
+                return [];
+            }
         },
 
     }

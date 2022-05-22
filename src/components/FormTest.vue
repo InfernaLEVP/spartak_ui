@@ -6,35 +6,34 @@
             <div class="backdrop" @click="closeModal"></div>
 
             <form action="/action_page.php" class="form-container" @submit="formOrder">
-                <h2 class="form-head" v-html="titleText"></h2>
-                <p class="form-datetime">
-                    {{ additionalText }}
-                </p>
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
                     style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,.85);"
                     loop autoplay></lottie-player>
 
-                <div class="hidden">
-
-                </div>
+                <div class="hidden"></div>
 
                 <div class="inputs" v-show="renderType === 'ordinary'">
+                    <h2 class="form-head" v-html="titleText"></h2>
+                    <p class="form-datetime">
+                        {{ additionalText }}
+                    </p>
 
-                <div class="select" v-if="this.formType === 'media'">
-                    <select id="standard-select" v-model="media">
-                        <option value="СМИ">СМИ</option>
-                        <option value="Блогер">Блогер</option>
-                        <option value="Фотограф">Фотограф</option>
-                    </select>
-                </div>
-                
-                <div class="input-wrapper" id="fname-input">
-                    <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
-                    <span class="validation-message">Это поле обязательно</span>
-                    <div class="line"></div>
-                </div>
-                
+                    <div class="select" v-if="this.formType === 'media'">
+                        <select id="standard-select" v-model="media">
+                            <option value="" disabled selected>СМИ / Блогер / Фотограф</option>
+                            <option value="СМИ">СМИ</option>
+                            <option value="Блогер">Блогер</option>
+                            <option value="Фотограф">Фотограф</option>
+                        </select>
+                    </div>
+                    
+                    <div class="input-wrapper" id="fname-input">
+                        <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
+                        <span class="validation-message">Это поле обязательно</span>
+                        <div class="line"></div>
+                    </div>
+                    
 
                     <!-- <div class="input-wrapper" id="fname-input">
                         <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
@@ -61,18 +60,23 @@
                         v-if="this.formType === 'media'">
                     <div class="line" v-if="this.formType === 'media'"></div>
 
-                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой
-                            обработки персональных данных</a></p>
+                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой обработки персональных данных</a></p>
                 </div>
 
                 <div class="result" v-show="renderType === 'success'">
-                    <p>Спасибо, ваша заявка принята. За два дня до события вы получите электронное письмо с билетом</p>
+
+                    <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
+
+                    <p v-html="lineBreaks(info.form_text_after_registr)"></p>
+
+                    <a href="https://winline.ru/" type="submit" class="btn orange-btn" v-if="info.need_winline_registr == '1'" >Зарегистрироваться на Winline</a>
+                    <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
 
                 <div class="result" v-show="renderType === 'taken'">
                     <p>Вы уже учавствуете в этом слоте.</p>
                 </div>
-
+                
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
                 <button type="button" class="cancel" @click="closeModal"></button>
 
@@ -101,6 +105,7 @@ export default {
             loader: '',
             loaderProgress: false,
             renderType: 'ordinary',
+            confirmMessage: false,
             days: undefined,
             socials: '',
             media: ''
@@ -111,6 +116,12 @@ export default {
         this.days = days;
     },
     methods: {
+        lineBreaks(text) {
+            if(!text){
+                return '';
+            }
+            return text.replaceAll('\n', '<br>');
+        },
         formOrder(event) {
             event.preventDefault();
             const isValid = this.formValidate();
@@ -123,9 +134,9 @@ export default {
 
         },
         async orderFormation() {
-            //https://winliner.ru:8443/api/bookOneEvent
+            // https://winliner.ru:8443/api/bookOneEvent
             // http://45.92.173.81:3000/api/bookOneEvent
-            const response = await fetch("http://localhost:3010/api/bookOneEvent", {
+            const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -154,20 +165,28 @@ export default {
                         }, 4000);
                     }, 800);
                 } else {
+                    if(user.existedUser === false){
+                        this.confirmMessage = true;
+                    }
                     setTimeout(() => {
                         this.loaderProgress = false;
                         this.renderType = 'success';
 
-                        setTimeout(() => {
-                            this.renderType = 'ordinary';
-                            // this.$emit('close-modal');
-                        }, 4000);
+                        // setTimeout(() => {
+                            
+                        //     // this.$emit('close-modal');
+                        // }, 4000);
                     }, 800);
                 }
-
             }
         },
         closeModal() {
+            setTimeout(() => {
+                this.renderType = 'ordinary';
+                this.confirmMessage = false;
+            }, 260);
+            
+
             this.name = '';
             this.familyName = '';
             this.phone = '';
@@ -231,7 +250,7 @@ export default {
             } else if (this.formType === 'media') {
                 return 'Форма для регистрации СМИ';
             } else {
-                return this.info.name;
+                return this.info.form_slot_description;
             }
         },
         additionalText() {
@@ -548,5 +567,15 @@ select {
 
 .err .validation-message {
     opacity: 1;
+}
+.orange-btn{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 16px;
+    color: #FFFFFF;
+    background: #FF5D0C;
+}
+.confirm-message{
+    margin-bottom: 30px;
 }
 </style>
