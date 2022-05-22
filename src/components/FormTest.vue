@@ -23,9 +23,9 @@
 
                 <div class="select" v-if="this.formType === 'media'">
                     <select id="standard-select" v-model="media">
-                        <option value="Option 1">СМИ</option>
-                        <option value="Option 2">Блогер</option>
-                        <option value="Option 3">Фотограф</option>
+                        <option value="СМИ">СМИ</option>
+                        <option value="Блогер">Блогер</option>
+                        <option value="Фотограф">Фотограф</option>
                     </select>
                 </div>
                 
@@ -57,7 +57,7 @@
                         v-model="stavka" v-if="info.need_stavka === '1'">
                     <div class="line" v-if="info.need_stavka === '1'"></div>
 
-                    <input type="text" name="url" placeholder="Ссылка на соцсети" required
+                    <input type="text" name="url" placeholder="Ссылка на соцсети" required v-model="socials"
                         v-if="this.formType === 'media'">
                     <div class="line" v-if="this.formType === 'media'"></div>
 
@@ -123,7 +123,9 @@ export default {
 
         },
         async orderFormation() {
-            const response = await fetch("http://45.92.173.81:3000/api/bookOneEvent", {
+            //https://winliner.ru:8443/api/bookOneEvent
+            // http://45.92.173.81:3000/api/bookOneEvent
+            const response = await fetch("http://localhost:3010/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -189,12 +191,16 @@ export default {
     },
     computed: {
         isOpenedRegisteration() {
-            const _date = new Date(Date.now());
-            const day = this.days.find(d => d.day === this.info.day);
-            if(_date.getDate() >= day.openDay.split('.')[0]){
+            if(this.formType === 'media'){
                 return true;
             }else{
-                return false;
+                const _date = new Date(Date.now());
+                const day = this.days.find(d => d.day === this.info.day);
+                if(_date.getDate() >= day.openDay.split('.')[0]){
+                    return true;
+                }else{
+                    return false;
+                }
             }
         },
         buttonText() {
