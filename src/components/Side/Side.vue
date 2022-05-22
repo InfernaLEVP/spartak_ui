@@ -7,7 +7,7 @@
 
         <a class="domaim-link" href="#top">
             <div class="sidetimesheet__top-row">
-                <p class="sidetimesheet__cal">Календарь событий <br>в июне</p>
+                <p class="sidetimesheet__cal">Календарь событий</p>
                 <p class="sidetimesheet__month"></p>
             </div>
         </a>
@@ -171,6 +171,7 @@ filter: brightness(500) ;
     font-size: 1.116vw;
     line-height: 107%;
     color: var(--colorDark);
+    width: min-content;
 }
 
 .sidetimesheet__month {

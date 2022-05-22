@@ -2,7 +2,7 @@
     <section class="timesheet">
         <div class="timesheet__first-block">
             <h2 class="timesheet__header">Расписание</h2>
-            <p class="timesheet__description"><span> Важно </span>В&nbsp;течение временного слота
+            <p class="timesheet__description">Важно: В&nbsp;течение временного слота
                 вы&nbsp;не&nbsp;сможете покинуть лодку. Мы&nbsp;просим вас не&nbsp;опаздывать
                 на&nbsp;посадку&nbsp;&mdash; Winliner отправляется строго по&nbsp;расписанию.</p>
         </div>

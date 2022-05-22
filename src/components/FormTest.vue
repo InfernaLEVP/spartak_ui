@@ -5,11 +5,11 @@
 
             <div class="backdrop" @click="closeModal"></div>
 
-        <form action="/action_page.php" class="form-container" @submit="formOrder">
-            <h2 class="form-head" v-html="titleText"></h2>
-            <p class="form-datetime">
-                {{ additionalText }}
-            </p>
+            <form action="/action_page.php" class="form-container" @submit="formOrder">
+                <h2 class="form-head" v-html="titleText"></h2>
+                <p class="form-datetime">
+                    {{ additionalText }}
+                </p>
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
                     style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,.85);"
