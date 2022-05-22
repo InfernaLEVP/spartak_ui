@@ -1,11 +1,11 @@
 <template>
     <FirstAnimation />
     <div class="container1344">
-        {{ curentSection }}
+        <!-- {{ curentSection }} -->
         <!-- <div class="progress-line" id="progress"></div> -->
 
         <!-- <div class="box"></div> -->
-
+        <!-- <EmailConfirm /> -->
         <div class="grid-container">
 
             <div class="left-side">
@@ -34,37 +34,38 @@ import TimeSheet from "./components/TimeSheet.vue";
 import Side from "./components/Side/Side.vue";
 import Footer from "./components/Footer.vue";
 import FormTest from "./components/FormTest.vue";
+// import EmailConfirm from "./components/EmailConfirm.vue";
 
 import { gsap } from 'gsap';
 
 
 import { ref, onMounted } from 'vue';
 
-const headers = [
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
+// const headers = [
+//     '05',
+//     '06',
+//     '07',
+//     '08',
+//     '09',
+//     '10',
 
-]
-const currentSection = ref('')
-console.log(currentSection)
+// ]
+// const currentSection = ref('')
+// console.log(currentSection)
 
-onMounted(() => {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.intersectionRatio > 0) {
-                currentSection.value = entry.target.getAttribute('id')
-            }
-        })
+// onMounted(() => {
+//     const observer = new IntersectionObserver((entries) => {
+//         entries.forEach((entry) => {
+//             if (entry.intersectionRatio > 0) {
+//                 currentSection.value = entry.target.getAttribute('id')
+//             }
+//         })
 
-    })
-    document.querySelectorAll('black-window').forEach((section) => {
-        observer.observe(section)
-    })
-})
+//     })
+//     document.querySelectorAll('black-window').forEach((section) => {
+//         observer.observe(section)
+//     })
+// })
 
 
 export default {
@@ -77,6 +78,7 @@ export default {
         Side,
         Footer,
         FormTest,
+        EmailConfirm,
 
     },
     data() {
