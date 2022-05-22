@@ -167,7 +167,7 @@ a {
     font-family: 'Druk';
     font-style: italic;
     font-weight: 1000;
-    font-size: 10vh;
+    font-size: 9vh;
     /* line-height: 100%; */
     /* text-align: center; */
     letter-spacing: 0.01em;
@@ -210,6 +210,7 @@ a {
     margin: auto;
     text-align: center;
     font-family: 'Helvetica', sans-serif;
+    width: min-content;
 }
 
 @media (max-width: 575.98px) {
@@ -230,9 +231,6 @@ a {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .sidetimesheet__day {
-        font-size: 10vh;
-    }
 
  
 

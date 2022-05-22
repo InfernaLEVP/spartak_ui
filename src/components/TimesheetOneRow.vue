@@ -5,8 +5,13 @@
                 <p class="timesheet__day-number">{{ day.day }}</p>
                 <p class="timesheet__month">июня</p>
             </div>
-
-            <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}</p>
+            <div class="pict-descr-container">
+                <img :src="require(`../assets/images/icons/icon_${day.day}.png`)" alt="" class="round-icon">
+                <!-- <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)"  -->
+                <!-- <div class="round-icon"></div> -->
+                <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}
+                </p>
+            </div>
         </div>
 
         <div v-if="isDayOpened(day)">
@@ -103,11 +108,28 @@ export default {
 </script>
 
 <style scoped>
+.pict-descr-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.round-icon {
+    /* background-image: url(../assets/images/icons/icon_05.png);
+    background-repeat: no-repeat;
+    background-size: contain; */
+    width: 11.905vw;
+    height: 11.905vw;
+    margin-top: -3.49vw;
+    margin-right: 1.19vw;
+    /* display: inline-block; */
+
+}
+
 .black-window {
     background-color: var(--colorDark);
     padding: 1.190vw;
     border-radius: 24px;
-    margin-bottom: 1.190vw;
+    margin-bottom: 0.595vw;
 }
 
 .container {
@@ -378,7 +400,7 @@ export default {
 @media (max-width: 575.98px) {
     .black-window {
         padding-bottom: 48px;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
         padding: 16px 8px;
     }
 
@@ -471,9 +493,19 @@ export default {
         margin-bottom: 32px;
     }
 
-    .remind-me button{
+    .remind-me button {
         width: 100%;
         font-size: 3.348vw;
+    }
+
+    .pict-descr-container{
+        flex-direction: column;
+    }
+    .round-icon{
+        width: 44.444vw;
+        height: 44.444vw;
+        margin-top: -32px;
+        margin-bottom: 16px;
     }
 
 }

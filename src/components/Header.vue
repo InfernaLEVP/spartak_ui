@@ -26,16 +26,15 @@
           </div>
         </div>
         <p class="header__description">
-          Празднуем столетие ФК&nbsp;&laquo;Спартак&raquo; на&nbsp;Москва-реке! Футбольные матчи на&nbsp;верхней палубе
-          лодки, встречи с&nbsp;футболистами и&nbsp;легендами клуба и&nbsp;8&nbsp;тематических мероприятий, посвященных
-          ярким периодам клуба.
+          Празднуем столетие ФК&nbsp;&laquo;Спартак&raquo; на&nbsp;Москва-реке!
+Встречи с&nbsp;футболистами и&nbsp;легендами &laquo;Спартака&raquo;, футбольные матчи на&nbsp;верхней палубе лодки и&nbsp;8&nbsp;тематических мероприятий, посвященных ярким периодам клуба.
         </p>
       </div>
     </div>
 
     <div class="header__center-image">
       <!--  -->
-      <agile ref="carousel" :autoplaySpeed="3000" :autoplay="true"  @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
+      <agile ref="carousel" :autoplaySpeed="6000" :autoplay="true"  @after-change="e => currentSlide = e.currentSlide" class="my-slider" :pauseOnHover="true"
         :navButtons="false" :dots="false" :speed="600">
         <div v-for="slide in slData" :key="slide">
           <div class="sl-container">

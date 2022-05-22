@@ -5,11 +5,11 @@
 
             <div class="backdrop" @click="closeModal"></div>
 
-        <form action="/action_page.php" class="form-container" @submit="formOrder">
-            <h2 class="form-head" v-html="titleText"></h2>
-            <p class="form-datetime">
-                {{ additionalText }}
-            </p>
+            <form action="/action_page.php" class="form-container" @submit="formOrder">
+                <h2 class="form-head" v-html="titleText"></h2>
+                <p class="form-datetime">
+                    {{ additionalText }}
+                </p>
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
                     style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,.85);"
@@ -21,20 +21,22 @@
 
                 <div class="inputs" v-show="renderType === 'ordinary'">
 
-                <div class="select" v-if="this.formType === 'media'">
-                    <select id="standard-select" v-model="media">
-                        <option value="Option 1">СМИ</option>
-                        <option value="Option 2">Блогер</option>
-                        <option value="Option 3">Фотограф</option>
-                    </select>
-                </div>
-                
-                <div class="input-wrapper" id="fname-input">
-                    <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
-                    <span class="validation-message">Это поле обязательно</span>
-                    <div class="line"></div>
-                </div>
-                
+                    <div class="select" v-if="this.formType === 'media'">
+                        <select id="standard-select" v-model="media">
+                            <option value="" disabled selected>СМИ / Блогер / Фотограф</option>
+
+                            <option value="Option 1">СМИ</option>
+                            <option value="Option 2">Блогер</option>
+                            <option value="Option 3">Фотограф</option>
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper" id="fname-input">
+                        <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
+                        <span class="validation-message">Это поле обязательно</span>
+                        <div class="line"></div>
+                    </div>
+
 
                     <!-- <div class="input-wrapper" id="fname-input">
                         <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
@@ -191,9 +193,9 @@ export default {
         isOpenedRegisteration() {
             const _date = new Date(Date.now());
             const day = this.days.find(d => d.day === this.info.day);
-            if(_date.getDate() >= day.openDay.split('.')[0]){
+            if (_date.getDate() >= day.openDay.split('.')[0]) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
