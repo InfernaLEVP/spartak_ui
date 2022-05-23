@@ -97,6 +97,19 @@ export default {
 
 }
 
+@media (max-width: 575.98px) {
+    .first__100-logo {
+        background-image: url(../assets/images/100let_h.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--colorDark);
+        /* padding-top: 27.36%; */
+    }
+}
+
 @keyframes top {
     0% {
         transform: translate3d(0, 0, 0);

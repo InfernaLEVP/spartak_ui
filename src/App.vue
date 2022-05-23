@@ -1,4 +1,5 @@
 <template>
+    <EnterForm />
     <FirstAnimation />
     <div class="container1344">
         <!-- {{ curentSection }} -->
@@ -34,6 +35,7 @@ import TimeSheet from "./components/TimeSheet.vue";
 import Side from "./components/Side/Side.vue";
 import Footer from "./components/Footer.vue";
 import FormTest from "./components/FormTest.vue";
+import EnterForm from "./components/EnterForm.vue";
 // import EmailConfirm from "./components/EmailConfirm.vue";
 
 import { gsap } from 'gsap';
@@ -78,6 +80,7 @@ export default {
         Side,
         Footer,
         FormTest,
+        EnterForm,
 
     },
     data() {

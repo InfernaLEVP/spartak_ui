@@ -53,7 +53,7 @@
               </div> -->
 
                 <div class="sl-date-months-container">
-                  <p class="sl-date">{{ slide.sl_date }}</p>
+                  <p class="sl-date">{{ slide.day }}</p>
                   <p class="sl-months">июня</p>
                   <!-- $refs.carousel.currentSlide -->
                 </div>
@@ -81,7 +81,7 @@
 
 <script>
 
-import slData from "../data/slider-data.json"
+import slData from "../data/day_description.json"
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import { VueAgile } from 'vue-agile'
 
