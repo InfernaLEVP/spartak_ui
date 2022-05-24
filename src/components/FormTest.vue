@@ -52,7 +52,7 @@
                     <input type="text" placeholder="Email" name="email" required v-model="email">
                     <div class="line"></div>
 
-                    <input type="text" name="url" placeholder="Ссылка на соц сеть" required
+                    <input type="text" name="url" placeholder="Ссылка на соц сеть"
                         v-model="socials" v-if="this.formType !== 'media'">
                     <div class="line" v-if="this.formType !== 'media'"></div>
 

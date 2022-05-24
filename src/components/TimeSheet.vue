@@ -1,5 +1,6 @@
 <template>
     <section class="timesheet">
+        <div class="winliner"></div>
         <div class="timesheet__first-block">
             <h2 class="timesheet__header">Расписание</h2>
             <p class="timesheet__description">Важно: В&nbsp;течение временного слота
@@ -39,6 +40,16 @@ export default {
 </script>
 
 <style scoped>
+.winliner {
+    background-image: url(../assets/images/winliner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    max-width: 100%;
+    padding-bottom: 35%;
+    margin-bottom: 32px;
+}
+
 .timesheet {
     background-color: #292929;
     padding: 2.381vw 0.595vw;

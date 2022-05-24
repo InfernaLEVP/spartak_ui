@@ -104,11 +104,12 @@ export default {
     background-color: var(--colorDark);
 }
 
-.domaim-link:hover .sidetimesheet__cal{
+.domaim-link:hover .sidetimesheet__cal {
     color: var(--colorLight);
 }
-.domaim-link:hover .sidetimesheet__month{
-filter: brightness(500) ;
+
+.domaim-link:hover .sidetimesheet__month {
+    filter: brightness(500);
 }
 
 .sidetimesheet__top-row {
@@ -228,8 +229,14 @@ filter: brightness(500) ;
 
 }
 
-.btn:hover {
+.btn {
     background-color: var(--colorRed);
+    color: var(--colorLight);
+}
+
+.btn:hover {
+    background-color: var(--colorDark);
+
     color: var(--colorLight);
 }
 
