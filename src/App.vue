@@ -1,6 +1,6 @@
 <template>
-    <EnterForm />
-    <FirstAnimation />
+    <!-- <EnterForm />
+    <FirstAnimation /> -->
     <div class="container1344">
         <!-- {{ curentSection }} -->
         <!-- <div class="progress-line" id="progress"></div> -->

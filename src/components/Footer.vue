@@ -22,7 +22,7 @@ export default {
 }
 
 .footer {
-    padding: 2.208vw 1.595vw;
+    padding: 1.1vw 1.595vw;
     background-color: var(--colorDark);
     border-radius: 24px 24px 0 0;
 }
@@ -30,8 +30,8 @@ export default {
 .footer__creators {
     font-family: Helvetica, Arial, sans-serif;
     color: var(--colorLight);
-    font-size: 1vw;
-    opacity: .5;
+    font-size: 12px;
+    opacity: .2;
     border: none;
     
 
