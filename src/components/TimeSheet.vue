@@ -5,7 +5,8 @@
             <h2 class="timesheet__header">Расписание</h2>
             <div class="timesheet__description">
                 <p>Winliner это:</p>
-                <p class="bullets">— Лучшее место для всех красно-белых, чтобы отпраздновать 100-летие ФК&nbsp;«Спартак»</p>
+                <p class="bullets">— Лучшее место для всех красно-белых, чтобы отпраздновать 100-летие ФК&nbsp;«Спартак»
+                </p>
                 <p class="bullets">— Ежедневные встречи с футболистами и легендами ФК&nbsp;«Спартак»</p>
                 <p class="bullets">— Lounge зона и тематические бары</p>
                 <p class="bullets">— Музейная инсталляция ФК&nbsp;«Спартак»</p>
@@ -152,6 +153,14 @@ export default {
         margin-top: 16px;
 
     }
+
+    .bullets {
+        padding-left: 6vw;
+        font-size: 4.58vw;
+        margin-top: 16px;
+        text-indent: -6vw
+    }
+
 
     .timesheet__first-block {
         margin: 16px 8px;

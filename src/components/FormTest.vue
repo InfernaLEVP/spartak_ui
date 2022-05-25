@@ -451,7 +451,7 @@ select {
     background-color: var(--colorDark2);
     border: none;
     z-index: 15;
-    min-height: 560px;
+    /* min-height: 560px; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -512,7 +512,7 @@ select {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-    margin-top: 4.613vw;
+    margin-top: 1vw;
 }
 
 /* Add a red background color to the cancel button */
@@ -530,9 +530,9 @@ select {
     font-family: 'Helvetica';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.860vw;
-    line-height: 96%;
-    width: 70%;
+    font-size: 1.86vw;
+    line-height: 110%;
+    width: 95%;
     letter-spacing: -0.01em;
     color: var(--colorLight);
 }
