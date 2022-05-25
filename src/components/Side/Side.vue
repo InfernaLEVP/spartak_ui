@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import days from '../../data/data.json';
-import _days from '../../data/day_description.json';
+// import days from '../../data/data.json';
+// import _days from '../../data/day_description.json';
 import SideTimeOneRow from './SideTimeOneRow.vue';
 
 export default {
@@ -50,7 +50,20 @@ export default {
     },
     created() {
         // this.days = this.parseDays(days, 'day');
-        this.days = _days;
+        // this.days = _days;
+        fetch('https://winliner.ru/getDays', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ok: 'ok'})
+        })
+        .then(response => response.json())
+        .then(data => {
+            
+            this.days = data;
+        });
+
     },
     mounted() {
         setTimeout(() => {

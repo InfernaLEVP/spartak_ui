@@ -67,10 +67,9 @@
                     </div>
 
                     <div class="input-wrapper" id="social-input">
-                        <input type="text" name="url" placeholder="Ссылка на соцсети" required v-model="socials"
-                            v-if="this.formType === 'media'">
+                        <input type="text" name="url" placeholder="Ссылка на соцсети" v-model="socials">
                             <span class="validation-message">Неверный формат</span>
-                        <div class="line" v-if="this.formType === 'media'"></div>    
+                        <div class="line"></div>    
                     </div>
 
                     <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой
@@ -157,6 +156,23 @@ export default {
         async orderFormation() {
             // https://winliner.ru:8443/api/bookOneEvent
             // http://45.92.173.81:3000/api/bookOneEvent
+            const matchEvent = {
+                condition:"Регистрация на сайте Winliner",
+                day:"1922",
+                description:"1922 Матч",
+                eventEndTime:"24:00",
+                eventStartTime:"20:00",
+                form_slot_description:"",
+                form_text_after_registr:"",
+                how_much_registration:"-1",
+                name:"Матч 1922 на Winliner’е",
+                need_stavka:"0",
+                need_winline_registr:"0",
+                route:"",
+                slot_end_time:"14:30",
+                slot_number:"1",
+                slot_start_time:"10:00"
+            }
             const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
@@ -165,7 +181,7 @@ export default {
                     familyName: this.familyName,
                     phone: this.phone,
                     email: this.email,
-                    chosenEvent: this.info,
+                    chosenEvent: this.formType === '1922' ? matchEvent : this.info,
                     formType: this.formType,
                     socials: this.socials,
                     media: this.media,
@@ -232,7 +248,7 @@ export default {
                 errors.push('phone');
             }
 
-            if(this.familyName.length < 4){
+            if(this.familyName.length < 2){
                 document.getElementById('lname-input').classList.add('err');
                 errors.push('familyName');
             }
@@ -249,12 +265,12 @@ export default {
                 }
             }
 
-            if(this.formType === 'media'){
-                if(this.socials.length < 4 || !this.socials.includes('.')){
-                    document.getElementById('social-input').classList.add('err');
-                    errors.push('social');
-                }
-            }
+            // if(this.formType === 'media'){
+            //     if(this.socials.length < 4 || !this.socials.includes('.')){
+            //         document.getElementById('social-input').classList.add('err');
+            //         errors.push('social');
+            //     }
+            // }
 
             if (errors.length !== 0) {
                 return false;

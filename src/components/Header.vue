@@ -1,7 +1,7 @@
 
 
 <template>
-  <section class="header" id="top">
+  <section class="header" id="top" v-if="slData">
     <div class="header__top-container">
       <h1 class="header__h1">Win<span>liner</span></h1>
       <div class="header__top-right-container">
@@ -81,7 +81,7 @@
 
 <script>
 
-import slData from "../data/day_description.json"
+// import slData from "../data/day_description.json"
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import { VueAgile } from 'vue-agile'
 
@@ -91,9 +91,23 @@ export default {
     agile: VueAgile,
 
   },
+  created() {
+    fetch('https://winliner.ru/getDays', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ok: 'ok'})
+    })
+    .then(response => response.json())
+    .then(data => {
+        
+        this.slData = data;
+    });
+  },
   data() {
     return {
-      slData: slData,
+      slData: null,
       // mySlide: undefined,
 
       // currentSl: getCurrentSlide(),
