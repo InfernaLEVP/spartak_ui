@@ -8,7 +8,7 @@
             <form action="/action_page.php" class="form-container" @submit="formOrder" autocomplete="off">
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
-                    style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,.85);"
+                    style="width: 100%; height: 100%; position: absolute; z-index: 99; top: 0; left: 0; background: rgba(0,0,0,.85);"
                     loop autoplay></lottie-player>
 
                 <div class="hidden"></div>
@@ -242,7 +242,7 @@ export default {
                 errors.push('email');
             }
 
-            if(info.need_stavka === '1'){
+            if(this.info.need_stavka === '1'){
                 if(this.stavka.length < 8){
                     document.getElementById('stavka-input').classList.add('err');
                     errors.push('stavka');
