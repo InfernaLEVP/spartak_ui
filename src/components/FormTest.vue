@@ -5,7 +5,7 @@
 
             <div class="backdrop" @click="closeModal"></div>
 
-            <form action="/action_page.php" class="form-container" @submit="formOrder">
+            <form action="/action_page.php" class="form-container" @submit="formOrder" autocomplete="off">
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
                     style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; background: rgba(0,0,0,.85);"
@@ -20,7 +20,7 @@
                     </p>
 
                     <div class="select" v-if="this.formType === 'media'">
-                        <select id="standard-select" v-model="media">
+                        <select id="standard-select" v-model="media" required>
                             <option value="" disabled selected>СМИ / Блогер / Фотограф</option>
                             <option value="СМИ">СМИ</option>
                             <option value="Блогер">Блогер</option>
@@ -29,7 +29,7 @@
                     </div>
                     
                     <div class="input-wrapper" id="fname-input">
-                        <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
+                        <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name" required>
                         <span class="validation-message">Это поле обязательно</span>
                         <div class="line"></div>
                     </div>
@@ -41,31 +41,47 @@
                         <div class="line"></div>
                     </div> -->
 
+                    <div class="input-wrapper" id="lname-input">
+                        <input type="text" id="lname" name="lastname" placeholder="Фамилия" required v-model="familyName">
+                        <div class="line"></div>
+                    </div>
 
-                    <input type="text" id="lname" name="lastname" placeholder="Фамилия" required v-model="familyName">
-                    <div class="line"></div>
+                    <div class="input-wrapper" id="phone-input">
+                        <input type="tel" placeholder="Телефон" name="phone" v-maska="'+7 (###) ###-##-##'" required
+                            v-model="phone" @input="pInput">
+                            <span class="validation-message">Неверный формат</span>
+                        <div class="line"></div>
+                    </div>
+                    
+                    <div class="input-wrapper" id="email-input">
+                        <input type="text" placeholder="Email" name="email" required v-model="email">
+                        <span class="validation-message">Неверный формат</span>
+                        <div class="line"></div>
+                    </div>
 
-                    <input type="tel" placeholder="Телефон" name="phone" v-maska="'+7 (###) ###-##-##'" required
-                        v-model="phone">
-                    <div class="line"></div>
+                    <div class="input-wrapper" id="stavka-input">
+                        <input type="text" placeholder="Номер ставки Winline" name="stavka" v-maska="'#########'" required
+                            v-model="stavka" v-if="info.need_stavka === '1'">
+                            <span class="validation-message">Неверный формат</span>
+                        <div class="line" v-if="info.need_stavka === '1'"></div>
+                    </div>
 
-                    <input type="text" placeholder="Email" name="email" required v-model="email">
-                    <div class="line"></div>
-
-                    <input type="text" placeholder="Номер ставки Winline" name="stavka" v-maska="'#########'" required
-                        v-model="stavka" v-if="info.need_stavka === '1'">
-                    <div class="line" v-if="info.need_stavka === '1'"></div>
-
-                    <input type="text" name="url" placeholder="Ссылка на соцсети" required v-model="socials"
-                        v-if="this.formType === 'media'">
-                    <div class="line" v-if="this.formType === 'media'"></div>
+                    <div class="input-wrapper" id="social-input">
+                        <input type="text" name="url" placeholder="Ссылка на соцсети" required v-model="socials"
+                            v-if="this.formType === 'media'">
+                            <span class="validation-message">Неверный формат</span>
+                        <div class="line" v-if="this.formType === 'media'"></div>    
+                    </div>
 
                     <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой обработки персональных данных</a></p>
                 </div>
 
                 <div class="result" v-show="renderType === 'success'">
 
+                    <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
                     <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
+
+                    <p>После проверки заявки и прохождении модерации ты получишь письмо с детальной информацией на указанный e-mail адрес.</p>
 
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
@@ -116,6 +132,9 @@ export default {
         this.days = days;
     },
     methods: {
+        pInput() {
+            console.log(this.phone.length)
+        },  
         lineBreaks(text) {
             if(!text){
                 return '';
@@ -194,11 +213,46 @@ export default {
             this.$emit('close-modal');
         },
         formValidate() {
+            document.getElementById('fname-input').classList.remove('err');
+            document.getElementById('phone-input').classList.remove('err');
+            document.getElementById('lname-input').classList.remove('err');
+            document.getElementById('email-input').classList.remove('err');
+            document.getElementById('stavka-input').classList.remove('err');
+            document.getElementById('social-input').classList.remove('err');
             const errors = [];
-            // if(this.name.length === 0){
-            //     document.getElementById('fname-input').classList.add('err');
-            //     errors.push('fname');
-            // }
+
+            if(this.name.length < 2){
+                document.getElementById('fname-input').classList.add('err');
+                errors.push('fname');
+            }
+            if(this.phone.length < 18){
+                document.getElementById('phone-input').classList.add('err');
+                errors.push('phone');
+            }
+
+            if(this.familyName.length < 4){
+                document.getElementById('lname-input').classList.add('err');
+                errors.push('familyName');
+            }
+
+            if(this.email.length < 4 || !this.email.includes('@') || !this.email.includes('.')){
+                document.getElementById('email-input').classList.add('err');
+                errors.push('email');
+            }
+
+            if(info.need_stavka === '1'){
+                if(this.stavka.length < 8){
+                    document.getElementById('stavka-input').classList.add('err');
+                    errors.push('stavka');
+                }
+            }
+
+            if(this.formType === 'media'){
+                if(this.socials.length < 4 || !this.socials.includes('.')){
+                    document.getElementById('social-input').classList.add('err');
+                    errors.push('social');
+                }
+            }
 
             if (errors.length !== 0) {
                 return false;
@@ -210,7 +264,7 @@ export default {
     },
     computed: {
         isOpenedRegisteration() {
-            if(this.formType === 'media'){
+            if(this.formType === 'media' || this.formType === '1922'){
                 return true;
             }else{
                 const _date = new Date(Date.now());
@@ -283,10 +337,7 @@ export default {
 .personal-link:visited {
     /* text-decoration: none; */
     color: var(--colorDark);
-
-
 }
-
 
 select {
     appearance: none;
@@ -335,7 +386,6 @@ select {
     opacity: 0;
 }
 
-
 /* Button used to open the contact form - fixed at the bottom of the page */
 /* .open-button {
   background-color: #555;
@@ -383,6 +433,14 @@ select {
     background-color: var(--colorDark2);
     border: none;
     z-index: 15;
+
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.form-container p{
+    margin-bottom: 20px;
 }
 
 /* Full-width input fields */
@@ -548,11 +606,11 @@ select {
 }
 
 .input-wrapper {
-    /* position: relative; */
+    position: relative;
 }
 
 .err {
-    border: 1px solid crimson !important;
+    border: 3px solid crimson !important;
 }
 
 .validation-message {
@@ -560,7 +618,7 @@ select {
     right: 10px;
     top: 5px;
     color: crimson;
-    font-size: 11px;
+    font-size: 13px;
     font-family: 'Helvetica', sans-serif;
     opacity: 0;
 }
@@ -577,5 +635,8 @@ select {
 }
 .confirm-message{
     margin-bottom: 30px;
+}
+#phone-input input:-webkit-autofill {
+    background-color: white !important;
 }
 </style>

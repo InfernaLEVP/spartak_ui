@@ -103,7 +103,7 @@ export default {
 
             const _date = new Date(Date.now());
 
-            if (_date.getDate() >= day.openDay.split('.')[0]) {
+            if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1]) ) {
                 return true;
             } else {
                 return false;

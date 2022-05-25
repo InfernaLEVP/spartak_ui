@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import data from "../data/day_description.json";
+// import data from "../data/day_description.json";
 import TimesheetOneRow from '@/components/TimesheetOneRow.vue';
 
 export default {
@@ -33,7 +33,21 @@ export default {
         }
     },
     created() {
-        this.data = data;
+        // this.data = data;
+
+        fetch('https://winliner.ru/getDays', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ok: 'ok'})
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log({data})
+            this.data = data;
+        });
+
     }
 }
 </script>
