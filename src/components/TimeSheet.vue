@@ -3,8 +3,16 @@
         <div class="winliner"></div>
         <div class="timesheet__first-block">
             <h2 class="timesheet__header">Расписание</h2>
-            <p class="timesheet__description">ВАЖНО: Вы&nbsp;не&nbsp;сможете покинуть лодку до&nbsp;следующей остановки. Но&nbsp;не&nbsp;стоит переживать&nbsp;&mdash; во&nbsp;время прогулки, помимо основной программы для вас будут работать бары с&nbsp;вкусной едой и&nbsp;напитками, lounge зона и&nbsp;киберспортивный хаб. 
-Пожалуйста, не&nbsp;опаздывайте на&nbsp;посадку&nbsp;&mdash; Winliner отправляется строго по&nbsp;расписанию.</p>
+            <div class="timesheet__description">
+                <p>Winliner это:</p>
+                <p class="bullets">— Лучшее место для всех красно-белых, чтобы отпраздновать 100-летие ФК&nbsp;«Спартак»</p>
+                <p class="bullets">— Ежедневные встречи с футболистами и легендами ФК&nbsp;«Спартак»</p>
+                <p class="bullets">— Lounge зона и тематические бары</p>
+                <p class="bullets">— Музейная инсталляция ФК&nbsp;«Спартак»</p>
+                <p class="bullets">— Ежедневные розыгрыши мерча и подарков от ФК&nbsp;«Спартак» и Winline</p>
+
+                <p>Приходи на Winliner и стань частью истории ФК&nbsp;«Спартак»!</p>
+            </div>
         </div>
         <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
@@ -40,13 +48,13 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ok: 'ok'})
+            body: JSON.stringify({ ok: 'ok' })
         })
-        .then(response => response.json())
-        .then(data => {
-            
-            this.data = data;
-        });
+            .then(response => response.json())
+            .then(data => {
+
+                this.data = data;
+            });
 
     }
 }
@@ -70,8 +78,8 @@ export default {
 
 .timesheet__first-block {
     display: grid;
-    grid-template-columns: 4fr 5fr;
-    margin-bottom: 7.440vw;
+    grid-template-columns: 3fr 6fr;
+    margin-bottom: 3.220vw;
 
 }
 
@@ -96,7 +104,23 @@ export default {
     letter-spacing: 0.01em;
     /* text-transform: uppercase; */
     color: var(--colorLight);
+    /* margin-bottom: 8px; */
 
+
+}
+
+.bullets {
+    display: block;
+    font-family: 'Helvetica';
+    /* font-style: italic; */
+    font-weight: 400;
+    font-size: 1.800vw;
+    line-height: 96%;
+    letter-spacing: 0.01em;
+    /* text-transform: uppercase; */
+    color: var(--colorLight);
+    text-indent: -2.3vw;
+    margin-bottom: 8px;
 }
 
 .timesheet__description span {

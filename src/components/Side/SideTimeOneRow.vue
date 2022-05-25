@@ -34,7 +34,7 @@ export default {
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
             // console.log({_today})
             if(day.day === '08') {
-                return '';
+                return 'регистрация закрыта';
             }else if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1]) ) {
                 return 'открыта регистрация';
             } else {

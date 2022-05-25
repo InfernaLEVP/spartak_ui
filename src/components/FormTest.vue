@@ -66,8 +66,8 @@
                         <div class="line" v-if="info.need_stavka === '1'"></div>
                     </div>
 
-                    <div class="input-wrapper" id="social-input">
-                        <input type="text" name="url" placeholder="Ссылка на соцсети" v-model="socials">
+                    <div class="input-wrapper" id="social-input" v-if="formType !== '1922' && formType !== 'remind'">
+                        <input type="text" name="url" placeholder="Ссылка на соцсети" v-model="socials" >
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>    
                     </div>
@@ -81,7 +81,7 @@
                     <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
                     <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
 
-                    <p>После проверки заявки и прохождении модерации ты получишь письмо с детальной информацией на указанный e-mail адрес.</p>
+                    <!-- <p>После проверки заявки и прохождении модерации ты получишь письмо с детальной информацией на указанный e-mail адрес.</p> -->
 
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="result" v-show="renderType === 'taken'">
-                    <p>Вы уже учавствуете в этом слоте.</p>
+                    <p>Вы уже участвуете в этом слоте.</p>
                 </div>
 
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
@@ -446,12 +446,11 @@ select {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 41vw;
+    width: 70vw;
     padding: 0.595vw;
     background-color: var(--colorDark2);
     border: none;
     z-index: 15;
-
     min-height: 560px;
     display: flex;
     flex-direction: column;
