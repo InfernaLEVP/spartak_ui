@@ -27,13 +27,13 @@
                             <option value="Фотограф">Фотограф</option>
                         </select>
                     </div>
-                    
+
                     <div class="input-wrapper" id="fname-input">
                         <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name" required>
                         <span class="validation-message">Это поле обязательно</span>
                         <div class="line"></div>
                     </div>
-                    
+
 
                     <!-- <div class="input-wrapper" id="fname-input">
                         <input type="text" id="fname" name="firstname" placeholder="Имя" v-model="name">
@@ -73,7 +73,8 @@
                         <div class="line" v-if="this.formType === 'media'"></div>    
                     </div>
 
-                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой обработки персональных данных</a></p>
+                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой
+                            обработки персональных данных</a></p>
                 </div>
 
                 <div class="result" v-show="renderType === 'success'">
@@ -85,14 +86,15 @@
 
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
-                    <a href="https://winline.ru/" type="submit" class="btn orange-btn" v-if="info.need_winline_registr == '1'" >Зарегистрироваться на Winline</a>
+                    <a href="https://winline.ru/" type="submit" class="btn orange-btn"
+                        v-if="info.need_winline_registr == '1'">Зарегистрироваться на Winline</a>
                     <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
 
                 <div class="result" v-show="renderType === 'taken'">
                     <p>Вы уже учавствуете в этом слоте.</p>
                 </div>
-                
+
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
                 <button type="button" class="cancel" @click="closeModal"></button>
 
@@ -136,7 +138,7 @@ export default {
             console.log(this.phone.length)
         },  
         lineBreaks(text) {
-            if(!text){
+            if (!text) {
                 return '';
             }
             return text.replaceAll('\n', '<br>');
@@ -184,7 +186,7 @@ export default {
                         }, 4000);
                     }, 800);
                 } else {
-                    if(user.existedUser === false){
+                    if (user.existedUser === false) {
                         this.confirmMessage = true;
                     }
                     setTimeout(() => {
@@ -192,7 +194,7 @@ export default {
                         this.renderType = 'success';
 
                         // setTimeout(() => {
-                            
+
                         //     // this.$emit('close-modal');
                         // }, 4000);
                     }, 800);
@@ -204,7 +206,7 @@ export default {
                 this.renderType = 'ordinary';
                 this.confirmMessage = false;
             }, 260);
-            
+
 
             this.name = '';
             this.familyName = '';
@@ -266,12 +268,12 @@ export default {
         isOpenedRegisteration() {
             if(this.formType === 'media' || this.formType === '1922'){
                 return true;
-            }else{
+            } else {
                 const _date = new Date(Date.now());
                 const day = this.days.find(d => d.day === this.info.day);
-                if(_date.getDate() >= day.openDay.split('.')[0]){
+                if (_date.getDate() >= day.openDay.split('.')[0]) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
             }
@@ -626,14 +628,16 @@ select {
 .err .validation-message {
     opacity: 1;
 }
-.orange-btn{
+
+.orange-btn {
     font-weight: 400;
     font-size: 15px;
     line-height: 16px;
     color: #FFFFFF;
     background: #FF5D0C;
 }
-.confirm-message{
+
+.confirm-message {
     margin-bottom: 30px;
 }
 #phone-input input:-webkit-autofill {

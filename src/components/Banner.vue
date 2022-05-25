@@ -3,7 +3,7 @@
     <div class="banner1922">
         <div class="banner1922__left">
             <div class="banner1922__top-text-container">
-                <p class="banner1922__text">Стань частью истории ФК&nbsp;Спартак!</p>
+                <p class="banner1922__text">Стань частью истории ФК&nbsp;«Спартак»!</p>
                 <p class="banner1922__year">Матч 1922</p>
             </div>
             <div class="banner1922__arrow"></div>
@@ -38,6 +38,15 @@ export default {
 <style scoped>
 .btn {
     min-height: 3.571vw;
+    background-color: var(--colorLight);
+    color: var(--colorRed);
+
+}
+
+.btn:hover {
+    background-color: var(--colorDark);
+    color: var(--colorLight);
+
 }
 
 .banner1922 {
@@ -95,7 +104,7 @@ export default {
     line-height: 96%;
     letter-spacing: -0.01em;
     /* text-transform: uppercase; */
-    color: var(--colorDark);
+    color: var(--colorLight);
     /* opacity: .5; */
     margin: 16px 0;
     /* width: 60%; */

@@ -1,10 +1,10 @@
 <template>
     <section class="timesheet">
+        <div class="winliner"></div>
         <div class="timesheet__first-block">
             <h2 class="timesheet__header">Расписание</h2>
-            <p class="timesheet__description">Важно: В&nbsp;течение временного слота
-                вы&nbsp;не&nbsp;сможете покинуть лодку. Мы&nbsp;просим вас не&nbsp;опаздывать
-                на&nbsp;посадку&nbsp;&mdash; Winliner отправляется строго по&nbsp;расписанию.</p>
+            <p class="timesheet__description">ВАЖНО: Вы&nbsp;не&nbsp;сможете покинуть лодку до&nbsp;следующей остановки. Но&nbsp;не&nbsp;стоит переживать&nbsp;&mdash; во&nbsp;время прогулки, помимо основной программы для вас будут работать бары с&nbsp;вкусной едой и&nbsp;напитками, lounge зона и&nbsp;киберспортивный хаб. 
+Пожалуйста, не&nbsp;опаздывайте на&nbsp;посадку&nbsp;&mdash; Winliner отправляется строго по&nbsp;расписанию.</p>
         </div>
         <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
@@ -53,9 +53,19 @@ export default {
 </script>
 
 <style scoped>
+.winliner {
+    background-image: url(../assets/images/winliner.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    max-width: 100%;
+    padding-bottom: 35%;
+    margin-bottom: 32px;
+}
+
 .timesheet {
     background-color: #292929;
-    padding: 2.381vw 0.595vw;
+    padding: 2.381vw 0.595vw 0.1vw 0.595vw;
 }
 
 .timesheet__first-block {

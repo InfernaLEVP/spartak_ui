@@ -26,8 +26,8 @@
           </div>
         </div>
         <p class="header__description">
-          Празднуем столетие ФК&nbsp;&laquo;Спартак&raquo; на&nbsp;Москва-реке!
-Встречи с&nbsp;футболистами и&nbsp;легендами &laquo;Спартака&raquo;, футбольные матчи на&nbsp;верхней палубе лодки и&nbsp;8&nbsp;тематических мероприятий, посвященных ярким периодам клуба.
+          Празднуй 100-летие ФК&nbsp;&laquo;Спартак&raquo; вместе с&nbsp;нами!
+8&nbsp;дней, 8&nbsp;ярких эпох. Отправься в&nbsp;путешествие по&nbsp;золотым страницам истории великого клуба, вместе с&nbsp;легендами красно-белых на&nbsp;борту Winliner.
         </p>
       </div>
     </div>
@@ -53,7 +53,7 @@
               </div> -->
 
                 <div class="sl-date-months-container">
-                  <p class="sl-date">{{ slide.sl_date }}</p>
+                  <p class="sl-date">{{ slide.day }}</p>
                   <p class="sl-months">июня</p>
                   <!-- $refs.carousel.currentSlide -->
                 </div>
@@ -81,7 +81,7 @@
 
 <script>
 
-import slData from "../data/slider-data.json"
+import slData from "../data/day_description.json"
 // If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
 import { VueAgile } from 'vue-agile'
 

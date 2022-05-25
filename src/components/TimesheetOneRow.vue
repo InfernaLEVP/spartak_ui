@@ -17,7 +17,9 @@
         <div v-if="isDayOpened(day)">
             <!--  -->
             <div class="timesheet__timetable-grid">
-                <p class="slot-selection-text"> Выбери слот<br>для регистрации </p>
+                <!-- {{console.log("needday", day)}} -->
+                <p v-if="isDayEight(day)" class="slot-selection-text"> Выбери слот<br>для
+                    регистрации </p>
             </div>
             <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
                 :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
@@ -83,13 +85,13 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ok: 'ok'})
+            body: JSON.stringify({ ok: 'ok' })
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log({data})
-            this.data = data;
-        });
+            .then(response => response.json())
+            .then(data => {
+                // console.log({ data })
+                this.data = data;
+            });
 
     },
     methods: {
@@ -109,13 +111,24 @@ export default {
                 return false;
             }
 
+        },
+
+        isDayEight(day) {
+
+            if (day.day !== '08') {
+                // console.log(day)
+                return true;
+            } else {
+                return false;
+            }
+
         }
     },
     computed: {
         needDay() {
-            if(this.data){
+            if (this.data) {
                 return this.data.filter(d => d.day === this.day.day);
-            }else{
+            } else {
                 return [];
             }
         },
@@ -338,6 +351,11 @@ export default {
 
 }
 
+.inActive {
+    border: 1.4px solid var(--colorDark2);
+    cursor: not-allowed;
+}
+
 
 .timesheet__slot:hover {
     background-color: var(--colorOrange);
@@ -515,10 +533,11 @@ export default {
         font-size: 3.348vw;
     }
 
-    .pict-descr-container{
+    .pict-descr-container {
         flex-direction: column;
     }
-    .round-icon{
+
+    .round-icon {
         width: 44.444vw;
         height: 44.444vw;
         margin-top: -32px;
