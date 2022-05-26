@@ -17,7 +17,7 @@ export default {
 <style scoped>
 .first {
     z-index: 5000;
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;

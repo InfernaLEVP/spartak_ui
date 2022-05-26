@@ -21,6 +21,9 @@
                 <p v-if="isDayEight(day)" class="slot-selection-text"> Выбери слот<br>для
                     регистрации </p>
             </div>
+
+            <!-- Блок заголовка аккордиона -->
+
             <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
                 :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
                 :description="event.description" :slot_start_time="event.slot_start_time"
@@ -30,25 +33,70 @@
                     <div class="container">
                         <div class="thin-line"></div>
                         <div class="timesheet__timetable-grid-description">
-                            <div class="timesheet__timetable-grid-time">{{ event.eventStartTime + "—" +
-                                    event.eventEndTime
+                            <div class="timesheet__timetable-grid-time">{{ event.slot_start_time + "—" +
+                                    event.slot_end_time
                             }}
                             </div>
                             <div>
-                                <h3 class="timesheet__timetable-grid-description-head">{{ event.name }}</h3>
-                                <p class="timesheet__timetable-grid-description-text">{{ event.description }}</p>
+                                <h3 class="timesheet__timetable-grid-description-head">{{ event.slot_name }}</h3>
+                                <p class="timesheet__timetable-grid-description-text">{{ event.slot_description }}</p>
+
+
                             </div>
                         </div>
                     </div>
 
                     <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
-                    <div class="timesheet__slot" @click="bookSlot(event)">
-                        <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p>
-                        <div class="timesheet__slot-arrow"></div>
+                    <!-- <div class="timesheet__slot" @click="bookSlot(event)"> -->
+                    <div :class="[showAccordion ? 'timesheet__slot-opened' : 'timesheet__slot']"
+                        @click="showAccordion = !showAccordion">
+                        <p>Подробнее</p>
+                        <!-- <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p> -->
+                        <div :class="[showAccordion ? 'timesheet__slot-arrow-opened' : 'timesheet__slot-arrow']"></div>
                     </div>
                 </div>
+
+                <!-- Блок одного события аккордиона -->
+
+                <div v-show="showAccordion" class="ober" v-for="slot_number in event" :key="slot_number.name"
+                    :day="event.day" :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime"
+                    :name="event.name" :description="event.description" :slot_start_time="event.slot_start_time"
+                    :slot_end_time="event.slot_end_time">
+                    <div class="timesheet__timetable-grid">
+
+                        <div class="container">
+                            <!-- <div class="thin-line"></div> -->
+                            <div class="timesheet__timetable-grid-description">
+                                <div class="timesheet__timetable-grid-time-small">{{ event.eventStartTime + "—" +
+                                        event.eventEndTime
+                                }}
+                                </div>
+                                <div>
+
+                                    <h4 class="timesheet__timetable-grid-description-head-small">{{ event.name }}</h4>
+                                    <p class="timesheet__timetable-grid-description-text-small">{{ event.description }}
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
+
+                        <div class="timesheet__slot" @click="bookSlot(event)">
+                            <p>Регистрация</p>
+                            <div class="timesheet__slot-arrow"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
+
+
             <!--  -->
         </div>
         <div class="remind-me" v-else>
@@ -74,7 +122,8 @@ export default {
     },
     data() {
         return {
-            data: undefined
+            data: undefined,
+            showAccordion: false
         }
     },
     created() {
@@ -105,7 +154,7 @@ export default {
 
             const _date = new Date(Date.now());
 
-            if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1]) ) {
+            if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
                 return true;
             } else {
                 return false;
@@ -122,7 +171,8 @@ export default {
                 return false;
             }
 
-        }
+        },
+
     },
     computed: {
         needDay() {
@@ -138,6 +188,10 @@ export default {
 </script>
 
 <style scoped>
+.ts-header {
+    color: var(--colorLight);
+}
+
 .pict-descr-container {
     display: flex;
     flex-direction: row;
@@ -331,12 +385,52 @@ export default {
     white-space: pre-line;
 }
 
+.timesheet__timetable-grid-description-head-small {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.395vw;
+    line-height: 96%;
+    letter-spacing: -0.01em;
+    color: var(--colorLight);
+    white-space: pre-line;
+    margin-bottom: 8px;
+
+    /* white-space: nowrap; */
+}
+
+
+.timesheet__timetable-grid-description-text-small {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.116vw;
+    line-height: 107%;
+    letter-spacing: -0.01em;
+    color: #929292;
+    white-space: pre-line;
+}
+
+.timesheet__timetable-grid-time-small {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.395vw;
+    line-height: 96%;
+    letter-spacing: -0.01em;
+    color: var(--colorLight);
+    white-space: nowrap;
+    padding-right: 1.190vw;
+
+}
+
+
+
 .timesheet__slot {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
     font-family: 'Helvetica';
     font-style: normal;
     font-weight: 400;
@@ -351,6 +445,34 @@ export default {
 
 }
 
+.timesheet__slot-opened {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.116vw;
+    line-height: 107%;
+    background-color: var(--colorOrange);
+    color: var(--colorDark);
+    border: 1.4px solid var(--colorOrange);
+    border-radius: 12px;
+    padding: 0.595vw;
+    transition: .25s;
+    white-space: pre;
+    cursor: pointer;
+
+}
+
+.timesheet__slot-opened:hover{
+    opacity: .8;
+}
+
+
+
+
 .inActive {
     border: 1.4px solid var(--colorDark2);
     cursor: not-allowed;
@@ -358,9 +480,11 @@ export default {
 
 
 .timesheet__slot:hover {
-    background-color: var(--colorOrange);
+    background-color: rgba(255, 93, 12, 0.8)
+;
     color: var(--colorDark);
     cursor: pointer;
+    /* opacity: .8; */
 }
 
 .timesheet__slot-arrow {
@@ -369,6 +493,20 @@ export default {
     background-size: contain;
     width: 1.190vw;
     height: 1.190vw;
+    transition: all .3s;
+}
+
+.timesheet__slot-arrow-opened {
+    background-image: url(../assets/images/arr2.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 1.190vw;
+    height: 1.190vw;
+    transform: rotate(90deg);
+    filter: brightness(0);
+    transition: all .3s;
+
+
 }
 
 
@@ -432,6 +570,17 @@ export default {
     color: white;
 }
 
+.opened:hover {
+    background-color: var(--colorDark);
+    color: var(--colorOrange);
+    cursor: pointer;
+}
+
+.opened:hover>timesheet__slot-arrow {
+    transform: rotate(0);
+    filter: brightness(100);
+}
+
 @media (max-width: 575.98px) {
     .black-window {
         padding-bottom: 48px;
@@ -458,6 +607,13 @@ export default {
         white-space: normal;
         min-width: 25vw;
         padding-bottom: 12px;
+
+    }
+
+    .timesheet__timetable-grid-time-small,
+    .timesheet__timetable-grid-description-head-small {
+
+        font-size: 4.5vw;
 
     }
 

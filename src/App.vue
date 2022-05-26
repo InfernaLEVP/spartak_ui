@@ -2,6 +2,7 @@
     <EnterForm />
     <FirstAnimation />
     <div class="container1344">
+
         <!-- {{ curentSection }} -->
         <!-- <div class="progress-line" id="progress"></div> -->
 
@@ -36,7 +37,6 @@ import Side from "./components/Side/Side.vue";
 import Footer from "./components/Footer.vue";
 import FormTest from "./components/FormTest.vue";
 import EnterForm from "./components/EnterForm.vue";
-// import EmailConfirm from "./components/EmailConfirm.vue";
 
 import { gsap } from 'gsap';
 
