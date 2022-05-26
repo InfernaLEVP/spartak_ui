@@ -29,7 +29,7 @@
                     <div class="container">
                         <div class="thin-line"></div>
                         <div class="timesheet__timetable-grid-description">
-                            <div class="timesheet__timetable-grid-time">{{ slot.slot_start_time + "—" + slot.slot_end_time }}
+                            <div class="timesheet__timetable-grid-time">{{ (slot.slot_start_time? slot.slot_start_time : '12:00'  ) + "—" + slot.slot_end_time }}
                             </div>
                             <div>
                                 <h3 class="timesheet__timetable-grid-description-head">{{ slot.slot_name }}</h3>
@@ -58,7 +58,7 @@
                             <div class="container">
                                 <!-- <div class="thin-line"></div> -->
                                 <div class="timesheet__timetable-grid-description">
-                                    <div class="timesheet__timetable-grid-time-small">{{ event.eventStartTime + "—" +
+                                    <div class="timesheet__timetable-grid-time-small">{{ (event.eventStartTime? '12:00' : event.eventStartTime ) + "—" +
                                             event.eventEndTime
                                     }}
                                     </div>
