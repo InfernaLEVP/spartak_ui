@@ -9,39 +9,31 @@
                 <img :src="require(`../assets/images/icons/icon_${day.day}.png`)" alt="" class="round-icon">
                 <!-- <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)"  -->
                 <!-- <div class="round-icon"></div> -->
-                <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}
-                </p>
+                <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}</p>
             </div>
         </div>
 
-        <div v-if="isDayOpened(day)">
+        <div v-if="isDayOpened(day) && renderFlag">
             <!--  -->
             <div class="timesheet__timetable-grid">
                 <!-- {{console.log("needday", day)}} -->
-                <p v-if="isDayEight(day)" class="slot-selection-text"> Выбери слот<br>для
-                    регистрации </p>
+                <p v-if="isDayEight(day)" class="slot-selection-text"> Выбери слот<br>для регистрации </p>
             </div>
 
             <!-- Блок заголовка аккордиона -->
 
-            <div class="ober" v-for="event in needDay" :key="event.name" :day="event.day"
-                :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime" :name="event.name"
-                :description="event.description" :slot_start_time="event.slot_start_time"
-                :slot_end_time="event.slot_end_time">
+            <div class="ober" v-for="slot in uiData.slots" :key="slot.slot_name" style="--oberHeight: 0px">
+
                 <div class="timesheet__timetable-grid">
 
                     <div class="container">
                         <div class="thin-line"></div>
                         <div class="timesheet__timetable-grid-description">
-                            <div class="timesheet__timetable-grid-time">{{ event.slot_start_time + "—" +
-                                    event.slot_end_time
-                            }}
+                            <div class="timesheet__timetable-grid-time">{{ slot.slot_start_time + "—" + slot.slot_end_time }}
                             </div>
                             <div>
-                                <h3 class="timesheet__timetable-grid-description-head">{{ event.slot_name }}</h3>
-                                <p class="timesheet__timetable-grid-description-text">{{ event.slot_description }}</p>
-
-
+                                <h3 class="timesheet__timetable-grid-description-head">{{ slot.slot_name }}</h3>
+                                <p class="timesheet__timetable-grid-description-text">{{ slot.slot_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -49,53 +41,50 @@
                     <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
                     <!-- <div class="timesheet__slot" @click="bookSlot(event)"> -->
-                    <div :class="[showAccordion ? 'timesheet__slot-opened' : 'timesheet__slot']"
-                        @click="showAccordion = !showAccordion">
+                    <div :class="['timesheet__slot']"
+                        @click="openAccordion">
                         <p>Подробнее</p>
-                        <!-- <p>{{ event.slot_start_time + "—" + event.slot_end_time }}</p> -->
+                        <!-- <p>{{ slot.slot_start_time + "—" + slot.slot_end_time }}</p> -->
                         <div :class="[showAccordion ? 'timesheet__slot-arrow-opened' : 'timesheet__slot-arrow']"></div>
                     </div>
                 </div>
 
                 <!-- Блок одного события аккордиона -->
+                <div class="ober-items-wrapper">
 
-                <div v-show="showAccordion" class="ober" v-for="slot_number in event" :key="slot_number.name"
-                    :day="event.day" :eventStartTime="event.eventStartTime" :eventEndTime="event.eventEndTime"
-                    :name="event.name" :description="event.description" :slot_start_time="event.slot_start_time"
-                    :slot_end_time="event.slot_end_time">
-                    <div class="timesheet__timetable-grid">
+                    <div class="ober" v-for="event in slot.slot_events" :key="event.name"> <!-- v-show="showAccordion" -->
+                        <div class="timesheet__timetable-grid">
 
-                        <div class="container">
-                            <!-- <div class="thin-line"></div> -->
-                            <div class="timesheet__timetable-grid-description">
-                                <div class="timesheet__timetable-grid-time-small">{{ event.eventStartTime + "—" +
-                                        event.eventEndTime
-                                }}
-                                </div>
-                                <div>
+                            <div class="container">
+                                <!-- <div class="thin-line"></div> -->
+                                <div class="timesheet__timetable-grid-description">
+                                    <div class="timesheet__timetable-grid-time-small">{{ event.eventStartTime + "—" +
+                                            event.eventEndTime
+                                    }}
+                                    </div>
+                                    <div>
 
-                                    <h4 class="timesheet__timetable-grid-description-head-small">{{ event.name }}</h4>
-                                    <p class="timesheet__timetable-grid-description-text-small">{{ event.description }}
-                                    </p>
+                                        <h4 class="timesheet__timetable-grid-description-head-small">{{ event.name }}</h4>
+                                        <p class="timesheet__timetable-grid-description-text-small">{{ event.description }}
+                                        </p>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
+                            <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
-                        <div class="timesheet__slot" @click="bookSlot(event)">
-                            <p>Регистрация</p>
-                            <div class="timesheet__slot-arrow"></div>
+                            <div class="timesheet__slot" @click="bookSlot(event)">
+                                <p>Регистрация</p>
+                                <div class="timesheet__slot-arrow"></div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
-
-
-
+                
 
             </div>
-
 
             <!--  -->
         </div>
@@ -118,30 +107,26 @@
 export default {
     name: 'TimesheetOneRow',
     props: {
-        day: Object
+        day: Object,
+        daySlots: Array,
     },
     data() {
         return {
             data: undefined,
-            showAccordion: false
+            showAccordion: false,
+            uiData: undefined,
+            renderFlag: false
         }
     },
     created() {
         // this.data = data;
-
-        fetch('https://winliner.ru/getData', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ ok: 'ok' })
-        })
-            .then(response => response.json())
-            .then(data => {
-                // console.log({ data })
-                this.data = data;
-            });
-
+        setTimeout(() => {
+            this.uiData = this.daySlots.find(d => d.day === this.day.day);
+            if(!this.uiData.slots){
+                this.uiData.slots = [];
+            }
+            this.renderFlag = true;
+        }, 2000);
     },
     methods: {
         bookSlot(info) {
@@ -151,7 +136,9 @@ export default {
             this.$emit('bookDay', day);
         },
         isDayOpened(day) {
-
+            if(day.day === '08'){
+                return false;
+            }
             const _date = new Date(Date.now());
 
             if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
@@ -161,7 +148,6 @@ export default {
             }
 
         },
-
         isDayEight(day) {
 
             if (day.day !== '08') {
@@ -172,7 +158,23 @@ export default {
             }
 
         },
+        openAccordion(event) {
+            console.log(event.target);
 
+            event.target.classList.toggle('timesheet__slot-opened');
+            const wrapper = event.target.parentNode.parentNode;
+
+            const currentState = wrapper.style.getPropertyValue('--oberHeight');
+
+            if(currentState === '0px'){
+                const oberHeight = wrapper.querySelector('.ober-items-wrapper').scrollHeight + 'px';
+                wrapper.style.setProperty('--oberHeight', oberHeight);
+            }else{
+                wrapper.style.setProperty('--oberHeight', '0px');
+            }
+            
+            // ober-items-wrapper
+        }
     },
     computed: {
         needDay() {
@@ -444,6 +446,9 @@ export default {
     white-space: pre;
 
 }
+.timesheet__slot > * {
+    pointer-events: none;
+}
 
 .timesheet__slot-opened {
     display: flex;
@@ -496,7 +501,7 @@ export default {
     transition: all .3s;
 }
 
-.timesheet__slot-arrow-opened {
+.timesheet__slot-opened .timesheet__slot-arrow {
     background-image: url(../assets/images/arr2.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -700,5 +705,12 @@ export default {
         margin-bottom: 16px;
     }
 
+}
+
+.ober-items-wrapper{
+    height: var(--oberHeight);
+    /* height: 0; */
+    transition: all .22s;
+    overflow: hidden;
 }
 </style>

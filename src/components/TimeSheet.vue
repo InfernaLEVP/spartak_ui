@@ -1,5 +1,5 @@
 <template>
-    <section class="timesheet">
+    <section class="timesheet" v-if="renderFlag === true">
         <div class="winliner"></div>
         <div class="timesheet__first-block">
             <h2 class="timesheet__header">Расписание</h2>
@@ -15,7 +15,7 @@
                 <p>Приходи на Winliner и стань частью истории ФК&nbsp;«Спартак»!</p>
             </div>
         </div>
-        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" @bookSlot="bookSlot" @bookDay="bookDay" />
+        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" :daySlots="uiData" :renderFlag="renderFlag" @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
 </template>
 
@@ -30,7 +30,9 @@ export default {
     },
     data() {
         return {
-            data: undefined
+            data: undefined,
+            uiData: undefined,
+            renderFlag: false
         }
     },
     methods: {
@@ -39,6 +41,70 @@ export default {
         },
         bookDay(day) {
             this.$emit('bookDay', day);
+        },
+        
+        prepareData(data) {
+            const days = [];
+
+            let day = { day: '05', slots: []};
+            data.forEach(element => {
+                if(element.day === day.day){
+                    // console.log('qwe', day.slots.find(s => s.slot_number === element.slot_number))
+                    if(day.slots.find(s => s.slot_number === element.slot_number)){
+                        const pos = day.slots.map(function(e) { return e.slot_number; }).indexOf(element.slot_number);
+                        day.slots[pos].slot_events.push(element);
+                    }else{
+                        
+                        const thisSlot = {
+                            form_slot_description: element.form_slot_description,
+                            how_much_registration: element.how_much_registration,
+                            slot_description: element.slot_description,
+                            slot_end_time: element.slot_end_time,
+                            slot_name: element.slot_name,
+                            slot_number: element.slot_number,
+                            slot_start_time: element.slot_start_time,
+                            slot_events: []
+                        };
+
+                        thisSlot.slot_events.push(element);
+                        day.slots.push(thisSlot);
+
+                    }
+                }else{
+                    const deepClone = JSON.stringify(day);
+                    days.push(JSON.parse(deepClone));
+
+                    day = { day: element.day, slots: []};
+
+                    if(day.slots.find(s => s.slot_number === element.slot_number)){
+                        const pos = day.slots.map(function(e) { return e.slot_number; }).indexOf(element.slot_number);
+                        day.slots[pos].slot_events.push(element);
+                    }else{
+                        
+                        const thisSlot = {
+                            form_slot_description: element.form_slot_description,
+                            how_much_registration: element.how_much_registration,
+                            slot_description: element.slot_description,
+                            slot_end_time: element.slot_end_time,
+                            slot_name: element.slot_name,
+                            slot_number: element.slot_number,
+                            slot_start_tim: element.slot_start_tim,
+                            slot_events: []
+                        };
+
+                        thisSlot.slot_events.push(element);
+                        day.slots.push(thisSlot);
+
+                    }
+                }
+            });
+
+            this.uiData = days;
+
+            setTimeout(() => {
+                this.renderFlag = true;
+            }, 200);
+
         }
     },
     created() {
@@ -56,6 +122,19 @@ export default {
 
                 this.data = data;
             });
+
+        
+        fetch('https://winliner.ru/getData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ ok: 'ok' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            this.prepareData(data);
+        });
 
     }
 }

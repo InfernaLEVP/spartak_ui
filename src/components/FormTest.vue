@@ -79,6 +79,11 @@
                 <div class="result" v-show="renderType === 'success'">
 
                     <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
+                    <p v-if="formType === 'remind'">
+                        Спасибо, ваша заявка принята. <br>
+                        В день открытия регистрации на {{ info.day }} июня Вы получите уведомление на указанную почту.<br>
+
+                    </p>
                     <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
 
                     <!-- <p>После проверки заявки и прохождении модерации ты получишь письмо с детальной информацией на указанный e-mail адрес.</p> -->
@@ -208,11 +213,6 @@ export default {
                     setTimeout(() => {
                         this.loaderProgress = false;
                         this.renderType = 'success';
-
-                        // setTimeout(() => {
-
-                        //     // this.$emit('close-modal');
-                        // }, 4000);
                     }, 800);
                 }
             }
@@ -231,12 +231,15 @@ export default {
             this.$emit('close-modal');
         },
         formValidate() {
-            document.getElementById('fname-input').classList.remove('err');
-            document.getElementById('phone-input').classList.remove('err');
-            document.getElementById('lname-input').classList.remove('err');
-            document.getElementById('email-input').classList.remove('err');
-            document.getElementById('stavka-input').classList.remove('err');
-            document.getElementById('social-input').classList.remove('err');
+            try{
+                document.getElementById('fname-input').classList.remove('err');
+                document.getElementById('phone-input').classList.remove('err');
+                document.getElementById('lname-input').classList.remove('err');
+                document.getElementById('email-input').classList.remove('err');
+                document.getElementById('stavka-input').classList.remove('err');
+                document.getElementById('social-input').classList.remove('err');
+            }catch(e){}
+            
             const errors = [];
 
             if(this.name.length < 2){
@@ -513,6 +516,7 @@ select {
 /* Set a style for the submit/login button */
 .form-container .btn {
     margin-top: 1vw;
+    display: block;
 }
 
 /* Add a red background color to the cancel button */
