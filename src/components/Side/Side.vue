@@ -24,7 +24,7 @@
 
         <!-- <div class="line"></div> -->
         <button class="btn mtop" @click="book('1922')">Матч 1922</button>
-        <button class="btn" @click="book('media')">Регистрация СМИ</button>
+        <button class="btn mb" @click="book('media')">Регистрация СМИ</button>
 
     </section>
     <div class="sidetimesheet__overlay" v-show="showBurger" @click="showBurger = !showBurger"></div>
@@ -407,6 +407,10 @@ export default {
     .vline-container {
         width: calc(100%-16px);
     }
+
+    /* .mb{
+        margin-bottom: 100px;
+    } */
 
 
 }
