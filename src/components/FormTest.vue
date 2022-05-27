@@ -66,13 +66,13 @@
                         <div class="line" v-if="info.need_stavka === '1'"></div>
                     </div>
 
-                    <div class="input-wrapper" id="social-input" v-if="formType !== '1922' && formType !== 'remind'">
+                    <!-- <div class="input-wrapper" id="social-input" v-if="formType !== '1922' && formType !== 'remind'">
                         <input type="text" name="url" placeholder="Ссылка на соцсети" v-model="socials" >
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>    
-                    </div>
+                    </div> -->
 
-                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="" class="personal-link">политикой
+                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">политикой
                             обработки персональных данных</a></p>
                 </div>
 
@@ -82,8 +82,8 @@
 
                     <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
                     <p v-if="formType === 'remind'">
-                        Спасибо, ваша заявка принята. <br>
-                        В день открытия регистрации на {{ info.day }} июня Вы получите уведомление на указанную почту.<br>
+                        Спасибо, твоя заявка принята. <br>
+                        В день открытия регистрации на {{ info.day }} июня ты получишь уведомление на указанную почту.<br>
 
                     </p>
                     <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="result" v-show="renderType === 'taken'">
-                    <p>Вы уже участвуете в этом слоте.</p>
+                    <p>Ты уже участвуешь в этом слоте</p>
                 </div>
 
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
