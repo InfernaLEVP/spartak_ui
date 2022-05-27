@@ -3,7 +3,7 @@
         <div class="winliner"></div>
         <div class="timesheet__first-block">
             <div class="timesheet__description">
-                <p>Winliner это:</p>
+                <p class="top-header">Winliner это:</p>
                 <p class="bullets">— Лучшее место для всех красно-белых, чтобы отпраздновать 100-летие ФК&nbsp;«Спартак»
                 </p>
                 <p class="bullets">— Ежедневные встречи с футболистами и легендами ФК&nbsp;«Спартак»</p>
@@ -13,10 +13,11 @@
 
                 <p>Приходи на Winliner и стань частью истории ФК&nbsp;«Спартак»!</p>
             </div>
-                        <h2 class="timesheet__header">Расписание</h2>
+            <h2 class="timesheet__header">Расписание</h2>
 
         </div>
-        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" :daySlots="uiData" :renderFlag="renderFlag" @bookSlot="bookSlot" @bookDay="bookDay" />
+        <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" :daySlots="uiData" :renderFlag="renderFlag"
+            @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
 </template>
 
@@ -43,19 +44,19 @@ export default {
         bookDay(day) {
             this.$emit('bookDay', day);
         },
-        
+
         prepareData(data) {
             const days = [];
 
-            let day = { day: '05', slots: []};
+            let day = { day: '05', slots: [] };
             data.forEach(element => {
-                if(element.day === day.day){
+                if (element.day === day.day) {
                     // console.log('qwe', day.slots.find(s => s.slot_number === element.slot_number))
-                    if(day.slots.find(s => s.slot_number === element.slot_number)){
-                        const pos = day.slots.map(function(e) { return e.slot_number; }).indexOf(element.slot_number);
+                    if (day.slots.find(s => s.slot_number === element.slot_number)) {
+                        const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
                         day.slots[pos].slot_events.push(element);
-                    }else{
-                        
+                    } else {
+
                         const thisSlot = {
                             form_slot_description: element.form_slot_description,
                             how_much_registration: element.how_much_registration,
@@ -71,17 +72,17 @@ export default {
                         day.slots.push(thisSlot);
 
                     }
-                }else{
+                } else {
                     const deepClone = JSON.stringify(day);
                     days.push(JSON.parse(deepClone));
 
-                    day = { day: element.day, slots: []};
+                    day = { day: element.day, slots: [] };
 
-                    if(day.slots.find(s => s.slot_number === element.slot_number)){
-                        const pos = day.slots.map(function(e) { return e.slot_number; }).indexOf(element.slot_number);
+                    if (day.slots.find(s => s.slot_number === element.slot_number)) {
+                        const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
                         day.slots[pos].slot_events.push(element);
-                    }else{
-                        
+                    } else {
+
                         const thisSlot = {
                             form_slot_description: element.form_slot_description,
                             how_much_registration: element.how_much_registration,
@@ -124,7 +125,7 @@ export default {
                 this.data = data;
             });
 
-        
+
         fetch('https://winliner.ru/getData', {
             method: 'POST',
             headers: {
@@ -132,16 +133,20 @@ export default {
             },
             body: JSON.stringify({ ok: 'ok' })
         })
-        .then(response => response.json())
-        .then(data => {
-            this.prepareData(data);
-        });
+            .then(response => response.json())
+            .then(data => {
+                this.prepareData(data);
+            });
 
     }
 }
 </script>
 
 <style scoped>
+.top-header {
+    margin-bottom: 16px;
+}
+
 .winliner {
     background-image: url(../assets/images/winliner.png);
     background-repeat: no-repeat;
@@ -159,7 +164,7 @@ export default {
 
 .timesheet__first-block {
     display: grid;
-    grid-template-columns:  6fr 3fr;
+    grid-template-columns: 1fr;
     margin-bottom: 3.220vw;
 
 }
@@ -174,7 +179,7 @@ export default {
     /* text-transform: uppercase; */
     color: var(--colorLight);
     align-self: end;
-
+    margin-top: 32px;
 }
 
 .timesheet__description {
@@ -186,7 +191,7 @@ export default {
     letter-spacing: 0.01em;
     /* text-transform: uppercase; */
     color: var(--colorLight);
-    /* margin-bottom: 8px; */
+    margin-bottom: 16px;
 
 
 }
@@ -196,12 +201,12 @@ export default {
     font-family: 'Helvetica';
     /* font-style: italic; */
     font-weight: 400;
-    font-size: 1.800vw;
-    line-height: 96%;
+    font-size: 1.500vw;
+    line-height: 110%;
     letter-spacing: 0.01em;
     /* text-transform: uppercase; */
     color: var(--colorLight);
-    text-indent: -2.3vw;
+    /* text-indent: -2.3vw; */
     margin-bottom: 8px;
 }
 
