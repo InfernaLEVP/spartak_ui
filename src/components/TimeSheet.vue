@@ -2,7 +2,6 @@
     <section class="timesheet" v-if="renderFlag === true">
         <div class="winliner"></div>
         <div class="timesheet__first-block">
-            <h2 class="timesheet__header">Расписание</h2>
             <div class="timesheet__description">
                 <p>Winliner это:</p>
                 <p class="bullets">— Лучшее место для всех красно-белых, чтобы отпраздновать 100-летие ФК&nbsp;«Спартак»
@@ -14,6 +13,8 @@
 
                 <p>Приходи на Winliner и стань частью истории ФК&nbsp;«Спартак»!</p>
             </div>
+                        <h2 class="timesheet__header">Расписание</h2>
+
         </div>
         <TimesheetOneRow v-for="myDay in data" :key="myDay.day" :day="myDay" :daySlots="uiData" :renderFlag="renderFlag" @bookSlot="bookSlot" @bookDay="bookDay" />
     </section>
@@ -158,7 +159,7 @@ export default {
 
 .timesheet__first-block {
     display: grid;
-    grid-template-columns: 3fr 6fr;
+    grid-template-columns:  6fr 3fr;
     margin-bottom: 3.220vw;
 
 }
@@ -172,6 +173,7 @@ export default {
     letter-spacing: 0.01em;
     /* text-transform: uppercase; */
     color: var(--colorLight);
+    align-self: end;
 
 }
 

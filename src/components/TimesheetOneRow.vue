@@ -356,7 +356,7 @@ export default {
     letter-spacing: -0.01em;
     color: var(--colorLight);
     white-space: nowrap;
-    padding-right: 1.190vw;
+    /* padding-right: 1.190vw; */
 
 }
 

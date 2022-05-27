@@ -66,11 +66,11 @@
                         <div class="line" v-if="info.need_stavka === '1'"></div>
                     </div>
 
-                    <!-- <div class="input-wrapper" id="social-input" v-if="formType !== '1922' && formType !== 'remind'">
-                        <input type="text" name="url" placeholder="Ссылка на соцсети" v-model="socials" >
+                    <div class="input-wrapper" id="social-input" v-if="formType === 'media'">
+                        <input type="text" name="url" placeholder="Название издания" v-model="socials" >
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>    
-                    </div> -->
+                    </div>
 
                     <p class="personal">Регистрируясь вы соглашаетесь с <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">политикой
                             обработки персональных данных</a></p>
@@ -93,7 +93,7 @@
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
                     <!-- v-if="info.need_winline_registr == '1'" -->
-                    <a href="https://winline.ru/" type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
+                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000" type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
                     <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
 
