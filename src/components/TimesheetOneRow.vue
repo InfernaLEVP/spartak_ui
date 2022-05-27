@@ -58,9 +58,8 @@
                             <div class="container">
                                 <!-- <div class="thin-line"></div> -->
                                 <div class="timesheet__timetable-grid-description">
-                                    <div class="timesheet__timetable-grid-time-small">{{ (event.eventStartTime? '12:00' : event.eventStartTime ) + "—" +
-                                            event.eventEndTime
-                                    }}
+                                    <div class="timesheet__timetable-grid-time-small" style="opacity:0;">
+                                        {{ (event.eventStartTime? '12:00' : event.eventStartTime ) + "—" + event.eventEndTime }}
                                     </div>
                                     <div>
 
@@ -88,7 +87,7 @@
 
             <!--  -->
         </div>
-        <div class="remind-me" v-else>
+        <div class="remind-me" v-else :style="`${day.day === '08' ? 'opacity: 0;' : ''}`">
             <div></div>
 
             <h3>Программа на день скоро появится</h3>

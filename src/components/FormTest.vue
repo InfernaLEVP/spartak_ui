@@ -78,6 +78,8 @@
 
                 <div class="result" v-show="renderType === 'success'">
 
+                    <p v-if="formType === '1922'">Спасибо, ваша заявка принята.</p>
+
                     <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
                     <p v-if="formType === 'remind'">
                         Спасибо, ваша заявка принята. <br>
@@ -90,8 +92,8 @@
 
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
-                    <a href="https://winline.ru/" type="submit" class="btn orange-btn"
-                        v-if="info.need_winline_registr == '1'">Зарегистрироваться на Winline</a>
+                    <!-- v-if="info.need_winline_registr == '1'" -->
+                    <a href="https://winline.ru/" type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
                     <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
 
