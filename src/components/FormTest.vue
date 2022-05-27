@@ -90,7 +90,7 @@
 
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
-                    <a href="https://winline.ru/" type="submit" class="btn orange-btn"
+                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000" type="submit" class="btn orange-btn"
                         v-if="info.need_winline_registr == '1'">Зарегистрироваться на Winline</a>
                     <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>

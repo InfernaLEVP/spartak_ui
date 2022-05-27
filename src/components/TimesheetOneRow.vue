@@ -505,8 +505,8 @@ export default {
     background-image: url(../assets/images/arr2.svg);
     background-repeat: no-repeat;
     background-size: contain;
-    width: 1.190vw;
-    height: 1.190vw;
+    width: 16px;
+    height: 16px;
     transform: rotate(90deg);
     filter: brightness(0);
     transition: all .3s;
@@ -704,6 +704,22 @@ export default {
         margin-top: -32px;
         margin-bottom: 16px;
     }
+
+    .timesheet__slot-opened .timesheet__slot-arrow {
+    background-image: url(../assets/images/arr2.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    transform: rotate(90deg);
+    filter: brightness(0);
+    transition: all .3s;
+
+
+}
+
+
+
 
 }
 
