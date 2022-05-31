@@ -135,9 +135,9 @@ export default {
             this.$emit('bookDay', day);
         },
         isDayOpened(day) {
-            if(day.day === '08'){
-                return false;
-            }
+            // if(day.day === '08'){
+            //     return false;
+            // }
             const _date = new Date(Date.now());
 
             if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {

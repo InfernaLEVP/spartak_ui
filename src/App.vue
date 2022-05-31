@@ -117,6 +117,17 @@ export default {
 
         });
 
+        setTimeout(() => {
+            try{
+                const params = new Proxy(new URLSearchParams(window.location.search), {
+                    get: (searchParams, prop) => searchParams.get(prop),
+                });
+                let value = '_' + params.day + params.slot; // "some_value"
+                console.log({value});
+            }catch(e){}
+            
+        }, 500);
+
     },
     methods: {
         book(type) {

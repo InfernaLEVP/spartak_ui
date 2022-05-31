@@ -19,6 +19,15 @@
                         {{ additionalText }}
                     </p>
 
+                    <!-- Московский клуб спорта -->
+                    <div class="msk" v-if="isMSK">
+                        Формат турнира: <br>
+                        - 8 команд, 2 группы  по 4 команды, стадия плэй-офф; <br>
+                        - 4х4, без вратарей; <br>
+                        - 2 тайма по 3 минуты.
+                    </div>
+                    <!-- ./Московский клуб спорта -->
+
                     <div class="select" v-if="this.formType === 'media'">
                         <select id="standard-select" v-model="media" required>
                             <option value="" disabled selected>СМИ / Блогер / Фотограф</option>
@@ -66,14 +75,33 @@
                         <div class="line" v-if="info.need_stavka === '1'"></div>
                     </div>
 
+                    <!-- Московский клуб спорта -->
+                    <div class="input-wrapper" id="team-input" v-if="isMSK">
+                        <input type="text" name="team" placeholder="Название команды" v-model="team" >
+                            <span class="validation-message">Неверный формат</span>
+                        <div class="line"></div>    
+                    </div>
+                    <!-- ./Московский клуб спорта -->
+
+                    <!--  -->
                     <div class="input-wrapper" id="social-input" v-if="formType === 'media'">
                         <input type="text" name="url" placeholder="Название издания" v-model="socials" >
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>    
                     </div>
 
-                    <p class="personal">Регистрируясь вы соглашаетесь с <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">политикой
-                            обработки персональных данных</a></p>
+                    <p class="personal">
+                        Регистрируясь вы соглашаетесь с 
+                        <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">
+                            политикой обработки персональных данных
+                        </a>
+                        <span v-if="isMSK">
+                            и 
+                            <a href="https://winliner.ru/Положение_МКС.pdf" target="_blank" class="personal-link">
+                                ознакомились с положением
+                            </a>
+                        </span>
+                    </p>
                 </div>
 
                 <div class="result" v-show="renderType === 'success'">
@@ -132,7 +160,8 @@ export default {
             confirmMessage: false,
             days: undefined,
             socials: '',
-            media: ''
+            media: '',
+            team: ''
         }
     },
     created() {
@@ -180,20 +209,26 @@ export default {
                 slot_number:"1",
                 slot_start_time:"10:00"
             }
-            const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
+
+            const body = {
+                name: this.name,
+                familyName: this.familyName,
+                phone: this.phone,
+                email: this.email,
+                chosenEvent: this.formType === '1922' ? matchEvent : this.info,
+                formType: this.isMSK ? 'tournament' : this.formType,
+                socials: this.socials,
+                media: this.media,
+                isOpened: this.isOpenedRegisteration
+            }
+            if(this.isMSK){
+                body.team = this.team;
+            }
+
+            const response = await fetch("http://localhost:3000/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: this.name,
-                    familyName: this.familyName,
-                    phone: this.phone,
-                    email: this.email,
-                    chosenEvent: this.formType === '1922' ? matchEvent : this.info,
-                    formType: this.formType,
-                    socials: this.socials,
-                    media: this.media,
-                    isOpened: this.isOpenedRegisteration
-                })
+                body: JSON.stringify(body)
             });
             if (response.ok === true) {
                 const user = await response.json();
@@ -341,6 +376,13 @@ export default {
                 return `${this.info.day} июня ${this.info.slot_start_time} — ${this.info.slot_end_time}`;
             }
 
+        },
+        isMSK() {
+            if(this.info.name.includes('«Московский клуб спорта»')){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }
@@ -663,5 +705,16 @@ select {
 }
 #phone-input input:-webkit-autofill {
     background-color: white !important;
+}
+
+.msk{
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.86vw;
+    line-height: 110%;
+    width: 95%;
+    letter-spacing: -0.01em;
+    color: var(--colorLight);
 }
 </style>
