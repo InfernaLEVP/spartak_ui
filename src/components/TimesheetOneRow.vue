@@ -52,7 +52,7 @@
                 <!-- Блок одного события аккордиона -->
                 <div class="ober-items-wrapper">
 
-                    <div class="ober" v-for="event in slot.slot_events" :key="event.name"> <!-- v-show="showAccordion" -->
+                    <div class="ober" v-for="(event, index) in slot.slot_events" :key="event.name"> <!-- v-show="showAccordion" -->
                         <div class="timesheet__timetable-grid">
 
                             <div class="container">
@@ -73,7 +73,7 @@
 
                             <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
-                            <div class="timesheet__slot" :id="`_${day.day}${event.slot_number}`" @click="bookSlot(event)">
+                            <div class="timesheet__slot" :id="`_${day.day}${event.slot_number}${index+1}`" @click="bookSlot(event)">
                                 <p>Регистрация</p>
                                 <div class="timesheet__slot-arrow"></div>
                             </div>
