@@ -56,14 +56,14 @@
                     </div>
 
                     <div class="input-wrapper" id="phone-input">
-                        <input type="tel" placeholder="Телефон" name="phone" v-maska="'+7 (###) ###-##-##'" required
+                        <input type="tel" placeholder="Телефон" id="telPhone" name="phone" v-maska="'+7 (###) ###-##-##'" required
                             v-model="phone" @input="pInput">
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>
                     </div>
                     
                     <div class="input-wrapper" id="email-input">
-                        <input type="text" placeholder="Email" name="email" required v-model="email">
+                        <input type="text" placeholder="Email" id="email" name="email-input" required v-model="email">
                         <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>
                     </div>
@@ -77,7 +77,7 @@
 
                     <!-- Московский клуб спорта -->
                     <div class="input-wrapper" id="team-input" v-if="isMSK">
-                        <input type="text" name="team" placeholder="Название команды" v-model="team" >
+                        <input type="text" name="team" id="team" placeholder="Название команды" v-model="team" >
                             <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>    
                     </div>
@@ -146,7 +146,8 @@ export default {
     name: 'BookForm',
     props: {
         info: Object,
-        formType: String
+        formType: String,
+        params: Object
     },
     data() {
         return {
@@ -383,6 +384,16 @@ export default {
             }else{
                 return false;
             }
+        }
+    },
+    watch: {
+        params(newValue, oldValue) {
+            this.name = newValue.name;
+            this.familyName = newValue.famName;
+            this.phone = newValue.phone;
+            this.email = newValue.email;
+
+            
         }
     }
 }

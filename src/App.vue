@@ -1,5 +1,5 @@
 <template>
-    <EnterForm />
+    <EnterForm @enterform="enterform" />
     <FirstAnimation />
     <div class="container1344">
 
@@ -21,7 +21,7 @@
 
         </div>
 
-        <FormTest v-show="showModal" @close-modal="closeModal" :info="currentSlot" :formType="formType" />
+        <FormTest :params="params" v-show="showModal" @close-modal="closeModal" :info="currentSlot" :formType="formType" />
 
     </div>
 
@@ -87,7 +87,8 @@ export default {
         return {
             showModal: false,
             currentSlot: { name: '' },
-            formType: ''
+            formType: '',
+            params: {}
         }
     },
     created() {
@@ -138,6 +139,9 @@ export default {
         },
         closeModal() {
             this.showModal = false;
+        },
+        enterform(data) {
+            this.params = data;
         }
     },
     watch: {

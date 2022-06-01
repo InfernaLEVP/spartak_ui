@@ -38,6 +38,18 @@ export default {
                     let value = '_' + params.day + params.slot + params.event; // "some_value"
                     console.log({value});
                     document.getElementById(value).click();
+
+                    this.$emit('enterform', {
+                        name: params.name,
+                        famName: params.famName,
+                        phone: params.phone,
+                        email: params.email
+                    } )
+                    // document.getElementById('fname').value = params.name;
+                    // document.getElementById('lname').value = params.famName;
+                    // document.getElementById('telPhone').value = params.phone;
+                    // document.getElementById('email-input').value = params.email;
+
                 }catch(e){}
                 
             }, 500);
