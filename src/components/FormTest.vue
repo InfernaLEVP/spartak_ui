@@ -225,7 +225,7 @@ export default {
                 body.team = this.team;
             }
 
-            const response = await fetch("http://localhost:3000/api/bookOneEvent", {
+            const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                 body: JSON.stringify(body)
