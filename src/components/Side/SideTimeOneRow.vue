@@ -5,7 +5,8 @@
         <div class="sidetimesheet__one-row">
             <!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
             <!-- :style="`opacity: ${text(day) ? '1' : '1'}` -->
-            <div class="sidetimesheet__play" :style="`opacity: ${text(day) === 'открыта регистрация' ? '1' : '0'}`"></div>
+            <div class="sidetimesheet__play" :style="`opacity: ${text(day) === 'открыта регистрация' ? '1' : '0'}`">
+            </div>
 
             <div class="sidetimesheet__day-container">
                 <div class="sidetimesheet__day">{{ day.day }}</div>
@@ -33,9 +34,10 @@ export default {
             const _date = new Date(Date.now());
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
             // console.log({_today})
-            if(day.day === '08') {
-                return 'регистрация закрыта';
-            }else if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1]) ) {
+            // if(day.day === '08') {
+            //     return 'регистрация открыта';
+            // }
+            if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
                 return 'открыта регистрация';
             } else {
                 return 'регистрация закрыта';
@@ -223,7 +225,8 @@ a {
 
 
     .sidetimesheet__cal,
-    .sidetimesheet__reg-status, .mnth {
+    .sidetimesheet__reg-status,
+    .mnth {
         font-size: 3vw;
     }
 
@@ -234,7 +237,7 @@ a {
     }
 
 
- 
+
 
     .vline-container {
         width: calc(100%-16px);
@@ -266,7 +269,7 @@ a {
     .sidetimesheet__day {
         /* margin: 8px; */
         transform: translateY(.7vh);
-            font-size: 8.5vh;
+        font-size: 8.5vh;
 
     }
 
