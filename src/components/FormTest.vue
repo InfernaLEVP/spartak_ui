@@ -350,7 +350,7 @@ export default {
                     if (_date.getDate() >= day.openDay.split('.')[0]) {
                         return 'Записаться на слот';
                     } else {
-                        return 'Уведомить об открытии';
+                        return 'Записаться на слот';
                     }
                 }
             }
