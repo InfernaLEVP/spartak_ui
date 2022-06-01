@@ -378,7 +378,7 @@ export default {
 
         },
         isMSK() {
-            if(this.info.name.includes('«Московский клуб спорта»')){
+            if(this.info && this.info.name && this.info.name.includes('«Московский клуб спорта»')){
                 return true;
             }else{
                 return false;
