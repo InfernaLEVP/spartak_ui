@@ -249,7 +249,11 @@ export default {
                         }, 4000);
                     }, 800);
                 }else if(user.result === 'updated taken'){
-                    this.renderType = 'updated';
+                    setTimeout(() => {
+                        this.loaderProgress = false;
+                        this.renderType = 'updated';
+                    }, 700);
+                    
                 } else {
                     if (user.existedUser === false) {
                         this.confirmMessage = true;
