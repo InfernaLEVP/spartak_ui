@@ -128,6 +128,9 @@
                 <div class="result" v-show="renderType === 'taken'">
                     <p>Ты уже участвуешь в этом слоте</p>
                 </div>
+                <div class="result" v-show="renderType === 'updated'">
+                    <p>Отлично! Ты добавил команду!</p>
+                </div>
 
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
                 <button type="button" class="cancel" @click="closeModal"></button>
@@ -158,6 +161,7 @@ export default {
             loader: '',
             loaderProgress: false,
             renderType: 'ordinary',
+            teamUpdateMessage: false,
             confirmMessage: false,
             days: undefined,
             socials: '',
@@ -226,7 +230,7 @@ export default {
                 body.team = this.team;
             }
 
-            const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
+            const response = await fetch("http://localhost:3000/api/bookOneEvent", {
                 method: "POST",
                 headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                 body: JSON.stringify(body)
@@ -244,6 +248,8 @@ export default {
                             // this.$emit('close-modal');
                         }, 4000);
                     }, 800);
+                }else if(user.result === 'updated taken'){
+                    this.renderType = 'updated';
                 } else {
                     if (user.existedUser === false) {
                         this.confirmMessage = true;
@@ -393,7 +399,7 @@ export default {
             this.phone = newValue.phone;
             this.email = newValue.email;
 
-            
+
         }
     }
 }
