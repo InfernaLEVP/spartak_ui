@@ -9,7 +9,7 @@
                     сайтом, вы подтверждаете, что вам больше 18 лет и соглашаетесь с политикой обработки персональных
                     данных
                 </p>
-                <button class="btn" @click="showModal = false">Да, мне больше 18</button>
+                <button class="btn" @click="accept">Да, мне больше 18</button>
             </div>
         </div>
     </Transition>
@@ -26,6 +26,23 @@ export default {
             showModal: true,
         };
     },
+    methods: {
+        accept() {
+            this.showModal = false;
+
+            setTimeout(() => {
+                try{
+                    const params = new Proxy(new URLSearchParams(window.location.search), {
+                        get: (searchParams, prop) => searchParams.get(prop),
+                    });
+                    let value = '_' + params.day + params.slot; // "some_value"
+                    console.log({value});
+                    document.getElementById(value).click();
+                }catch(e){}
+                
+            }, 500);
+        }
+    }
 
 
 }
