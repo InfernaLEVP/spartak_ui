@@ -402,8 +402,6 @@ export default {
             this.familyName = newValue.famName;
             this.phone = newValue.phone;
             this.email = newValue.email;
-
-
         }
     }
 }
