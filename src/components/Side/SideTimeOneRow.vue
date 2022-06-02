@@ -34,9 +34,9 @@ export default {
             const _date = new Date(Date.now());
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
             // console.log({_today})
-            // if(day.day === '08') {
-            //     return 'регистрация открыта';
-            // }
+            if(day.day === '05') {
+                return 'регистрация завершена';
+            }
             if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
                 return 'открыта регистрация';
             } else {
@@ -59,6 +59,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 a {
     color: inherit;
     text-decoration: none;
@@ -223,6 +225,13 @@ a {
     font-family: 'Helvetica', sans-serif;
     width: min-content;
 }
+
+.closed-day .sidetimesheet__day{
+    color: white;
+    -webkit-text-stroke: 1px  gray;
+
+}
+
 
 @media (max-width: 575.98px) {
     .sidetimesheet {

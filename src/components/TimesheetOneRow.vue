@@ -196,6 +196,16 @@ export default {
 </script>
 
 <style scoped>
+
+.closed-day{
+     /* .timesheet__slot */
+    display: none;
+    pointer-events: none;
+    /* border: 1px solid gray;
+    color: gray; */
+    filter: grayscale();
+}
+
 .ts-header {
     color: var(--colorLight);
 }
