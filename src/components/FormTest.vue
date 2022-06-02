@@ -136,6 +136,7 @@
                 <button type="button" class="cancel" @click="closeModal"></button>
 
             </form>
+            
         </div>
 
     </transition>

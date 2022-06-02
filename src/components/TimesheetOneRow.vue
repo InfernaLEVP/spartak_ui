@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div v-if="isDayOpened(day) && renderFlag">
+        <div v-if="isDayOpened(day) && renderFlag" :class="[isDayClosed(day)]">
             <!--  -->
             <div class="timesheet__timetable-grid">
                 <!-- {{console.log("needday", day)}} -->
@@ -173,6 +173,13 @@ export default {
             }
             
             // ober-items-wrapper
+        },
+        isDayClosed(day) {
+            if(day.day === '05'){
+                return 'closed-day';
+            }else{
+                return '';
+            }
         }
     },
     computed: {

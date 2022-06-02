@@ -1,6 +1,6 @@
 <template>
 
-    <a class="daylink" :href="`#${day.day}`" @click="goTo">
+    <a :class="['daylink', isDayClosed(day)]" :href="`#${day.day}`" @click="goTo">
         <!-- <div class="line"></div> -->
         <div class="sidetimesheet__one-row">
             <!-- :class="`${text(day) ? 'sidetimesheet__play' : 'sidetimesheet__stop'}`" -->
@@ -46,6 +46,13 @@ export default {
         },
         goTo() {
             document.querySelector('.burger-btn-open').click();
+        },
+        isDayClosed(day) {
+            if(day.day === '05'){
+                return 'closed-day';
+            }else{
+                return '';
+            }
         }
     }
 }
