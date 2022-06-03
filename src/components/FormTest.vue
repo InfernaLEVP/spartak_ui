@@ -191,12 +191,20 @@
                         <li>Один матч длится 5 минут</li>
                         <li>Круговая система (победитель остается на поле, проигравшая – в конец очереди)</li>
                     </ul>
+
+                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000"
+                        type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
+                    <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
                 <div class="result" v-show="renderType === 'okMatch'">
                     <p>После проверки заявки и прохождения модерации ты получишь письмо с детальной информацией на
                         указанный e-mail адрес за 3 дня до мероприятия.</p>
                     <p>Все зарегистрированные пользователи Winline получат доступ к уникальным активностям розыгрышам призов.</p>
                     <p>Советуем пройти регистрацию на Winline заранее, чтобы к моменту визита на Winliner у тебя уже был активный аккаунт.</p>
+
+                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000"
+                        type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
+                    <button type="submit" class="btn" @click="closeModal">Закрыть</button>
 
                 </div>
 
