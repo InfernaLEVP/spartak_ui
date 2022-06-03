@@ -15,9 +15,7 @@
 
                 <div class="inputs" v-show="renderType === 'ordinary'">
                     <h2 class="form-head" v-html="titleText"></h2>
-                    <p class="form-datetime">
-                        {{ additionalText }}
-                    </p>
+                    <p class="form-datetime" v-html="additionalText"></p>
 
                     <!-- Московский клуб спорта -->
                     <div class="msk" v-if="isMSK">
@@ -27,6 +25,38 @@
                         - 2 тайма по 3 минуты.
                     </div>
                     <!-- ./Московский клуб спорта -->
+
+                    <!-- 1922  -->
+                     <div class="select" v-if="this.formType === '1922'">
+                        <select id="standard-select-day" v-model="matchDay" required>
+                            <option value="" disabled selected>Выберите день</option>
+                            <option value="11">11 июня</option>
+                            <option value="12">12 июня</option>
+
+                        </select>
+                    </div>
+                     <div class="select" v-if="this.formType === '1922'">
+                        <select id="standard-select-match" v-model="matchTime" required>
+                            <option value="" disabled selected>Выберите время</option>
+
+                            <option v-if="matchDay === '12'" value="Слот 1 - 8:00 - 10:30">Слот 1 - 8:00 - 10:30</option>
+                            <option v-if="matchDay === '12'" value="Слот 2 - 11:00 - 13:30">Слот 2 - 11:00 - 13:30</option>
+                            <option v-if="matchDay === '12'" value="Слот 3 - 14:00 - 16:30">Слот 3 - 14:00 - 16:30</option>
+                            <option v-if="matchDay === '12'" value="Слот 4 - 17:00 - 20:30">Слот 4 - 17:00 - 20:30</option>
+
+                            <option v-if="matchDay === '11'" value="Слот 1 - 11:00 - 13:30" >Слот 1 - 11:00 - 13:30</option>
+                            <option v-if="matchDay === '11'" value="Слот 2 - 14:00 - 16:30" >Слот 2 - 14:00 - 16:30</option>
+                            <option v-if="matchDay === '11'" value="Слот 3 - 17:00 - 20:00" >Слот 3 - 17:00 - 20:00</option>
+                            <option v-if="matchDay === '11'" value="Слот 4 - 20:30 - 23:00" >Слот 4 - 20:30 - 23:00</option>
+
+                        </select>
+                    </div>
+                    <div class="input-wrapper" id="teamName-input">
+                        <input type="text" id="teamName" name="teamName" placeholder="Название команды" v-model="teamName" required>
+                        <span class="validation-message">Это поле обязательно</span>
+                        <div class="line"></div>
+                    </div>
+                    <!-- ./1922 -->
 
                     <div class="select" v-if="this.formType === 'media'">
                         <select id="standard-select" v-model="media" required>
@@ -92,6 +122,13 @@
 
                     <p class="personal">
                         Регистрируясь вы соглашаетесь с 
+                        <span v-if="formType === '1922'">
+                            <a href="https://winliner.ru/Положение_Легендарного_матча_1922.pdf" target="_blank" class="personal-link">
+                                правилами футбольного матча 
+                            </a>
+                            и 
+                        </span>
+                        
                         <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">
                             политикой обработки персональных данных
                         </a>
@@ -131,6 +168,34 @@
                 <div class="result" v-show="renderType === 'updated'">
                     <p>Отлично! Ты добавил команду!</p>
                 </div>
+                <div class="result" v-show="renderType === 'fullMatch'">
+                    <p>На данный момент состав участников на «Легендарный матч 1922» полностью укомплектован. Регистрируй свою команду и мы уведомим тебя, если кто-то из игроков не сможет принять участие и место освободится.</p>
+                    
+                    <p>Формат турнира:</p>
+                    <ol>
+                        <li>Командная заявка заполняется капитаном</li>
+                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
+                        <li>Формат игры 4х4, без вратарей</li>
+                        <li>Один матч длится 5 минут</li>
+                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
+                    </ol>
+                </div>
+                <div class="result" v-show="renderType === 'okMatch'">
+                    <p>После проверки заявки и прохождения модерации ты получишь письмо с детальной информацией на указанный e-mail адрес за 3 дня до мероприятия.</p>
+                    <br><br>
+                    <p>Все зарегистрированные пользователи Winline получат доступ к уникальным активностям и розыгрышам призов.</p>
+                    <br><br>
+                    <p>Советуем пройти регистрацию на Winline заранее, чтобы к моменту визита на Winliner у тебя уже был активный аккаунт.</p>
+                    <br><br>
+                    <p>Формат турнира:</p>
+                    <ol>
+                        <li>Командная заявка заполняется капитаном</li>
+                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
+                        <li>Формат игры 4х4, без вратарей</li>
+                        <li>Один матч длится 5 минут</li>
+                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
+                    </ol>
+                </div>
 
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
                 <button type="button" class="cancel" @click="closeModal"></button>
@@ -167,7 +232,10 @@ export default {
             days: undefined,
             socials: '',
             media: '',
-            team: ''
+            team: '',
+            matchDay: '',
+            matchTime: '',
+            teamName: ''
         }
     },
     created() {
@@ -198,73 +266,133 @@ export default {
         async orderFormation() {
             // https://winliner.ru:8443/api/bookOneEvent
             // http://45.92.173.81:3000/api/bookOneEvent
-            const matchEvent = {
-                condition:"Регистрация на сайте Winliner",
-                day:"1922",
-                description:"1922 Матч",
-                eventEndTime:"24:00",
-                eventStartTime:"20:00",
-                form_slot_description:"",
-                form_text_after_registr:"",
-                how_much_registration:"-1",
-                name:"Матч 1922 на Winliner’е",
-                need_stavka:"0",
-                need_winline_registr:"0",
-                route:"",
-                slot_end_time:"14:30",
-                slot_number:"1",
-                slot_start_time:"10:00"
-            }
 
-            const body = {
-                name: this.name,
-                familyName: this.familyName,
-                phone: this.phone,
-                email: this.email,
-                chosenEvent: this.formType === '1922' ? matchEvent : this.info,
-                formType: this.isMSK ? 'tournament' : this.formType,
-                socials: this.socials,
-                media: this.media,
-                isOpened: this.isOpenedRegisteration
-            }
-            if(this.isMSK){
-                body.team = this.team;
-            }
+            if(this.formType === '1922'){
+                const body = {
+                    name: this.name,
+                    familyName: this.familyName,
+                    phone: this.phone,
+                    email: this.email,
+                    gameDay: this.matchDay,
+                    gameTime: this.matchTime,
+                    teamName: this.teamName
+                }
 
-            const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
-                method: "POST",
-                headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            });
-            if (response.ok === true) {
-                const user = await response.json();
-                console.log({ user });
-                if (user.result === 'already taken.') {
-                    setTimeout(() => {
-                        this.loaderProgress = false;
-                        this.renderType = 'taken';
-
+                const response = await fetch("https://winliner.ru:8443/api/bookGame", {
+                    method: "POST",
+                    headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+                if (response.ok === true) {
+                    const user = await response.json();
+                    console.log({ user });
+                    if (user.result === 'already taken.') {
                         setTimeout(() => {
-                            this.renderType = 'ordinary';
-                            // this.$emit('close-modal');
-                        }, 4000);
-                    }, 800);
-                }else if(user.result === 'updated taken'){
-                    setTimeout(() => {
-                        this.loaderProgress = false;
-                        this.renderType = 'updated';
-                    }, 700);
-                    
-                } else {
-                    if (user.existedUser === false) {
-                        this.confirmMessage = true;
+                            this.loaderProgress = false;
+                            this.renderType = 'taken';
+
+                            setTimeout(() => {
+                                this.renderType = 'ordinary';
+                                // this.$emit('close-modal');
+                            }, 4000);
+                        }, 800);
+                    }else if(user.result === 'okMatch') {
+                        if (user.existedUser === false) {
+                            this.confirmMessage = true;
+                        }
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'okMatch';
+                        }, 800);
+                    }else if(user.result === 'fullMatch') {
+                        console.log('qwefcvfsg')
+                        if (user.existedUser === false) {
+                            this.confirmMessage = true;
+                        }
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'fullMatch';
+                        }, 800);
+                    }else {
+                        if (user.existedUser === false) {
+                            this.confirmMessage = true;
+                        }
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'success';
+                        }, 800);
                     }
-                    setTimeout(() => {
-                        this.loaderProgress = false;
-                        this.renderType = 'success';
-                    }, 800);
+                }
+            }else{
+                const matchEvent = {
+                    condition:"Регистрация на сайте Winliner",
+                    day:"1922",
+                    description:"1922 Матч",
+                    eventEndTime:"24:00",
+                    eventStartTime:"20:00",
+                    form_slot_description:"",
+                    form_text_after_registr:"",
+                    how_much_registration:"-1",
+                    name:"Матч 1922 на Winliner’е",
+                    need_stavka:"0",
+                    need_winline_registr:"0",
+                    route:"",
+                    slot_end_time:"14:30",
+                    slot_number:"1",
+                    slot_start_time:"10:00"
+                }
+
+                const body = {
+                    name: this.name,
+                    familyName: this.familyName,
+                    phone: this.phone,
+                    email: this.email,
+                    chosenEvent: this.formType === '1922' ? matchEvent : this.info,
+                    formType: this.isMSK ? 'tournament' : this.formType,
+                    socials: this.socials,
+                    media: this.media,
+                    isOpened: this.isOpenedRegisteration
+                }
+                if(this.isMSK){
+                    body.team = this.team;
+                }
+
+                const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
+                    method: "POST",
+                    headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
+                    body: JSON.stringify(body)
+                });
+                if (response.ok === true) {
+                    const user = await response.json();
+                    console.log({ user });
+                    if (user.result === 'already taken.') {
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'taken';
+
+                            setTimeout(() => {
+                                this.renderType = 'ordinary';
+                                // this.$emit('close-modal');
+                            }, 4000);
+                        }, 800);
+                    }else if(user.result === 'updated taken'){
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'updated';
+                        }, 700);
+                        
+                    } else {
+                        if (user.existedUser === false) {
+                            this.confirmMessage = true;
+                        }
+                        setTimeout(() => {
+                            this.loaderProgress = false;
+                            this.renderType = 'success';
+                        }, 800);
+                    }
                 }
             }
+            
         },
         closeModal() {
             setTimeout(() => {
@@ -370,7 +498,7 @@ export default {
         },
         titleText() {
             if (this.formType === '1922') {
-                return 'Регистрация для участия в матче 1922 откроется в ближайшее время. Чтобы первым узнать об открытии регистрации, оставляй свой email мы пришлем уведомление на почту, когда будет открыта регистрация.';
+                return '«Легендарный матч 1922» — это футбольный матч для всех красно-белых, это 1922 минуты беспрерывного футбола на Winliner и возможность стать частью новой истории ФК «Спартак».';
             } else if (this.formType === 'media') {
                 return 'Форма для регистрации СМИ';
             } else {
@@ -379,7 +507,16 @@ export default {
         },
         additionalText() {
             if (this.formType === '1922') {
-                return '';
+                return `
+                    <p>Формат турнира:</p>
+                    <ol>
+                        <li>Командная заявка заполняется капитаном</li>
+                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
+                        <li>Формат игры 4х4, без вратарей</li>
+                        <li>Один матч длится 5 минут</li>
+                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
+                    </ol>
+                `;
             } else if (this.formType === 'media') {
                 return '';
             } else if (this.formType === 'remind') {

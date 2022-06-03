@@ -50,13 +50,35 @@ export default {
 
             let day = { day: '05', slots: [] };
             data.forEach(element => {
-                if (element.day === day.day) {
+                if(element.day){
+                    if (element.day === day.day) {
                     // console.log('qwe', day.slots.find(s => s.slot_number === element.slot_number))
-                    if (day.slots.find(s => s.slot_number === element.slot_number)) {
-                        const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
-                        day.slots[pos].slot_events.push(element);
-                    } else {
+                        if (day.slots.find(s => s.slot_number === element.slot_number)) {
+                            const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
+                            day.slots[pos].slot_events.push(element);
+                        } else {
 
+                            const thisSlot = {
+                                form_slot_description: element.form_slot_description,
+                                how_much_registration: element.how_much_registration,
+                                slot_description: element.slot_description,
+                                slot_end_time: element.slot_end_time,
+                                slot_name: element.slot_name,
+                                slot_number: element.slot_number,
+                                slot_start_time: element.slot_start_time,
+                                slot_events: []
+                            };
+
+                            thisSlot.slot_events.push(element);
+                            day.slots.push(thisSlot);
+
+                        }
+                    } else {
+                        const deepClone = JSON.stringify(day);
+                        days.push(JSON.parse(deepClone));
+
+                        day = { day: element.day, slots: [] };
+                        
                         const thisSlot = {
                             form_slot_description: element.form_slot_description,
                             how_much_registration: element.how_much_registration,
@@ -70,37 +92,24 @@ export default {
 
                         thisSlot.slot_events.push(element);
                         day.slots.push(thisSlot);
+                        
+                        // if (day.slots.find(s => s.slot_number === element.slot_number)) {
+                        //     const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
+                        //     day.slots[pos].slot_events.push(element);
+                        // } else {
 
-                    }
-                } else {
-                    const deepClone = JSON.stringify(day);
-                    days.push(JSON.parse(deepClone));
+                            
 
-                    day = { day: element.day, slots: [] };
-
-                    if (day.slots.find(s => s.slot_number === element.slot_number)) {
-                        const pos = day.slots.map(function (e) { return e.slot_number; }).indexOf(element.slot_number);
-                        day.slots[pos].slot_events.push(element);
-                    } else {
-
-                        const thisSlot = {
-                            form_slot_description: element.form_slot_description,
-                            how_much_registration: element.how_much_registration,
-                            slot_description: element.slot_description,
-                            slot_end_time: element.slot_end_time,
-                            slot_name: element.slot_name,
-                            slot_number: element.slot_number,
-                            slot_start_tim: element.slot_start_tim,
-                            slot_events: []
-                        };
-
-                        thisSlot.slot_events.push(element);
-                        day.slots.push(thisSlot);
-
+                        // }
                     }
                 }
+                
             });
 
+            const deepClone = JSON.stringify(day);
+            days.push(JSON.parse(deepClone));
+
+            console.log({days})
             this.uiData = days;
 
             setTimeout(() => {
@@ -135,6 +144,7 @@ export default {
         })
             .then(response => response.json())
             .then(data => {
+                console.log({data});
                 this.prepareData(data);
             });
 

@@ -1,5 +1,6 @@
 <template>
     <div class="black-window" :id="day.day" :data-id="`el-${day.day}`" ref="day">
+
         <div class="day_and_description">
             <div class="timesheet__day-container">
                 <p class="timesheet__day-number">{{ day.day }}</p>
@@ -121,7 +122,7 @@ export default {
         // this.data = data;
         setTimeout(() => {
             this.uiData = this.daySlots.find(d => d.day === this.day.day);
-            if(!this.uiData.slots){
+            if(this.uiData && !this.uiData.slots){
                 this.uiData.slots = [];
             }
             this.renderFlag = true;
@@ -138,6 +139,10 @@ export default {
             // if(day.day === '08'){
             //     return false;
             // }
+            // console.log({day});
+            if(day.day === '12'){
+                return true;
+            }
             const _date = new Date(Date.now());
 
             if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
