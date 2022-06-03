@@ -289,7 +289,7 @@ export default {
                     teamName: this.teamName
                 }
 
-                const response = await fetch("http://45.92.173.81:3020/api/bookGame", {
+                const response = await fetch("https://winliner.ru:8443/api/bookGame", {
                     method: "POST",
                     headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                     body: JSON.stringify(body)
@@ -368,7 +368,7 @@ export default {
                     body.team = this.team;
                 }
 
-                const response = await fetch("http://45.92.173.81:3020/api/bookOneEvent", {
+                const response = await fetch("https://winliner.ru:8443/api/bookOneEvent", {
                     method: "POST",
                     headers: { "Accept": "application/json", "mode": "no-cors", "Content-Type": "application/json" },
                     body: JSON.stringify(body)
