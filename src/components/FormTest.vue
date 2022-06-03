@@ -5,7 +5,7 @@
 
             <div class="backdrop" @click="closeModal"></div>
 
-            <form action="/action_page.php" class="form-container" @submit="formOrder" autocomplete="off">
+            <form id="myform" action="/action_page.php" class="form-container" @submit="formOrder" autocomplete="off">
 
                 <lottie-player v-show="loaderProgress" :src="loader" background="transparent" speed="1"
                     style="width: 100%; height: 100%; position: absolute; z-index: 99; top: 0; left: 0; background: rgba(0,0,0,.85);"
@@ -20,14 +20,14 @@
                     <!-- Московский клуб спорта -->
                     <div class="msk" v-if="isMSK">
                         Формат турнира: <br>
-                        - 8 команд, 2 группы  по 4 команды, стадия плэй-офф; <br>
+                        - 8 команд, 2 группы по 4 команды, стадия плэй-офф; <br>
                         - 4х4, без вратарей; <br>
                         - 2 тайма по 3 минуты.
                     </div>
                     <!-- ./Московский клуб спорта -->
 
                     <!-- 1922  -->
-                     <div class="select" v-if="this.formType === '1922'">
+                    <div class="select" v-if="this.formType === '1922'">
                         <select id="standard-select-day" v-model="matchDay" required>
                             <option value="" disabled selected>Выберите день</option>
                             <option value="11">11 июня</option>
@@ -35,24 +35,33 @@
 
                         </select>
                     </div>
-                     <div class="select" v-if="this.formType === '1922'">
+                    <div class="select" v-if="this.formType === '1922'">
                         <select id="standard-select-match" v-model="matchTime" required>
                             <option value="" disabled selected>Выберите время</option>
 
-                            <option v-if="matchDay === '12'" value="Слот 1 - 8:00 - 10:30">Слот 1 - 8:00 - 10:30</option>
-                            <option v-if="matchDay === '12'" value="Слот 2 - 11:00 - 13:30">Слот 2 - 11:00 - 13:30</option>
-                            <option v-if="matchDay === '12'" value="Слот 3 - 14:00 - 16:30">Слот 3 - 14:00 - 16:30</option>
-                            <option v-if="matchDay === '12'" value="Слот 4 - 17:00 - 20:30">Слот 4 - 17:00 - 20:30</option>
+                            <option v-if="matchDay === '12'" value="Слот 1 - 8:00 - 10:30">Слот 1 - 8:00 - 10:30
+                            </option>
+                            <option v-if="matchDay === '12'" value="Слот 2 - 11:00 - 13:30">Слот 2 - 11:00 - 13:30
+                            </option>
+                            <option v-if="matchDay === '12'" value="Слот 3 - 14:00 - 16:30">Слот 3 - 14:00 - 16:30
+                            </option>
+                            <option v-if="matchDay === '12'" value="Слот 4 - 17:00 - 20:30">Слот 4 - 17:00 - 20:30
+                            </option>
 
-                            <option v-if="matchDay === '11'" value="Слот 1 - 11:00 - 13:30" >Слот 1 - 11:00 - 13:30</option>
-                            <option v-if="matchDay === '11'" value="Слот 2 - 14:00 - 16:30" >Слот 2 - 14:00 - 16:30</option>
-                            <option v-if="matchDay === '11'" value="Слот 3 - 17:00 - 20:00" >Слот 3 - 17:00 - 20:00</option>
-                            <option v-if="matchDay === '11'" value="Слот 4 - 20:30 - 23:00" >Слот 4 - 20:30 - 23:00</option>
+                            <option v-if="matchDay === '11'" value="Слот 1 - 11:00 - 13:30">Слот 1 - 11:00 - 13:30
+                            </option>
+                            <option v-if="matchDay === '11'" value="Слот 2 - 14:00 - 16:30">Слот 2 - 14:00 - 16:30
+                            </option>
+                            <option v-if="matchDay === '11'" value="Слот 3 - 17:00 - 20:00">Слот 3 - 17:00 - 20:00
+                            </option>
+                            <option v-if="matchDay === '11'" value="Слот 4 - 20:30 - 23:00">Слот 4 - 20:30 - 23:00
+                            </option>
 
                         </select>
                     </div>
                     <div class="input-wrapper" id="teamName-input">
-                        <input type="text" id="teamName" name="teamName" placeholder="Название команды" v-model="teamName" required>
+                        <input type="text" id="teamName" name="teamName" placeholder="Название команды"
+                            v-model="teamName" required>
                         <span class="validation-message">Это поле обязательно</span>
                         <div class="line"></div>
                     </div>
@@ -81,17 +90,18 @@
                     </div> -->
 
                     <div class="input-wrapper" id="lname-input">
-                        <input type="text" id="lname" name="lastname" placeholder="Фамилия" required v-model="familyName">
+                        <input type="text" id="lname" name="lastname" placeholder="Фамилия" required
+                            v-model="familyName">
                         <div class="line"></div>
                     </div>
 
                     <div class="input-wrapper" id="phone-input">
-                        <input type="tel" placeholder="Телефон" id="telPhone" name="phone" v-maska="'+7 (###) ###-##-##'" required
-                            v-model="phone" @input="pInput">
-                            <span class="validation-message">Неверный формат</span>
+                        <input type="tel" placeholder="Телефон" id="telPhone" name="phone"
+                            v-maska="'+7 (###) ###-##-##'" required v-model="phone" @input="pInput">
+                        <span class="validation-message">Неверный формат</span>
                         <div class="line"></div>
                     </div>
-                    
+
                     <div class="input-wrapper" id="email-input">
                         <input type="text" placeholder="Email" id="email" name="email-input" required v-model="email">
                         <span class="validation-message">Неверный формат</span>
@@ -99,41 +109,42 @@
                     </div>
 
                     <div class="input-wrapper" id="stavka-input">
-                        <input type="text" placeholder="Номер ставки Winline" name="stavka" v-maska="'#########'" required
-                            v-model="stavka" v-if="info.need_stavka === '1'">
-                            <span class="validation-message">Неверный формат</span>
+                        <input type="text" placeholder="Номер ставки Winline" name="stavka" v-maska="'#########'"
+                            required v-model="stavka" v-if="info.need_stavka === '1'">
+                        <span class="validation-message">Неверный формат</span>
                         <div class="line" v-if="info.need_stavka === '1'"></div>
                     </div>
 
                     <!-- Московский клуб спорта -->
                     <div class="input-wrapper" id="team-input" v-if="isMSK">
-                        <input type="text" name="team" id="team" placeholder="Название команды" v-model="team" >
-                            <span class="validation-message">Неверный формат</span>
-                        <div class="line"></div>    
+                        <input type="text" name="team" id="team" placeholder="Название команды" v-model="team">
+                        <span class="validation-message">Неверный формат</span>
+                        <div class="line"></div>
                     </div>
                     <!-- ./Московский клуб спорта -->
 
                     <!--  -->
                     <div class="input-wrapper" id="social-input" v-if="formType === 'media'">
-                        <input type="text" name="url" placeholder="Название издания" v-model="socials" >
-                            <span class="validation-message">Неверный формат</span>
-                        <div class="line"></div>    
+                        <input type="text" name="url" placeholder="Название издания" v-model="socials">
+                        <span class="validation-message">Неверный формат</span>
+                        <div class="line"></div>
                     </div>
 
                     <p class="personal">
-                        Регистрируясь вы соглашаетесь с 
+                        Регистрируясь вы соглашаетесь с
                         <span v-if="formType === '1922'">
-                            <a href="https://winliner.ru/Положение_Легендарного_матча_1922.pdf" target="_blank" class="personal-link">
-                                правилами футбольного матча 
-                            </a>
-                            и 
+                            <a href="https://winliner.ru/Положение_Легендарного_матча_1922.pdf" target="_blank"
+                                class="personal-link match-rules">
+                                правилами футбольного матча</a>
+                            и
                         </span>
-                        
-                        <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf" target="_blank" class="personal-link">
+
+                        <a href="https://winliner.ru/Winliner_Политика_обработки_персональных_данных.pdf"
+                            target="_blank" class="personal-link">
                             политикой обработки персональных данных
                         </a>
                         <span v-if="isMSK">
-                            и 
+                            и
                             <a href="https://winliner.ru/Положение_МКС.pdf" target="_blank" class="personal-link">
                                 ознакомились с положением
                             </a>
@@ -143,12 +154,13 @@
 
                 <div class="result" v-show="renderType === 'success'">
 
-                    <p v-if="formType === '1922'">Спасибо, ваша заявка принята.</p>
+                    <p v-if="formType === '1922'">Спасибо, твоя заявка принята.</p>
 
-                    <p v-if="formType === 'media'">Спасибо, ваша заявка принята.</p>
+                    <p v-if="formType === 'media'">Спасибо, твоя заявка принята.</p>
                     <p v-if="formType === 'remind'">
                         Спасибо, твоя заявка принята. <br>
-                        В день открытия регистрации на {{ info.day }} июня ты получишь уведомление на указанную почту.<br>
+                        В день открытия регистрации на {{ info.day }} июня ты получишь уведомление на указанную
+                        почту.<br>
 
                     </p>
                     <p v-if="confirmMessage" class="confirm-message">Теперь тебе необходимо подтвердить свой email.</p>
@@ -158,7 +170,8 @@
                     <p v-html="lineBreaks(info.form_text_after_registr)"></p>
 
                     <!-- v-if="info.need_winline_registr == '1'" -->
-                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000" type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
+                    <a href="https://winline.ru/freebet1000/?utm_source=Winliner&utm_medium=registration&utm_campaign=freebet2000"
+                        type="submit" class="btn orange-btn">Зарегистрироваться на Winline</a>
                     <button type="submit" class="btn" @click="closeModal">Закрыть</button>
                 </div>
 
@@ -169,39 +182,38 @@
                     <p>Отлично! Ты добавил команду!</p>
                 </div>
                 <div class="result" v-show="renderType === 'fullMatch'">
-                    <p>На данный момент состав участников на «Легендарный матч 1922» полностью укомплектован. Регистрируй свою команду и мы уведомим тебя, если кто-то из игроков не сможет принять участие и место освободится.</p>
-                    
-                    <p>Формат турнира:</p>
-                    <ol>
-                        <li>Командная заявка заполняется капитаном</li>
-                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
-                        <li>Формат игры 4х4, без вратарей</li>
-                        <li>Один матч длится 5 минут</li>
-                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
-                    </ol>
+                    <p>На данный момент состав участников на «Легендарный матч 1922» полностью укомплектован.
+                        Регистрируй свою команду и мы уведомим тебя, если кто-то из игроков не сможет принять участие и
+                        место освободится.</p>
+
+                    <p class="text1922">Формат турнира:</p>
+                    <p class="text1922">Командная заявка заполняется капитаном. 16 команд принимает участие в рамках
+                        выбранного временного слота.
+                        Формат игры 4х4, без вратарей. Один матч длится 5 минут. обедившая команда остаётся на площадке,
+                        проигравшая покидает поле и становится последней в очереди</p>
                 </div>
                 <div class="result" v-show="renderType === 'okMatch'">
-                    <p>После проверки заявки и прохождения модерации ты получишь письмо с детальной информацией на указанный e-mail адрес за 3 дня до мероприятия.</p>
+                    <p>После проверки заявки и прохождения модерации ты получишь письмо с детальной информацией на
+                        указанный e-mail адрес за 3 дня до мероприятия.</p>
                     <br><br>
-                    <p>Все зарегистрированные пользователи Winline получат доступ к уникальным активностям и розыгрышам призов.</p>
+                    <p>Все зарегистрированные пользователи Winline получат доступ к уникальным активностям и розыгрышам
+                        призов.</p>
                     <br><br>
-                    <p>Советуем пройти регистрацию на Winline заранее, чтобы к моменту визита на Winliner у тебя уже был активный аккаунт.</p>
+                    <p>Советуем пройти регистрацию на Winline заранее, чтобы к моменту визита на Winliner у тебя уже был
+                        активный аккаунт.</p>
                     <br><br>
-                    <p>Формат турнира:</p>
-                    <ol>
-                        <li>Командная заявка заполняется капитаном</li>
-                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
-                        <li>Формат игры 4х4, без вратарей</li>
-                        <li>Один матч длится 5 минут</li>
-                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
-                    </ol>
+                    <p class="text1922">Формат турнира:</p>
+                    <p class="text1922">Командная заявка заполняется капитаном. 16 команд принимает участие в рамках
+                        выбранного временного слота.
+                        Формат игры 4х4, без вратарей. Один матч длится 5 минут. обедившая команда остаётся на площадке,
+                        проигравшая покидает поле и становится последней в очереди</p>
                 </div>
 
                 <button type="submit" class="btn" v-show="renderType === 'ordinary'">{{ buttonText }}</button>
                 <button type="button" class="cancel" @click="closeModal"></button>
 
             </form>
-            
+
         </div>
 
     </transition>
@@ -245,7 +257,7 @@ export default {
     methods: {
         pInput() {
             console.log(this.phone.length)
-        },  
+        },
         lineBreaks(text) {
             if (!text) {
                 return '';
@@ -267,7 +279,7 @@ export default {
             // https://winliner.ru:8443/api/bookOneEvent
             // http://45.92.173.81:3000/api/bookOneEvent
 
-            if(this.formType === '1922'){
+            if (this.formType === '1922') {
                 const body = {
                     name: this.name,
                     familyName: this.familyName,
@@ -296,7 +308,7 @@ export default {
                                 // this.$emit('close-modal');
                             }, 4000);
                         }, 800);
-                    }else if(user.result === 'okMatch') {
+                    } else if (user.result === 'okMatch') {
                         if (user.existedUser === false) {
                             this.confirmMessage = true;
                         }
@@ -304,7 +316,7 @@ export default {
                             this.loaderProgress = false;
                             this.renderType = 'okMatch';
                         }, 800);
-                    }else if(user.result === 'fullMatch') {
+                    } else if (user.result === 'fullMatch') {
                         console.log('qwefcvfsg')
                         if (user.existedUser === false) {
                             this.confirmMessage = true;
@@ -313,7 +325,7 @@ export default {
                             this.loaderProgress = false;
                             this.renderType = 'fullMatch';
                         }, 800);
-                    }else {
+                    } else {
                         if (user.existedUser === false) {
                             this.confirmMessage = true;
                         }
@@ -323,23 +335,23 @@ export default {
                         }, 800);
                     }
                 }
-            }else{
+            } else {
                 const matchEvent = {
-                    condition:"Регистрация на сайте Winliner",
-                    day:"1922",
-                    description:"1922 Матч",
-                    eventEndTime:"24:00",
-                    eventStartTime:"20:00",
-                    form_slot_description:"",
-                    form_text_after_registr:"",
-                    how_much_registration:"-1",
-                    name:"Матч 1922 на Winliner’е",
-                    need_stavka:"0",
-                    need_winline_registr:"0",
-                    route:"",
-                    slot_end_time:"14:30",
-                    slot_number:"1",
-                    slot_start_time:"10:00"
+                    condition: "Регистрация на сайте Winliner",
+                    day: "1922",
+                    description: "1922 Матч",
+                    eventEndTime: "24:00",
+                    eventStartTime: "20:00",
+                    form_slot_description: "",
+                    form_text_after_registr: "",
+                    how_much_registration: "-1",
+                    name: "Матч 1922 на Winliner’е",
+                    need_stavka: "0",
+                    need_winline_registr: "0",
+                    route: "",
+                    slot_end_time: "14:30",
+                    slot_number: "1",
+                    slot_start_time: "10:00"
                 }
 
                 const body = {
@@ -353,7 +365,7 @@ export default {
                     media: this.media,
                     isOpened: this.isOpenedRegisteration
                 }
-                if(this.isMSK){
+                if (this.isMSK) {
                     body.team = this.team;
                 }
 
@@ -375,12 +387,12 @@ export default {
                                 // this.$emit('close-modal');
                             }, 4000);
                         }, 800);
-                    }else if(user.result === 'updated taken'){
+                    } else if (user.result === 'updated taken') {
                         setTimeout(() => {
                             this.loaderProgress = false;
                             this.renderType = 'updated';
                         }, 700);
-                        
+
                     } else {
                         if (user.existedUser === false) {
                             this.confirmMessage = true;
@@ -392,7 +404,7 @@ export default {
                     }
                 }
             }
-            
+
         },
         closeModal() {
             setTimeout(() => {
@@ -408,38 +420,38 @@ export default {
             this.$emit('close-modal');
         },
         formValidate() {
-            try{
+            try {
                 document.getElementById('fname-input').classList.remove('err');
                 document.getElementById('phone-input').classList.remove('err');
                 document.getElementById('lname-input').classList.remove('err');
                 document.getElementById('email-input').classList.remove('err');
                 document.getElementById('stavka-input').classList.remove('err');
                 document.getElementById('social-input').classList.remove('err');
-            }catch(e){}
-            
+            } catch (e) { }
+
             const errors = [];
 
-            if(this.name.length < 2){
+            if (this.name.length < 2) {
                 document.getElementById('fname-input').classList.add('err');
                 errors.push('fname');
             }
-            if(this.phone.length < 18){
+            if (this.phone.length < 18) {
                 document.getElementById('phone-input').classList.add('err');
                 errors.push('phone');
             }
 
-            if(this.familyName.length < 2){
+            if (this.familyName.length < 2) {
                 document.getElementById('lname-input').classList.add('err');
                 errors.push('familyName');
             }
 
-            if(this.email.length < 4 || !this.email.includes('@') || !this.email.includes('.')){
+            if (this.email.length < 4 || !this.email.includes('@') || !this.email.includes('.')) {
                 document.getElementById('email-input').classList.add('err');
                 errors.push('email');
             }
 
-            if(this.info.need_stavka === '1'){
-                if(this.stavka.length < 8){
+            if (this.info.need_stavka === '1') {
+                if (this.stavka.length < 8) {
                     document.getElementById('stavka-input').classList.add('err');
                     errors.push('stavka');
                 }
@@ -462,7 +474,7 @@ export default {
     },
     computed: {
         isOpenedRegisteration() {
-            if(this.formType === 'media' || this.formType === '1922'){
+            if (this.formType === 'media' || this.formType === '1922') {
                 return true;
             } else {
                 const _date = new Date(Date.now());
@@ -508,14 +520,9 @@ export default {
         additionalText() {
             if (this.formType === '1922') {
                 return `
-                    <p>Формат турнира:</p>
-                    <ol>
-                        <li>Командная заявка заполняется капитаном</li>
-                        <li>16 команд принимает участие в рамках выбранного временного слота </li>
-                        <li>Формат игры 4х4, без вратарей</li>
-                        <li>Один матч длится 5 минут</li>
-                        <li>Победившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</li>
-                    </ol>
+                    <p class="text1922">Формат турнира:</p>
+                    <p class="text1922">Командная заявка заполняется капитаном. 16 команд принимает участие в рамках выбранного временного слота.
+                        Формат игры 4х4, без вратарей. Один матч длится 5 минут. обедившая команда остаётся на площадке, проигравшая покидает поле и становится последней в очереди</p>
                 `;
             } else if (this.formType === 'media') {
                 return '';
@@ -527,9 +534,9 @@ export default {
 
         },
         isMSK() {
-            if(this.info && this.info.name && this.info.name.includes('«Московский клуб спорта»')){
+            if (this.info && this.info.name && this.info.name.includes('«Московский клуб спорта»')) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -561,6 +568,10 @@ export default {
     color: var(--colorDark);
 }
 
+.match-rules {
+    color: var(--colorLight);
+}
+
 select {
     appearance: none;
     background-color: transparent;
@@ -568,7 +579,7 @@ select {
     padding: .595vw;
     margin: 0;
     /* margin-left: 8px; */
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
     width: 100%;
     font-family: inherit;
     font-size: inherit;
@@ -594,6 +605,8 @@ select {
     color: #FFFFFF;
     margin-bottom: 60px;
 }
+
+
 
 .fade-enter-active,
 .fade-leave-active {
@@ -660,7 +673,8 @@ select {
     flex-direction: column;
     justify-content: space-between;
 }
-.form-container p{
+
+.form-container p {
     margin-bottom: 20px;
 }
 
@@ -748,7 +762,7 @@ select {
     font-weight: 400;
     font-size: 1.860vw;
     line-height: 96%;
-    width: 70%;
+    width: 90%;
     letter-spacing: -0.01em;
     color: var(--colorOrange);
     margin-top: 1.786vw;
@@ -803,14 +817,18 @@ select {
     }
 
     .form-head {
-        font-size: 5vw;
-        width: 90%;
+        font-size: 16px;
+        width: 100%;
     }
 
     .form-datetime {
-        font-size: 6vw;
+        font-size: 14px;
+        width: 100%;
+        line-height: 100%;
 
     }
+
+
 
     select,
     .form-container input[type=text],
@@ -860,11 +878,12 @@ select {
 .confirm-message {
     margin-bottom: 30px;
 }
+
 #phone-input input:-webkit-autofill {
     background-color: white !important;
 }
 
-.msk{
+.msk {
     font-family: 'Helvetica';
     font-style: normal;
     font-weight: 400;

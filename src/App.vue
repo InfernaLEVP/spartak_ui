@@ -199,4 +199,10 @@ export default {
     background: white;
     z-index: 99;
 }
+.text1922 {
+    /* color: #FFFFFF; */
+    font-size: 16px;
+    line-height: 120%;
+}
+
 </style>
