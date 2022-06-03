@@ -200,12 +200,30 @@ export default {
     z-index: 99;
 }
 
+.text1922{
+    font-size: max(16px, 1.3vw);
+    line-height: 120%;
+}
+
+.text1922 li{
+  list-style-type: square;
+  list-style-position: outside;
+  margin-left: 2vw;
+
+}
+
 @media (max-width: 575.98px) {
 
 .text1922 {
     /* color: #FFFFFF; */
-    font-size: 16px;
-    line-height: 120%;
+    /* font-size: 16px; */
+    /* line-height: 120%; */
+}
+.text1922 li{
+  list-style-type: square;
+  list-style-position: outside;
+  margin-left: 4vw;
+
 }
 }
 </style>
