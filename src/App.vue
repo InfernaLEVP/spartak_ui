@@ -199,10 +199,13 @@ export default {
     background: white;
     z-index: 99;
 }
+
+@media (max-width: 575.98px) {
+
 .text1922 {
     /* color: #FFFFFF; */
     font-size: 16px;
     line-height: 120%;
 }
-
+}
 </style>
