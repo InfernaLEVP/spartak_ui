@@ -21,9 +21,9 @@
         </div> -->
 
         <SideTimeOneRow v-for="myDay in days" :key="myDay" :day="myDay" />
-
+        <a href="https://winliner.ru/rules.pdf" target="_blank" class="rules">Правила мероприятия</a>
         <!-- <div class="line"></div> -->
-        <button class="btn mtop" @click="book('1922')">Матч 1922</button>
+        <button class="btn" @click="book('1922')">Матч 1922</button>
         <button class="btn mb" @click="book('media')">Регистрация СМИ</button>
 
     </section>
@@ -56,13 +56,13 @@ export default {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ok: 'ok'})
+            body: JSON.stringify({ ok: 'ok' })
         })
-        .then(response => response.json())
-        .then(data => {
-            
-            this.days = data;
-        });
+            .then(response => response.json())
+            .then(data => {
+
+                this.days = data;
+            });
 
     },
     mounted() {
@@ -188,6 +188,19 @@ export default {
     width: min-content;
 }
 
+.rules {
+    font-family: 'Helvetica';
+    font-style: normal;
+    /* width: min-content; */
+    font-weight: 400;
+    font-size: max(16px, 1.116vw);
+    line-height: 107%;
+    color: var(--colorRed);
+    /* width: min-content; */
+    white-space: nowrap;
+    margin: auto auto 10px auto;
+}
+
 .sidetimesheet__month {
     font-family: 'Druk';
     font-style: italic;
@@ -258,13 +271,7 @@ export default {
 
 @media (max-width: 575.98px) {
 
-    .sidetimesheet {
-        position: fixed;
-        padding: 4px;
 
-        /* transform: translateY(100px); */
-
-    }
 
     .sidetimesheet__overlay {
         display: block;
@@ -377,8 +384,11 @@ export default {
     }
 
     .sidetimesheet {
-        width: 75%;
+        position: fixed;
         padding: 4px;
+
+        width: 75%;
+        padding-bottom: 10vh;
     }
 
 

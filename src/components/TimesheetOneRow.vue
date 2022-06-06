@@ -10,7 +10,8 @@
                 <img :src="require(`../assets/images/icons/icon_${day.day}.png`)" alt="" class="round-icon">
                 <!-- <img class="sl-img" :src="require('../assets/images/slides/' + slide.image_name)"  -->
                 <!-- <div class="round-icon"></div> -->
-                <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}</p>
+                <p class="main-day-description"><span>{{ day.first_words_selection }}</span> {{ day.day_description }}
+                </p>
             </div>
         </div>
 
@@ -30,7 +31,10 @@
                     <div class="container">
                         <div class="thin-line"></div>
                         <div class="timesheet__timetable-grid-description">
-                            <div class="timesheet__timetable-grid-time">{{ (slot.slot_start_time? slot.slot_start_time : '12:00'  ) + "—" + slot.slot_end_time }}
+                            <div class="timesheet__timetable-grid-time">{{ (slot.slot_start_time ? slot.slot_start_time
+                                    :
+                                    '12:00') + "—" + slot.slot_end_time
+                            }}
                             </div>
                             <div>
                                 <h3 class="timesheet__timetable-grid-description-head">{{ slot.slot_name }}</h3>
@@ -42,8 +46,7 @@
                     <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
                     <!-- <div class="timesheet__slot" @click="bookSlot(event)"> -->
-                    <div :class="['timesheet__slot']"
-                        @click="openAccordion">
+                    <div :class="['timesheet__slot']" @click="openAccordion">
                         <p>Подробнее</p>
                         <!-- <p>{{ slot.slot_start_time + "—" + slot.slot_end_time }}</p> -->
                         <div :class="[showAccordion ? 'timesheet__slot-arrow-opened' : 'timesheet__slot-arrow']"></div>
@@ -53,19 +56,24 @@
                 <!-- Блок одного события аккордиона -->
                 <div class="ober-items-wrapper">
 
-                    <div class="ober" v-for="(event, index) in slot.slot_events" :key="event.name"> <!-- v-show="showAccordion" -->
+                    <div class="ober" v-for="(event, index) in slot.slot_events" :key="event.name">
+                        <!-- v-show="showAccordion" -->
                         <div class="timesheet__timetable-grid">
 
                             <div class="container">
                                 <!-- <div class="thin-line"></div> -->
                                 <div class="timesheet__timetable-grid-description">
                                     <div class="timesheet__timetable-grid-time-small" style="opacity:0;">
-                                        {{ (event.eventStartTime? '12:00' : event.eventStartTime ) + "—" + event.eventEndTime }}
+                                        {{ (event.eventStartTime ? '12:00' : event.eventStartTime) + "—" +
+                                                event.eventEndTime
+                                        }}
                                     </div>
                                     <div>
 
-                                        <h4 class="timesheet__timetable-grid-description-head-small">{{ event.name }}</h4>
-                                        <p class="timesheet__timetable-grid-description-text-small">{{ event.description }}
+                                        <h4 class="timesheet__timetable-grid-description-head-small">{{ event.name }}
+                                        </h4>
+                                        <p class="timesheet__timetable-grid-description-text-small">{{ event.description
+                                        }}
                                         </p>
 
                                     </div>
@@ -74,7 +82,8 @@
 
                             <!-- class="slot-disable" добавить этот класс, когда регистрация не открыта -->
 
-                            <div class="timesheet__slot" :id="`_${day.day}${event.slot_number}${index+1}`" @click="bookSlot(event)">
+                            <div class="timesheet__slot" :id="`_${day.day}${event.slot_number}${index + 1}`"
+                                @click="bookSlot(event)">
                                 <p>Регистрация</p>
                                 <div class="timesheet__slot-arrow"></div>
                             </div>
@@ -82,7 +91,7 @@
                     </div>
 
                 </div>
-                
+
 
             </div>
 
@@ -95,6 +104,7 @@
             <button @click="bookDay(day)">Уведомить меня</button>
 
         </div>
+
 
     </div>
 
@@ -122,7 +132,7 @@ export default {
         // this.data = data;
         setTimeout(() => {
             this.uiData = this.daySlots.find(d => d.day === this.day.day);
-            if(this.uiData && !this.uiData.slots){
+            if (this.uiData && !this.uiData.slots) {
                 this.uiData.slots = [];
             }
             this.renderFlag = true;
@@ -135,12 +145,20 @@ export default {
         bookDay(day) {
             this.$emit('bookDay', day);
         },
+
+        isReliseTrue(day) {
+            if (day.day === '05') {
+                return true;
+            }
+        },
+
+
         isDayOpened(day) {
             // if(day.day === '08'){
             //     return false;
             // }
             // console.log({day});
-            if(day.day === '12'){
+            if (day.day === '12') {
                 return true;
             }
             const _date = new Date(Date.now());
@@ -170,19 +188,19 @@ export default {
 
             const currentState = wrapper.style.getPropertyValue('--oberHeight');
 
-            if(currentState === '0px'){
+            if (currentState === '0px') {
                 const oberHeight = wrapper.querySelector('.ober-items-wrapper').scrollHeight + 'px';
                 wrapper.style.setProperty('--oberHeight', oberHeight);
-            }else{
+            } else {
                 wrapper.style.setProperty('--oberHeight', '0px');
             }
-            
+
             // ober-items-wrapper
         },
         isDayClosed(day) {
-            if(day.day === '05' || day.day === '06'){
+            if (day.day === '05' || day.day === '06' || day.day === '07') {
                 return 'closed-day';
-            }else{
+            } else {
                 return '';
             }
         }
@@ -201,9 +219,65 @@ export default {
 </script>
 
 <style scoped>
+.relis__wrapper {
+    grid-column-start: 2;
 
-.closed-day{
-     /* .timesheet__slot */
+}
+
+.timesheet__relise-header {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: max(20px, 1.860vw);
+    line-height: 96%;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    margin-top: 50px;
+    margin-bottom: 8px;
+
+
+}
+
+.timesheet__relise-header::before {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.timesheet__relise {
+    font-family: 'Helvetica';
+    font-style: normal;
+    font-weight: 400;
+    font-size: max(16px, 1.116vw);
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+
+
+.relis-images-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.relis__images {
+    /* height: 50px; */
+    max-width: 100%;
+    margin-top: 8px;
+    margin-right: 8px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover
+}
+
+
+
+.closed-day {
+    /* .timesheet__slot */
     display: none;
     pointer-events: none;
     /* border: 1px solid gray;
@@ -467,7 +541,8 @@ export default {
     white-space: pre;
 
 }
-.timesheet__slot > * {
+
+.timesheet__slot>* {
     pointer-events: none;
 }
 
@@ -492,7 +567,7 @@ export default {
 
 }
 
-.timesheet__slot-opened:hover{
+.timesheet__slot-opened:hover {
     opacity: .8;
 }
 
@@ -506,8 +581,7 @@ export default {
 
 
 .timesheet__slot:hover {
-    background-color: rgba(255, 93, 12, 0.8)
-;
+    background-color: rgba(255, 93, 12, 0.8);
     color: var(--colorDark);
     cursor: pointer;
     /* opacity: .8; */
@@ -727,24 +801,31 @@ export default {
     }
 
     .timesheet__slot-opened .timesheet__slot-arrow {
-    background-image: url(../assets/images/arr2.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 16px;
-    height: 16px;
-    transform: rotate(90deg);
-    filter: brightness(0);
-    transition: all .3s;
+        background-image: url(../assets/images/arr2.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 16px;
+        height: 16px;
+        transform: rotate(90deg);
+        filter: brightness(0);
+        transition: all .3s;
+
+
+    }
+
+    .relis__wrapper {
+        grid-column: 1/-1;
+
+
+    }
+
+
+
 
 
 }
 
-
-
-
-}
-
-.ober-items-wrapper{
+.ober-items-wrapper {
     height: var(--oberHeight);
     /* height: 0; */
     transition: all .22s;

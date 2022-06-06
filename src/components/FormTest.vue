@@ -59,7 +59,7 @@
 
                         </select>
                     </div>
-                    <div class="input-wrapper" id="teamName-input">
+                    <div class="input-wrapper" id="teamName-input"  v-if="this.formType === '1922'">
                         <input type="text" id="teamName" name="teamName" placeholder="Название команды"
                             v-model="teamName" required>
                         <span class="validation-message">Это поле обязательно</span>

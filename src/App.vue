@@ -1,6 +1,6 @@
 <template>
     <EnterForm @enterform="enterform" />
-    <FirstAnimation />
+    {# <FirstAnimation /> #}
     <div class="container1344">
 
         <!-- {{ curentSection }} -->
