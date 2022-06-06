@@ -198,7 +198,7 @@ export default {
             // ober-items-wrapper
         },
         isDayClosed(day) {
-            if (day.day === '05' || day.day === '06') {
+            if (day.day === '05' || day.day === '06' || day.day === '07') {
                 return 'closed-day';
             } else {
                 return '';

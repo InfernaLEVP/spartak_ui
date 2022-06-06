@@ -34,7 +34,7 @@ export default {
             const _date = new Date(Date.now());
             const _today = `${_date.getDate()}.0${_date.getMonth() + 1}`;
             // console.log({_today})
-            if(day.day === '05' || day.day === '06') {
+            if(day.day === '05' || day.day === '06' || day.day === '07') {
                 return 'регистрация завершена';
             }
             if (_date.getDate() >= day.openDay.split('.')[0] && _date.getMonth() + 1 === Number(day.openDay.split('.')[1])) {
@@ -48,7 +48,7 @@ export default {
             document.querySelector('.burger-btn-open').click();
         },
         isDayClosed(day) {
-            if(day.day === '05' || day.day === '06'){
+            if(day.day === '05' || day.day === '06' || day.day === '07'){
                 return 'closed-day';
             }else{
                 return '';
