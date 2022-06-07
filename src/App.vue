@@ -226,4 +226,8 @@ export default {
 
 }
 }
+
+.timesheet__relise{
+    margin: 20px  0;
+}
 </style>

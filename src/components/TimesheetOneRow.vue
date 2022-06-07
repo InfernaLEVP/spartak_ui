@@ -104,7 +104,7 @@
             <button @click="bookDay(day)">Уведомить меня</button>
 
         </div>
-
+        <Relis v-if="isReliseTrue(day)" :day="day" />
 
     </div>
 
@@ -113,9 +113,13 @@
 
 <script>
 // import data from '../data/data.json';
+import Relis from '@/components/Relis.vue';
 
 export default {
     name: 'TimesheetOneRow',
+    components: {
+        Relis
+    },
     props: {
         day: Object,
         daySlots: Array,
@@ -145,14 +149,12 @@ export default {
         bookDay(day) {
             this.$emit('bookDay', day);
         },
-
         isReliseTrue(day) {
+            console.log({day});
             if (day.day === '05') {
                 return true;
             }
         },
-
-
         isDayOpened(day) {
             // if(day.day === '08'){
             //     return false;
