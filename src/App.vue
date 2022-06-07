@@ -157,6 +157,11 @@ export default {
 </script>
 
 <style>
+
+.relisBold{
+    font-weight: 700;
+}
+
 .box {
     width: 200px;
     height: 200px;

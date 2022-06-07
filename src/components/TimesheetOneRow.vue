@@ -151,7 +151,7 @@ export default {
         },
         isReliseTrue(day) {
             console.log({day});
-            if (day.day === '05') {
+            if (day.day === '05' || day.day === '06') {
                 return true;
             }
         },
