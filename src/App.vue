@@ -162,6 +162,10 @@ export default {
     font-weight: 700;
 }
 
+.italic{
+    font-style: italic;
+}
+
 .box {
     width: 200px;
     height: 200px;
