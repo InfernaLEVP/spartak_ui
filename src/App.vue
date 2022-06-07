@@ -230,4 +230,7 @@ export default {
 .timesheet__relise{
     margin: 20px  0;
 }
+.mfp-bottom-bar{
+    display: none!important;
+}
 </style>

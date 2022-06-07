@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ober">
 
         <div class="timesheet__timetable-grid" style="--oberHeight: 0px;">
             <div class="relis__wrapper">
@@ -136,17 +136,19 @@ export default {
 
 <style scoped> 
     .timesheet__timetable-grid{
-        display: grid;
-        grid-template-columns: 2.5fr 12fr 4fr;
-        grid-gap: 1.190vw;
+        /* display: grid;
+        grid-template-columns: 2.5fr 12fr 4fr; */
+        /* grid-gap: 1.190vw; */
         margin-bottom: 0.818vw;
         margin-top: 64px;
+        display: flex;
     }
     @media(max-width: 768px) {
         .timesheet__timetable-grid{
             grid-template-columns: 1fr;
             grid-template-rows: auto;
             padding-top: 32px;
+            flex-direction: column;
         }
     }
     .relis__wrapper{
@@ -158,17 +160,25 @@ export default {
         grid-column-start: 2;
         border-top: 1px solid white;
         padding-top: 7px;
+
+        width: 80%;
+        padding-right: 15px;
     }
     @media(max-width: 768px) {
         .relis__wrapper{
             grid-column-start: 1;
             max-width: calc(100vw - 16px);
+            width: 100%!important;
+        }
+        .zoom-gallery{
+            flex-wrap: nowrap!important;;
         }
     }
     .zoom-gallery{
         display: flex;
         margin-top: 20px;
         gap: 15px;
+        flex-wrap: wrap;
     }
     .relis-images-container img{
         width: 150px;
@@ -197,6 +207,8 @@ export default {
         transition: .25s;
         white-space: pre;
         cursor: pointer;
+
+        width: 20%;
     }
     @media(max-width: 768px) {
         .zoom-gallery{
@@ -207,6 +219,7 @@ export default {
             font-size: 4.444vw!important;
             padding: 4.444vw 1.785vw!important;
             margin-top: 20px!important;
+            width: 100%!important;
         }
         .timesheet__slot-opened{
             font-size: 4.444vw!important;

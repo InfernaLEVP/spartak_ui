@@ -573,14 +573,10 @@ export default {
     opacity: .8;
 }
 
-
-
-
 .inActive {
     border: 1.4px solid var(--colorDark2);
     cursor: not-allowed;
 }
-
 
 .timesheet__slot:hover {
     background-color: rgba(255, 93, 12, 0.8);
